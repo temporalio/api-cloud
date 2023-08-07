@@ -10,4 +10,24 @@ service NamespaceService {
     // CreateNamespace creates a new namespace on Temporal cloud.
     rpc CreateNamespace (CreateNamespaceRequest) returns (CreateNamespaceResponse) {
     }
+    
+    // GetNamespaces lists all known namespaces on temporal cloud.
+    rpc GetNamespaces (GetNamespacesRequest)  returns (GetNamespacesResponse) {
+    }
+
+    // GetNamespace describes the namespace in detail.
+    rpc GetNamespace (GetNamespaceRequest) returns (GetNamespaceResponse) {
+    }
+
+    // UpdateNamespace updates an existing namespace on Temporal cloud.
+    rpc UpdateNamespace (UpdateNamespaceRequest) returns (UpdateNamespaceResponse) {
+    }
+
+    // RenameCustomSearchAttribute renames an existing custom search attribute for a given namespace on Temporal cloud.
+    rpc RenameCustomSearchAttribute (RenameCustomSearchAttributeRequest) returns (RenameCustomSearchAttributeResponse) {
+    }
+
+    // DeleteNamespace deletes an existing namespace on Temporal cloud.
+    rpc DeleteNamespace (DeleteNamespaceRequest) returns (DeleteNamespaceResponse) {
+    }
 }
