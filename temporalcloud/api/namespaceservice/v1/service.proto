@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+package temporalcloud.api.namespaceservice.v1;
+
+option go_package = "go.cloud.temporal.io/api/namespaceservice/v1;namespaceservice";
+
+import "temporalcloud/api/namespaceservice/v1/request_response.proto";
+
+service NamespaceService {
+    // CreateNamespace creates a new namespace on Temporal cloud.
+    rpc CreateNamespace (CreateNamespaceRequest) returns (CreateNamespaceResponse) {
+    }
+}
