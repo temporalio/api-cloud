@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+package temporalcloud.api.requestservice.v1;
+
+option go_package = "go.cloud.temporal.io/api/requestservice/v1;requestservice";
+
+import "temporalcloud/api/requestservice/v1/request_response.proto";
+import "google/api/annotations.proto";
+
+service RequestService {
+    // GetRequestStatus gets the status of a asynchronous request.
+    rpc GetRequestStatus (GetRequestStatusRequest) returns (GetRequestStatusResponse) {
+        option (google.api.http) = {
+            get: "/api/v1/{account_id}/requests/{request_id}",
+        };
+    }
+}
