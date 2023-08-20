@@ -7,3 +7,8 @@ plugins:
     out: go
     opt:
       - paths=source_relative
+  - plugin: openapiv2
+    out: openapiv2
+    opt:
+      - output_format=yaml
+      - allow_delete_body

@@ -11,7 +11,7 @@ service RequestService {
     // GetRequestStatus gets the status of a asynchronous request.
     rpc GetRequestStatus (GetRequestStatusRequest) returns (GetRequestStatusResponse) {
         option (google.api.http) = {
-            get: "/api/v1/{account_id}/requests/{request_id}",
+            get: "/api/v1/requests/{request_id}",
         };
     }
 }

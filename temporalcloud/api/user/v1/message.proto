@@ -1,0 +1,52 @@
+syntax = "proto3";
+
+package temporalcloud.api.user.v1;
+
+option go_package = "go.cloud.temporal.io/api/user/v1;user";
+
+import "google/protobuf/timestamp.proto";
+
+message User {
+    // the id of the user
+    string id = 1;
+    // the current version of the user specification
+    // the next update request will have to include this version
+    string resource_version = 2;
+    // the user specification
+    UserSpec spec = 3;
+    // the current state of the user
+    string state = 4;
+    // the id of the request that is creating/updating/deleting the user, if any
+    string request_id = 5;
+    // the details of the open invitation sent to the user, if any
+    Invitation invitation = 6;
+    // the date and time when the user was created
+    google.protobuf.Timestamp created_time = 7;
+    // the date and time when the user was last modified
+    google.protobuf.Timestamp last_modified_time = 8;
+}
+
+message UserSpec {
+    // the email address associated to the user
+    string email = 1;
+    // the access to assigned to the user
+    Access access = 2;
+}
+
+message Access {
+    // the account role
+    // the role has to be one of [admin, developer, read_only]
+    string account_role = 1;
+    // the map of namespace permissions keyed on the namespace id
+    // the namespace permissions has to be one of [admin, write, read_only]
+    map<string, string> namepspace_permissions = 2;
+}
+
+message Invitation {
+    // the uri of the invitation sent to the user
+    string uri = 1;
+    // the date and time when the user was created
+    google.protobuf.Timestamp created_time = 2;
+    // the date and time when the invitation expires or has expired
+    google.protobuf.Timestamp expiry_time = 3;
+}

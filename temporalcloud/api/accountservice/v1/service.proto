@@ -1,0 +1,50 @@
+syntax = "proto3";
+
+package temporalcloud.api.accountservice.v1;
+
+option go_package = "go.cloud.temporal.io/api/accountservice/v1;accountservice";
+
+import "temporalcloud/api/accountservice/v1/request_response.proto";
+import "google/api/annotations.proto";
+
+service AccountService {
+
+    // Gets all known users
+    rpc GetUsers(GetUsersRequest) returns (GetUsersResponse) {
+	option (google.api.http) = {
+            get: "/api/v1/users",
+        };
+    }
+    
+    // Get an user
+    rpc GetUser(GetUserRequest) returns (GetUserResponse) {
+	option (google.api.http) = {
+            get: "/api/v1/users/{user_id}",
+        };
+    }
+
+    // Invite an user
+    rpc InviteUsers(InviteUsersRequest) returns (InviteUsersResponse) {
+        option (google.api.http) = {
+            post: "/api/v1/users",
+	    body: "*"
+        };
+    }
+
+    // Update an user
+    rpc UpdateUser(UpdateUserRequest) returns (UpdateUserResponse) {
+	option (google.api.http) = {
+            post: "/api/v1/users/{user_id}",
+	    body: "*"
+        };
+    }
+
+    // Delete an user
+    rpc DeleteUser(DeleteUserRequest) returns (DeleteUserResponse) {
+	option (google.api.http) = {
+            delete: "/api/v1/users/{user_id}",
+        };
+    }
+}
+
+
