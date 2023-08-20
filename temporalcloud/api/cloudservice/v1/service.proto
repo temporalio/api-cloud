@@ -1,14 +1,13 @@
 syntax = "proto3";
 
-package temporalcloud.api.accountservice.v1;
+package temporalcloud.api.cloudservice.v1;
 
-option go_package = "go.cloud.temporal.io/api/accountservice/v1;accountservice";
+option go_package = "go.cloud.temporal.io/api/cloudservice/v1;cloudservice";
 
-import "temporalcloud/api/accountservice/v1/request_response.proto";
+import "temporalcloud/api/cloudservice/v1/request_response.proto";
 import "google/api/annotations.proto";
 
-service AccountService {
-
+service RequestService {
     // Gets all known users
     rpc GetUsers(GetUsersRequest) returns (GetUsersResponse) {
 	option (google.api.http) = {
@@ -45,6 +44,19 @@ service AccountService {
             delete: "/api/v1/users/{user_id}",
         };
     }
+
+    // Set an user's permission to a namespace
+    rpc SetUserNamespacePermission(SetUserNamespacePermissionRequest) returns (SetUserNamespacePermissionResponse) {
+	option (google.api.http) = {
+            post: "/api/v1/namespaces/{namespace_id}/users/{user_id}",
+	    body: "*"
+        };
+    }
+
+    // GetRequestStatus gets the status of a asynchronous request.
+    rpc GetRequestStatus (GetRequestStatusRequest) returns (GetRequestStatusResponse) {
+        option (google.api.http) = {
+            get: "/api/v1/requests/{request_id}",
+        };
+    }
 }
-
-

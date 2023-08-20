@@ -37,8 +37,8 @@ message Access {
     // the account role
     // the role has to be one of [admin, developer, read_only]
     string account_role = 1;
-    // the map of namespace permissions keyed on the namespace id
-    // the namespace permissions has to be one of [admin, write, read_only]
+    // the map of namespace permission keyed on the namespace id
+    // the namespace permission has to be one of [admin, write, read_only]
     map<string, string> namepspace_permissions = 2;
 }
 
