@@ -19,7 +19,6 @@ SHELL := PATH=$(GOBIN):$(PATH) /bin/sh
 
 COLOR := "\e[1;36m%s\e[0m\n"
 
-
 PROTO_OUT := .gen
 $(PROTO_OUT):
 	mkdir $(PROTO_OUT)
@@ -40,9 +39,6 @@ openapiv2-install:
 	printf $(COLOR) "Install/update ..."
 	go install github.com/grpc-ecosystem/grpc-gateway/v2/protoc-gen-openapiv2@v2.16.2
 
-swagger-merger-install:
-	go install github.com/g3co/go-swagger-merger@latest
-
 ##### Linters #####
 buf-lint:
 	printf $(COLOR) "Run buf linter..."
@@ -51,10 +47,6 @@ buf-lint:
 buf-breaking:
 	@printf $(COLOR) "Run buf breaking changes check against master branch..."	
 	buf breaking --against '.git#branch=main'
-
-merge-swagger:
-	@printf $(COLOR) "Merge swagger files..."
-	go-swagger-merger -o ${PROTO_OUT}/swagger.yaml $(shell find $(PROTO_OUT)/openapiv2 -name "*.yaml")
 
 ##### Clean #####
 clean:

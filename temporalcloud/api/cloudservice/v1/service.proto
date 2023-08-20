@@ -7,7 +7,7 @@ option go_package = "go.cloud.temporal.io/api/cloudservice/v1;cloudservice";
 import "temporalcloud/api/cloudservice/v1/request_response.proto";
 import "google/api/annotations.proto";
 
-service RequestService {
+service CloudService {
     // Gets all known users
     rpc GetUsers(GetUsersRequest) returns (GetUsersResponse) {
 	option (google.api.http) = {
