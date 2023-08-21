@@ -12,8 +12,10 @@ message GetUsersRequest {
     int32 page_size = 1;
     // the page token
     string page_token = 2;
+    // optional field to filter users by email address
+    string eamil_address = 3;
     // optional field to filter users by the namespace assigned to them
-    string namespace_id = 3;
+    string namespace_id = 4;
 }
 
 message GetUsersResponse {
