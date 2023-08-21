@@ -26,8 +26,6 @@ message GetUsersResponse {
 message GetUserRequest {
     // the id of the user to get
     string user_id = 1;
-    // or the email address of the user to get
-    string user_email = 2;
 }
 
 message GetUserResponse {
