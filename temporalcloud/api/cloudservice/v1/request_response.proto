@@ -13,7 +13,7 @@ message GetUsersRequest {
     // the page token
     string page_token = 2;
     // optional field to filter users by email address
-    string eamil_address = 3;
+    string email_address = 3;
     // optional field to filter users by the namespace assigned to them
     string namespace_id = 4;
 }
@@ -35,14 +35,14 @@ message GetUserResponse {
     api.user.v1.User user = 1;
 }
 
-message InviteUsersRequest {
+message InviteUserRequest {
     // the spec for the user to invite
     api.user.v1.UserSpec spec = 1;
     // the request id to use for this operation - optional
     string request_id = 2;
 }
 
-message InviteUsersResponse {
+message InviteUserResponse {
     // the user that was invited
     api.user.v1.User user = 1;
     // the request status of the invitation operation
@@ -106,7 +106,7 @@ message SetUserNamespacePermissionResponse {
 
 message GetRequestStatusRequest {
     // the request id
-    string request_id = 2;
+    string request_id = 1;
 }
 
 message GetRequestStatusResponse {

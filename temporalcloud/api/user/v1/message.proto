@@ -39,7 +39,7 @@ message Access {
     string account_role = 1;
     // the map of namespace permission keyed on the namespace id
     // the namespace permission has to be one of [admin, write, read_only]
-    map<string, string> namepspace_permissions = 2;
+    map<string, string> namespace_permissions = 2;
 }
 
 message Invitation {

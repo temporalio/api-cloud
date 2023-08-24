@@ -15,22 +15,22 @@ service CloudService {
         };
     }
     
-    // Get an user
+    // Get a user
     rpc GetUser(GetUserRequest) returns (GetUserResponse) {
 	option (google.api.http) = {
             get: "/api/v1/users/{user_id}",
         };
     }
 
-    // Invite an user
-    rpc InviteUsers(InviteUsersRequest) returns (InviteUsersResponse) {
+    // Invite a user
+    rpc InviteUser(InviteUserRequest) returns (InviteUserResponse) {
         option (google.api.http) = {
             post: "/api/v1/users",
 	    body: "*"
         };
     }
 
-    // Update an user
+    // Update a user
     rpc UpdateUser(UpdateUserRequest) returns (UpdateUserResponse) {
 	option (google.api.http) = {
             post: "/api/v1/users/{user_id}",
@@ -38,14 +38,14 @@ service CloudService {
         };
     }
 
-    // Delete an user
+    // Delete a user
     rpc DeleteUser(DeleteUserRequest) returns (DeleteUserResponse) {
 	option (google.api.http) = {
             delete: "/api/v1/users/{user_id}",
         };
     }
 
-    // Set an user's permission to a namespace
+    // Set a user's permission to a namespace
     rpc SetUserNamespacePermission(SetUserNamespacePermissionRequest) returns (SetUserNamespacePermissionResponse) {
 	option (google.api.http) = {
             post: "/api/v1/namespaces/{namespace_id}/users/{user_id}",
@@ -53,7 +53,7 @@ service CloudService {
         };
     }
 
-    // GetRequestStatus gets the status of a asynchronous request.
+    // Get the status of an asynchronous request.
     rpc GetRequestStatus (GetRequestStatusRequest) returns (GetRequestStatusResponse) {
         option (google.api.http) = {
             get: "/api/v1/requests/{request_id}",
