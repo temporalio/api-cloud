@@ -1,8 +1,8 @@
 syntax = "proto3";
 
-package temporalcloud.api.user.v1;
+package temporal.api.cloud.user.v1;
 
-option go_package = "go.cloud.temporal.io/api/user/v1;user";
+option go_package = "go.temporal.io/api/cloud/user/v1;user";
 
 import "google/protobuf/timestamp.proto";
 

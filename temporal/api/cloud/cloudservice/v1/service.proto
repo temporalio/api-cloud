@@ -1,10 +1,10 @@
 syntax = "proto3";
 
-package temporalcloud.api.cloudservice.v1;
+package temporal.api.cloud.cloudservice.v1;
 
-option go_package = "go.cloud.temporal.io/api/cloudservice/v1;cloudservice";
+option go_package = "go.temporal.io/api/cloud/cloudservice/v1;cloudservice";
 
-import "temporalcloud/api/cloudservice/v1/request_response.proto";
+import "temporal/api/cloud/cloudservice/v1/request_response.proto";
 import "google/api/annotations.proto";
 
 service CloudService {
