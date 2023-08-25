@@ -10,14 +10,14 @@ message User {
     // the id of the user
     string id = 1;
     // the current version of the user specification
-    // the next update request will have to include this version
+    // the next update operation will have to include this version
     string resource_version = 2;
     // the user specification
     UserSpec spec = 3;
     // the current state of the user
     string state = 4;
-    // the id of the request that is creating/updating/deleting the user, if any
-    string request_id = 5;
+    // the id of the async operation that is creating/updating/deleting the user, if any
+    string async_operation_id = 5;
     // the details of the open invitation sent to the user, if any
     Invitation invitation = 6;
     // the date and time when the user was created
@@ -43,10 +43,8 @@ message Access {
 }
 
 message Invitation {
-    // the uri of the invitation sent to the user
-    string uri = 1;
     // the date and time when the user was created
-    google.protobuf.Timestamp created_time = 2;
+    google.protobuf.Timestamp created_time = 1;
     // the date and time when the invitation expires or has expired
-    google.protobuf.Timestamp expiry_time = 3;
+    google.protobuf.Timestamp expiry_time = 2;
 }

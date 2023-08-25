@@ -22,8 +22,8 @@ service CloudService {
         };
     }
 
-    // Invite a user
-    rpc InviteUser(InviteUserRequest) returns (InviteUserResponse) {
+    // Create a user
+    rpc CreateUser(CreateUserRequest) returns (CreateUserResponse) {
         option (google.api.http) = {
             post: "/api/v1/users",
 	    body: "*"
@@ -53,10 +53,10 @@ service CloudService {
         };
     }
 
-    // Get the status of an asynchronous request.
-    rpc GetRequestStatus (GetRequestStatusRequest) returns (GetRequestStatusResponse) {
+    // Get the latest information on an async operation
+    rpc GetAsyncOperation (GetAsyncOperationRequest) returns (GetAsyncOperationResponse) {
         option (google.api.http) = {
-            get: "/api/v1/requests/{request_id}",
+            get: "/api/v1/operations/{async_operation_id}",
         };
     }
 }

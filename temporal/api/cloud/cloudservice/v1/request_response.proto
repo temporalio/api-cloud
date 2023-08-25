@@ -4,7 +4,7 @@ package temporal.api.cloud.cloudservice.v1;
 
 option go_package = "go.temporal.io/api/cloud/cloudservice/v1;cloudservice";
 
-import "temporal/api/cloud/request/v1/message.proto";
+import "temporal/api/cloud/operation/v1/message.proto";
 import "temporal/api/cloud/user/v1/message.proto";
 
 message GetUsersRequest {
@@ -35,18 +35,18 @@ message GetUserResponse {
     temporal.api.cloud.user.v1.User user = 1;
 }
 
-message InviteUserRequest {
+message CreateUserRequest {
     // the spec for the user to invite
     temporal.api.cloud.user.v1.UserSpec spec = 1;
-    // the request id to use for this operation - optional
-    string request_id = 2;
+    // the id to use for this async operation - optional
+    string async_operation_id = 2;
 }
 
-message InviteUserResponse {
-    // the user that was invited
-    temporal.api.cloud.user.v1.User user = 1;
-    // the request status of the invitation operation
-    temporal.api.cloud.request.v1.RequestStatus request_status = 2;
+message CreateUserResponse {
+    // the id of the user that was invited
+    string user_id = 1;
+    // the async operation
+    temporal.api.cloud.operation.v1.AsyncOperation async_operation = 2;
 }
 
 message UpdateUserRequest {
@@ -57,15 +57,13 @@ message UpdateUserRequest {
     // the version of the user for which this update is intended for
     // the latest version can be found in the user status
     string resource_version = 3;
-    // the request id to use for this operation - optional
-    string request_id = 4;
+    // the id to use for this async operation - optional
+    string async_request_id = 4;
 }
 
 message UpdateUserResponse {
-    // the user that was updated
-    temporal.api.cloud.user.v1.User user = 1;
-    // the request status of the update operation
-    temporal.api.cloud.request.v1.RequestStatus request_status = 2;
+    // the async operation
+    temporal.api.cloud.operation.v1.AsyncOperation async_operation = 1;
 }
 
 message DeleteUserRequest {
@@ -74,13 +72,13 @@ message DeleteUserRequest {
     // the version of the user for which this delete is intended for
     // the latest version can be found in the user status
     string resource_version = 2;
-    // the request id to use for this operation - optional
-    string request_id = 3;
+    // the id to use for this async operation - optional
+    string async_request_id = 3;
 }
 
 message DeleteUserResponse {
-    // the request status of the delete operation
-    temporal.api.cloud.request.v1.RequestStatus request_status = 1;
+    // the async operation
+    temporal.api.cloud.operation.v1.AsyncOperation async_operation = 1;
 }
 
 message SetUserNamespacePermissionRequest {
@@ -93,23 +91,21 @@ message SetUserNamespacePermissionRequest {
     // the version of the user for which this update is intended for
     // the latest version can be found in the user status
     string resource_version = 4;
-    // the request id to use for this operation - optional
-    string request_id = 5;
+    // the id to use for this async operation - optional
+    string async_request_id = 5;
 }
 
 message SetUserNamespacePermissionResponse {
-    // the user that was updated
-    temporal.api.cloud.user.v1.User user = 1;
     // the request status of the update operation
-    temporal.api.cloud.request.v1.RequestStatus request_status = 2;
+    temporal.api.cloud.operation.v1.AsyncOperation async_operation = 1;
 }
 
-message GetRequestStatusRequest {
-    // the request id
-    string request_id = 1;
+message GetAsyncOperationRequest {
+    // the async operation id
+    string async_operation_id = 1;
 }
 
-message GetRequestStatusResponse {
-    // the request status
-    temporal.api.cloud.request.v1.RequestStatus request_status = 1;
+message GetAsyncOperationResponse {
+    // the async operation 
+    temporal.api.cloud.operation.v1.AsyncOperation async_operation = 1;
 }
