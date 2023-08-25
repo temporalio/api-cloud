@@ -15,7 +15,7 @@ message GetUsersRequest {
     // optional field to filter users by email address
     string email_address = 3;
     // optional field to filter users by the namespace assigned to them
-    string namespace_id = 4;
+    string namespace = 4;
 }
 
 message GetUsersResponse {
@@ -84,8 +84,8 @@ message DeleteUserResponse {
 }
 
 message SetUserNamespacePermissionRequest {
-    // the id of the namespace to set permissions for
-    string namespace_id = 1;
+    // the namespace to set permissions for
+    string namespace = 1;
     // the id of the user to set permissions for
     string user_id = 2;
     // the namespace permission to assign the user, has to be one of [admin, write, read_only]
