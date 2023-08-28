@@ -101,11 +101,11 @@ message SetUserNamespaceAccessResponse {
 }
 
 message GetAsyncOperationRequest {
-    // the async operation id
+    // The id of the async operation to get
     string async_operation_id = 1;
 }
 
 message GetAsyncOperationResponse {
-    // the async operation 
+    // The async operation 
     temporal.api.cloud.operation.v1.AsyncOperation async_operation = 1;
 }
