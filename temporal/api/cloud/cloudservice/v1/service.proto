@@ -46,7 +46,7 @@ service CloudService {
     }
 
     // Set a user's permission to a namespace
-    rpc SetUserNamespacePermission(SetUserNamespacePermissionRequest) returns (SetUserNamespacePermissionResponse) {
+    rpc SetUserNamespaceAccess(SetUserNamespaceAccessRequest) returns (SetUserNamespaceAccessResponse) {
 	option (google.api.http) = {
             post: "/api/v1/namespaces/{namespace}/users/{user_id}",
 	    body: "*"
@@ -54,7 +54,7 @@ service CloudService {
     }
 
     // Get the latest information on an async operation
-    rpc GetAsyncOperation (GetAsyncOperationRequest) returns (GetAsyncOperationResponse) {
+    rpc GetAsyncOperation(GetAsyncOperationRequest) returns (GetAsyncOperationResponse) {
         option (google.api.http) = {
             get: "/api/v1/operations/{async_operation_id}",
         };
