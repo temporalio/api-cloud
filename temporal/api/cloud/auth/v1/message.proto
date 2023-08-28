@@ -4,7 +4,7 @@ package temporal.api.cloud.auth.v1;
 
 option go_package = "go.temporal.io/api/cloud/auth/v1;auth";
 
-message AccoutAccess {
+message AccountAccess {
     // The account role, should be one of [admin, developer, read_only]
     // admin - gives full access the account, including users and namespaces
     // developer - gives access to create namespaces on the account

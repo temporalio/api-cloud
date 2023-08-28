@@ -36,7 +36,7 @@ message UserSpec {
 
 message UserAccess {
     // The account access for the users
-    temporal.api.cloud.auth.v1.AccoutAccess account_access = 1;
+    temporal.api.cloud.auth.v1.AccountAccess account_access = 1;
     // The map of namespace accesses.
     // The key is the namespace name and the value is the access to the namespace.
     map<string, temporal.api.cloud.auth.v1.NamespaceAccess> namespace_accesses = 2;
