@@ -5,6 +5,7 @@ package temporal.api.cloud.user.v1;
 option go_package = "go.temporal.io/api/cloud/user/v1;user";
 
 import "google/protobuf/timestamp.proto";
+import "temporal/api/cloud/auth/v1/message.proto";
 
 message User {
     // The id of the user
@@ -33,23 +34,12 @@ message UserSpec {
     UserAccess access = 2;
 }
 
-message NamespaceAccess {
-    // The permission to the namespace, should be one of [admin, write, read_only]
-    // admin - gives full access to the namespace, including assigning namespace access to other users
-    // write - gives write access to the namespace configuration and workflows within the namespace
-    // read_only - gives read only access to the namespace configuration and workflows within the namespace
-    string permission = 1;
-}
-
 message UserAccess {
-    // The account role, should be one of [admin, developer, read_only]
-    // admin - gives full access the account, including users and namespaces
-    // developer - gives access to create namespaces on the account
-    // read_only - gives read only access to the account
-    string account_role = 1;
+    // The account access for the users
+    temporal.api.cloud.auth.v1.AccoutAccess account_access = 1;
     // The map of namespace accesses.
     // The key is the namespace name and the value is the access to the namespace.
-    map<string, NamespaceAccess> namespace_accesses = 2;
+    map<string, temporal.api.cloud.auth.v1.NamespaceAccess> namespace_accesses = 2;
 }
 
 message Invitation {
