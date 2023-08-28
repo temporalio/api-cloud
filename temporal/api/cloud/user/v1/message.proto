@@ -54,7 +54,7 @@ message UserAccess {
 
 message Invitation {
     // The date and time when the user was created
-    google.protobuf.Timestamp created_time = 1;
+    google.protobuf.Timestamp create_time = 1;
     // The date and time when the invitation expires or has expired
     google.protobuf.Timestamp expiry_time = 2;
 }
