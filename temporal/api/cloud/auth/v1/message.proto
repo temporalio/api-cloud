@@ -5,11 +5,11 @@ package temporal.api.cloud.auth.v1;
 option go_package = "go.temporal.io/api/cloud/auth/v1;auth";
 
 message AccountAccess {
-    // The account role, should be one of [admin, developer, read_only]
+    // The role on the account, should be one of [admin, developer, read_only]
     // admin - gives full access the account, including users and namespaces
     // developer - gives access to create namespaces on the account
     // read_only - gives read only access to the account
-    string account_role = 1;
+    string role = 1;
 }
 
 message NamespaceAccess {
