@@ -59,7 +59,7 @@ message UpdateUserRequest {
     // The latest version can be found in the GetUser operation response
     string resource_version = 3;
     // The id to use for this async operation - optional
-    string async_request_id = 4;
+    string async_operation_id = 4;
 }
 
 message UpdateUserResponse {
@@ -74,7 +74,7 @@ message DeleteUserRequest {
     // The latest version can be found in the GetUser operation response
     string resource_version = 2;
     // The id to use for this async operation - optional
-    string async_request_id = 3;
+    string async_operation_id = 3;
 }
 
 message DeleteUserResponse {
@@ -93,7 +93,7 @@ message SetUserNamespaceAccessRequest {
     // The latest version can be found in the GetUser operation response
     string resource_version = 4;
     // The id to use for this async operation - optional
-    string async_request_id = 5;
+    string async_operation_id = 5;
 }
 
 message SetUserNamespaceAccessResponse {
