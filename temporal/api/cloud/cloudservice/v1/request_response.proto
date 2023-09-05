@@ -15,8 +15,6 @@ message GetUsersRequest {
     string page_token = 2;
     // Optional field to filter users by email address
     string email_address = 3;
-    // Optional field to filter users by the namespace assigned to them
-    string namespace = 4;
 }
 
 message GetUsersResponse {
@@ -87,7 +85,7 @@ message SetUserNamespaceAccessRequest {
     string namespace = 1;
     // The id of the user to set permissions for
     string user_id = 2;
-    // The namespace access to assign the user 
+    // The namespace access to assign the user
     temporal.api.cloud.auth.v1.NamespaceAccess access = 3;
     // The version of the user for which this update is intended for
     // The latest version can be found in the GetUser operation response
@@ -107,6 +105,6 @@ message GetAsyncOperationRequest {
 }
 
 message GetAsyncOperationResponse {
-    // The async operation 
+    // The async operation
     temporal.api.cloud.operation.v1.AsyncOperation async_operation = 1;
 }
