@@ -48,7 +48,7 @@ service CloudService {
     // Set a user's access to a namespace
     rpc SetUserNamespaceAccess(SetUserNamespaceAccessRequest) returns (SetUserNamespaceAccessResponse) {
 	option (google.api.http) = {
-            post: "/api/v1/namespaces/{namespace}/users/{user_id}",
+            post: "/api/v1/namespaces/{namespace}/users/{user_id}/access",
 	    body: "*"
         };
     }
