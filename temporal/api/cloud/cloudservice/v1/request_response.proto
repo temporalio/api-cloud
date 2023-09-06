@@ -5,8 +5,7 @@ package temporal.api.cloud.cloudservice.v1;
 option go_package = "go.temporal.io/api/cloud/cloudservice/v1;cloudservice";
 
 import "temporal/api/cloud/operation/v1/message.proto";
-import "temporal/api/cloud/user/v1/message.proto";
-import "temporal/api/cloud/auth/v1/message.proto";
+import "temporal/api/cloud/identity/v1/message.proto";
 
 message GetUsersRequest {
     // The requested size of the page to retrieve
@@ -19,7 +18,7 @@ message GetUsersRequest {
 
 message GetUsersResponse {
     // The list of users in ascending ids order
-    repeated temporal.api.cloud.user.v1.User users = 1;
+    repeated temporal.api.cloud.identity.v1.User users = 1;
     // The next page's token
     string next_page_token = 2;
 }
@@ -31,12 +30,12 @@ message GetUserRequest {
 
 message GetUserResponse {
     // The user
-    temporal.api.cloud.user.v1.User user = 1;
+    temporal.api.cloud.identity.v1.User user = 1;
 }
 
 message CreateUserRequest {
     // The spec for the user to invite
-    temporal.api.cloud.user.v1.UserSpec spec = 1;
+    temporal.api.cloud.identity.v1.UserSpec spec = 1;
     // The id to use for this async operation - optional
     string async_operation_id = 2;
 }
@@ -52,7 +51,7 @@ message UpdateUserRequest {
     // The id of the user to update
     string user_id = 1;
     // The new user specification
-    temporal.api.cloud.user.v1.UserSpec spec = 2;
+    temporal.api.cloud.identity.v1.UserSpec spec = 2;
     // The version of the user for which this update is intended for
     // The latest version can be found in the GetUser operation response
     string resource_version = 3;
@@ -86,7 +85,7 @@ message SetUserNamespaceAccessRequest {
     // The id of the user to set permissions for
     string user_id = 2;
     // The namespace access to assign the user
-    temporal.api.cloud.auth.v1.NamespaceAccess access = 3;
+    temporal.api.cloud.identity.v1.NamespaceAccess access = 3;
     // The version of the user for which this update is intended for
     // The latest version can be found in the GetUser operation response
     string resource_version = 4;
