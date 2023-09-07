@@ -39,9 +39,9 @@ message UserSpec {
 
 message Invitation {
     // The date and time when the user was created
-    google.protobuf.Timestamp create_time = 1;
+    google.protobuf.Timestamp created_time = 1;
     // The date and time when the invitation expires or has expired
-    google.protobuf.Timestamp expiry_time = 2;
+    google.protobuf.Timestamp expired_time = 2;
 }
 
 message User {
