@@ -1,0 +1,109 @@
+syntax = "proto3";
+
+package temporal.api.cloud.cloudservice.v1;
+
+option go_package = "go.temporal.io/api/cloud/cloudservice/v1;cloudservice";
+
+import "temporal/api/cloud/operation/v1/message.proto";
+import "temporal/api/cloud/identity/v1/message.proto";
+
+message GetUsersRequest {
+    // The requested size of the page to retrieve
+    int32 page_size = 1;
+    // The page token
+    string page_token = 2;
+    // Optional field to filter users by email address
+    string email = 3;
+}
+
+message GetUsersResponse {
+    // The list of users in ascending ids order
+    repeated temporal.api.cloud.identity.v1.User users = 1;
+    // The next page's token
+    string next_page_token = 2;
+}
+
+message GetUserRequest {
+    // The id of the user to get
+    string user_id = 1;
+}
+
+message GetUserResponse {
+    // The user
+    temporal.api.cloud.identity.v1.User user = 1;
+}
+
+message CreateUserRequest {
+    // The spec for the user to invite
+    temporal.api.cloud.identity.v1.UserSpec spec = 1;
+    // The id to use for this async operation - optional
+    string async_operation_id = 2;
+}
+
+message CreateUserResponse {
+    // The id of the user that was invited
+    string user_id = 1;
+    // The async operation
+    temporal.api.cloud.operation.v1.AsyncOperation async_operation = 2;
+}
+
+message UpdateUserRequest {
+    // The id of the user to update
+    string user_id = 1;
+    // The new user specification
+    temporal.api.cloud.identity.v1.UserSpec spec = 2;
+    // The version of the user for which this update is intended for
+    // The latest version can be found in the GetUser operation response
+    string resource_version = 3;
+    // The id to use for this async operation - optional
+    string async_operation_id = 4;
+}
+
+message UpdateUserResponse {
+    // The async operation
+    temporal.api.cloud.operation.v1.AsyncOperation async_operation = 1;
+}
+
+message DeleteUserRequest {
+    // The id of the user to delete
+    string user_id = 1;
+    // The version of the user for which this delete is intended for
+    // The latest version can be found in the GetUser operation response
+    string resource_version = 2;
+    // The id to use for this async operation - optional
+    string async_operation_id = 3;
+}
+
+message DeleteUserResponse {
+    // The async operation
+    temporal.api.cloud.operation.v1.AsyncOperation async_operation = 1;
+}
+
+message SetUserNamespaceAccessRequest {
+    // The namespace to set permissions for
+    string namespace = 1;
+    // The id of the user to set permissions for
+    string user_id = 2;
+    // The namespace access to assign the user
+    temporal.api.cloud.identity.v1.NamespaceAccess access = 3;
+    // The version of the user for which this update is intended for
+    // The latest version can be found in the GetUser operation response
+    string resource_version = 4;
+    // The id to use for this async operation - optional
+    string async_operation_id = 5;
+}
+
+message SetUserNamespaceAccessResponse {
+    // The request status of the update operation
+    temporal.api.cloud.operation.v1.AsyncOperation async_operation = 1;
+}
+
+message GetAsyncOperationRequest {
+    // The id of the async operation to get
+    string async_operation_id = 1;
+}
+
+message GetAsyncOperationResponse {
+    // The async operation
+    temporal.api.cloud.operation.v1.AsyncOperation async_operation = 1;
+}
