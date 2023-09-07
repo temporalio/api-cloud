@@ -3,7 +3,7 @@ $(VERBOSE).SILENT:
 ci-build: install proto
 
 # Install dependencies.
-install: buf-install openapiv2-install swagger-merger-install
+install: buf-install openapiv2-install
 
 # Run all linters and compile proto files.
 proto: grpc
@@ -45,7 +45,7 @@ buf-lint:
 	buf lint
 
 buf-breaking:
-	@printf $(COLOR) "Run buf breaking changes check against master branch..."	
+	@printf $(COLOR) "Run buf breaking changes check against master branch..."
 	buf breaking --against '.git#branch=main'
 
 ##### Clean #####
