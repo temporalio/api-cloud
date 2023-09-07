@@ -23,7 +23,7 @@ message AsyncOperation {
     // If the operation failed, the reason for the failure
     string failure_reason = 6;
     // The date and time when the operation initiated
-    google.protobuf.Timestamp start_time = 7;
+    google.protobuf.Timestamp started_time = 7;
     // The date and time when the operation completed
-    google.protobuf.Timestamp finish_time = 8;
-} 
+    google.protobuf.Timestamp finished_time = 8;
+}
