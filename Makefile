@@ -45,7 +45,7 @@ buf-lint:
 	buf lint
 
 buf-breaking:
-	@printf $(COLOR) "Run buf breaking changes check against master branch..."
+	@printf $(COLOR) "Run buf breaking changes check against main branch..."
 	buf breaking --against '.git#branch=main'
 
 ##### Clean #####
