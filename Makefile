@@ -3,7 +3,7 @@ $(VERBOSE).SILENT:
 ci-build: install proto
 
 # Install dependencies.
-install: buf-install openapiv2-install
+install: buf-install grpc-install openapiv2-install
 
 # Run all linters and compile proto files.
 proto: grpc
@@ -24,7 +24,7 @@ $(PROTO_OUT):
 	mkdir $(PROTO_OUT)
 
 ##### Compile proto files for go #####
-grpc: buf-lint go-grpc
+grpc: buf-lint buf-breaking go-grpc
 
 go-grpc: clean $(PROTO_OUT)
 	printf $(COLOR) "Compile for go-gRPC..."
@@ -35,8 +35,13 @@ buf-install:
 	printf $(COLOR) "Install/update buf..."
 	go install github.com/bufbuild/buf/cmd/buf@v1.25.1
 
+grpc-install:
+	printf $(COLOR) "Install/update go and grpc protoc gen ..."
+	go install google.golang.org/protobuf/cmd/protoc-gen-go@v1.31
+	go install google.golang.org/grpc/cmd/protoc-gen-go-grpc@v1.3
+
 openapiv2-install:
-	printf $(COLOR) "Install/update ..."
+	printf $(COLOR) "Install/update openapiv2 protoc gen..."
 	go install github.com/grpc-ecosystem/grpc-gateway/v2/protoc-gen-openapiv2@v2.16.2
 
 ##### Linters #####
@@ -45,8 +50,8 @@ buf-lint:
 	buf lint
 
 buf-breaking:
-	@printf $(COLOR) "Run buf breaking changes check against master branch..."
-	buf breaking --against '.git#branch=main'
+	@printf $(COLOR) "Run buf breaking changes check against main branch..."
+	buf breaking --against 'https://github.com/temporalio/api-cloud.git#branch=main'
 
 ##### Clean #####
 clean:
