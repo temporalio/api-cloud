@@ -9,9 +9,7 @@ Copy over the protobuf files under [temporal](temporal) directory to the project
 The client is expected to pass in a `temporal-cloud-api-version` header with the api version identifier with every request it makes to the apis. The backend will use the version to safely mutate resources.
 
 Current Version:
-```text
-
-```
+https://github.com/temporalio/api-cloud/blob/main/VERSION#L1C1-L1C14
 
 ### URL
 
