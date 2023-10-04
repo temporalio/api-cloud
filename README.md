@@ -10,7 +10,7 @@ The client is expected to pass in a `temporal-cloud-api-version` header with the
 
 Current Version:
 
-https://github.com/temporalio/api-cloud/blob/144acf180aedb131abdfd7c1f0759b0826467fd5/VERSION#L1C1-L1C14
+https://github.com/temporalio/api-cloud/blob/main/VERSION#L1C1-L1C14
 
 ### URL
 
