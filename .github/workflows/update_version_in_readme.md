@@ -1,9 +1,10 @@
 name: update version in readme
 
 on:
-  pull_request:
-    branches:
-      - main
+  push
+  <!-- pull_request: -->
+  <!--   branches: -->
+  <!--     - main -->
 
 jobs:
   embed-code:
