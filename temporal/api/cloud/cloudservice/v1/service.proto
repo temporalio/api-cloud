@@ -101,7 +101,7 @@ service CloudService {
     // Delete a namespace
     rpc DeleteNamespace (DeleteNamespaceRequest) returns (DeleteNamespaceResponse) {
 	option (google.api.http) = {
-            delete: "/api/v1/users/{user_id}",
+            delete: "/api/v1/namespaces/{namespace}",
         };
     }
 }
