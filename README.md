@@ -1,6 +1,6 @@
 # Temporal cloud api proto files (Preview)
 
-> These apis are currently in `preview` mode and access is restricted. Please reach out to temporal-cloud support for more information.
+> These apis are currently `preview` only and access is restricted. Please reach out to temporal-cloud support for more information.
 
 ## How to use
 
