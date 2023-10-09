@@ -1,5 +1,9 @@
 # Temporal cloud api proto files
 
+## Preview
+
+These apis are currently in `preview` mode and access is restricted. Please reach out to temporal-cloud support for more information.
+
 ## How to use
 
 Copy over the protobuf files under [temporal](temporal) directory to the project directory and then use [grpc](https://grpc.io/docs/) to compile and generate code in the desired programming language.
