@@ -1,4 +1,6 @@
-# Temporal cloud api proto files
+# Temporal cloud api proto files (Preview)
+
+> These apis are currently preview only and access is restricted. They are not meant for production use and could change. Please reach out to Temporal support to request preview access.
 
 ## How to use
 
