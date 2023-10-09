@@ -6,6 +6,7 @@ option go_package = "go.temporal.io/api/cloud/cloudservice/v1;cloudservice";
 
 import "temporal/api/cloud/operation/v1/message.proto";
 import "temporal/api/cloud/identity/v1/message.proto";
+import "temporal/api/cloud/namespace/v1/message.proto";
 
 message GetUsersRequest {
     // The requested size of the page to retrieve
@@ -94,7 +95,7 @@ message SetUserNamespaceAccessRequest {
 }
 
 message SetUserNamespaceAccessResponse {
-    // The request status of the update operation
+    // The async operation
     temporal.api.cloud.operation.v1.AsyncOperation async_operation = 1;
 }
 
@@ -104,6 +105,97 @@ message GetAsyncOperationRequest {
 }
 
 message GetAsyncOperationResponse {
+    // The async operation
+    temporal.api.cloud.operation.v1.AsyncOperation async_operation = 1;
+}
+
+message CreateNamespaceRequest {
+    // the prefix to use for the namespace
+    // will create a namespace that's available at '<namespace_prefix>.<account>.tmprl.cloud:7233'
+    string namespace_prefix = 1;
+    // the namespace specification
+    temporal.api.cloud.namespace.v1.NamespaceSpec spec = 2;
+    // The id to use for this async operation - optional
+    string async_operation_id = 3;
+}
+
+message CreateNamespaceResponse {
+    // The async operation
+    temporal.api.cloud.operation.v1.AsyncOperation async_operation = 1;
+}
+
+message GetNamespacesRequest {
+    // the requested size of the page to retrieve
+    int32 page_size = 1;
+    // the page token
+    string page_token = 2;
+}
+
+message GetNamespacesResponse {
+    // the list of namespaces
+    repeated temporal.api.cloud.namespace.v1.Namespace namespaces = 1;
+    // the next page's token
+    string next_page_token = 2;
+}
+
+message GetNamespaceRequest {
+    // the namespace to get
+    string namespace = 1;
+}
+
+message GetNamespaceResponse {
+    // the namespace
+    temporal.api.cloud.namespace.v1.Namespace namespace = 1;
+}
+
+
+message UpdateNamespaceRequest {
+    // the namespace to update
+    string namespace = 1;
+    // the new namespace specification
+    temporal.api.cloud.namespace.v1.NamespaceSpec spec = 2;
+    // the version of the namespace for which this update is intended for
+    // the latest version can be found in the namespace status
+    string resource_version = 3;
+    // The id to use for this async operation - optional
+    string async_operation_id = 4;
+}
+
+message UpdateNamespaceResponse {
+    // The async operation
+    temporal.api.cloud.operation.v1.AsyncOperation async_operation = 1;
+}
+
+message RenameCustomSearchAttributeRequest {
+    // the namespace to rename the custom search attribute for
+    string namespace = 1;
+    // the existing name of the custom search attribute to be renamed
+    string existing_custom_search_attribute_name = 2;
+    // the new name of the custom search attribute
+    string new_custom_search_attribute_name = 3;
+    // the version of the namespace for which this update is intended for
+    // the latest version can be found in the namespace status
+    string resource_version = 4;
+    // The id to use for this async operation - optional
+    string async_operation_id = 5;
+}
+
+message RenameCustomSearchAttributeResponse {
+    // The async operation
+    temporal.api.cloud.operation.v1.AsyncOperation async_operation = 1;
+}
+
+message DeleteNamespaceRequest {
+    // the namespace to delete
+    string namespace = 1;
+    // the version of the namespace for which this delete is intended for
+    // the latest version can be found in the namespace status
+    string resource_version = 2;
+    // The id to use for this async operation - optional
+    string async_operation_id = 3;
+}
+
+message DeleteNamespaceResponse {
     // The async operation
     temporal.api.cloud.operation.v1.AsyncOperation async_operation = 1;
 }

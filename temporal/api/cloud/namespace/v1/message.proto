@@ -1,0 +1,93 @@
+syntax = "proto3";
+
+package temporal.api.cloud.namespace.v1;
+
+option go_package = "go.temporal.io/api/cloud/namespace/v1;namespace";
+
+import "temporal/api/cloud/sink/v1/message.proto";
+
+import "google/protobuf/timestamp.proto";
+
+message CertificateFilterSpec {
+    // the common_name in the certificate
+    string common_name = 1;
+    // the organization in the certificate
+    string organization = 2;
+    // the organizational_unit in the certificate
+    string organizational_unit = 3;
+    // the subject_alternative_name in the certificate
+    string subject_alternative_name = 4;
+}
+
+message CodecServerPropertySpec {
+    // server endpoints
+    string endpoint = 1;
+    // whether to pass access token, i.e. jwt
+    bool pass_access_token = 2;
+    // whether to include credentials
+    bool include_credentials = 3;
+}
+
+message NamespaceSpec {
+    // the region where the namespace is (or will be) active.
+    string region = 1;
+    // the base64 encoded ca cert(s) that the clients can use for authentication and authorization
+    string accepted_client_ca = 2;
+    // the number of days the workflows data will be retained for
+    int32 retention_days = 3;
+    // the custom search attributes to use for the namespace
+    // the name of the attribute is the key and the type is the value
+    // supported attribute types: text, keyword, int, double, bool, datetime, keyword_list
+    map<string, string> search_attributes = 4;
+    // certificate filters which, if specified, only allow connections from client certificates
+    // whose distinguished name properties match at least one of the filters.
+    repeated CertificateFilterSpec certificate_filters = 5;
+    // environment of the namespace. [optional]
+    // NOTE: currently there is no additional SLA or functional guarantee implied by the value of this field.
+    // supported environments: dev, test, prod
+    string environment = 6;
+    // codec server property spec needed for user to set and retrieve [optional]
+    CodecServerPropertySpec codec_spec = 7;
+    // the regions where the namespace is (or will be) located [optional]
+    repeated string passive_regions = 8;
+    // the export sink specifications keyed on the sink name [optional]
+    map<string, temporal.api.cloud.sink.v1.ExportSinkSpec> export_sinks = 9;
+}
+
+message NamespaceURI {
+    // the web ui address
+    string web = 1;
+    // the grpc address
+    string grpc = 2;
+    // the list of private links
+    repeated string vpc_endpoint_service_names = 3;
+}
+
+message NamespaceEnvelope {
+    // the namespace may be throttled if its APS exceeds the limit
+    int32 actions_per_second_limit = 1;
+}
+
+message Namespace {
+    // the namespace name
+    string namespace = 1;
+    // the current version of the namespace specification
+    // the next update operation will have to include this version
+    string resource_version = 2;
+    // the namespace specification
+    NamespaceSpec spec = 3;
+    // the current state of the namespace
+    string state = 4;
+    // The id of the async operation that is creating/updating/deleting the namespace, if any
+    string async_operation_id = 5;
+    // the web uri for the namespace
+    NamespaceURI uri = 6;
+    // the envelope is a list of service level agreements (SLAs) that can be provided around a given namespace
+    NamespaceEnvelope envelope = 7;
+    // allowed principals is a list of principals that allowed to access the private links on the namespace
+    repeated string allowed_principals = 8;
+    // the export sink status keyed on the sink name
+    map<string, temporal.api.cloud.sink.v1.ExportSink> export_sinks = 9;
+    // the date and time when the namespace was last modified
+    google.protobuf.Timestamp last_modified_time = 10;
+}
