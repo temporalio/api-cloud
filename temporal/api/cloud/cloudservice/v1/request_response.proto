@@ -13,7 +13,7 @@ message GetUsersRequest {
     int32 page_size = 1;
     // The page token
     string page_token = 2;
-    // Optional field to filter users by email address
+    // Filter users by email address - optional
     string email = 3;
 }
 
@@ -110,52 +110,53 @@ message GetAsyncOperationResponse {
 }
 
 message CreateNamespaceRequest {
-    // the prefix to use for the namespace
+    // The prefix to use for the namespace
     // will create a namespace that's available at '<namespace_prefix>.<account>.tmprl.cloud:7233'
     string namespace_prefix = 1;
-    // the namespace specification
+    // The namespace specification
     temporal.api.cloud.namespace.v1.NamespaceSpec spec = 2;
     // The id to use for this async operation - optional
     string async_operation_id = 3;
 }
 
 message CreateNamespaceResponse {
+    // The namespace that was created
+    string namespace = 1;
     // The async operation
     temporal.api.cloud.operation.v1.AsyncOperation async_operation = 1;
 }
 
 message GetNamespacesRequest {
-    // the requested size of the page to retrieve
+    // The requested size of the page to retrieve
     int32 page_size = 1;
-    // the page token
+    // The page token
     string page_token = 2;
 }
 
 message GetNamespacesResponse {
-    // the list of namespaces
+    // The list of namespaces
     repeated temporal.api.cloud.namespace.v1.Namespace namespaces = 1;
-    // the next page's token
+    // The next page's token
     string next_page_token = 2;
 }
 
 message GetNamespaceRequest {
-    // the namespace to get
+    // The namespace to get
     string namespace = 1;
 }
 
 message GetNamespaceResponse {
-    // the namespace
+    // The namespace
     temporal.api.cloud.namespace.v1.Namespace namespace = 1;
 }
 
-
 message UpdateNamespaceRequest {
-    // the namespace to update
+    // The namespace to update
     string namespace = 1;
-    // the new namespace specification
+    // The new namespace specification
     temporal.api.cloud.namespace.v1.NamespaceSpec spec = 2;
-    // the version of the namespace for which this update is intended for
-    // the latest version can be found in the namespace status
+    // The version of the namespace for which this update is intended for
+    // The latest version can be found in the namespace status
     string resource_version = 3;
     // The id to use for this async operation - optional
     string async_operation_id = 4;
@@ -167,14 +168,14 @@ message UpdateNamespaceResponse {
 }
 
 message RenameCustomSearchAttributeRequest {
-    // the namespace to rename the custom search attribute for
+    // The namespace to rename the custom search attribute for
     string namespace = 1;
-    // the existing name of the custom search attribute to be renamed
+    // The existing name of the custom search attribute to be renamed
     string existing_custom_search_attribute_name = 2;
-    // the new name of the custom search attribute
+    // The new name of the custom search attribute
     string new_custom_search_attribute_name = 3;
-    // the version of the namespace for which this update is intended for
-    // the latest version can be found in the namespace status
+    // The version of the namespace for which this update is intended for
+    // The latest version can be found in the namespace status
     string resource_version = 4;
     // The id to use for this async operation - optional
     string async_operation_id = 5;
@@ -186,10 +187,10 @@ message RenameCustomSearchAttributeResponse {
 }
 
 message DeleteNamespaceRequest {
-    // the namespace to delete
+    // The namespace to delete
     string namespace = 1;
-    // the version of the namespace for which this delete is intended for
-    // the latest version can be found in the namespace status
+    // The version of the namespace for which this delete is intended for
+    // The latest version can be found in the namespace status
     string resource_version = 2;
     // The id to use for this async operation - optional
     string async_operation_id = 3;
