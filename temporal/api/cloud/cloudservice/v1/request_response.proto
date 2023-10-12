@@ -123,7 +123,7 @@ message CreateNamespaceResponse {
     // The namespace that was created
     string namespace = 1;
     // The async operation
-    temporal.api.cloud.operation.v1.AsyncOperation async_operation = 1;
+    temporal.api.cloud.operation.v1.AsyncOperation async_operation = 2;
 }
 
 message GetNamespacesRequest {
