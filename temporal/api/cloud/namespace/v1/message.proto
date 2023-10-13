@@ -4,8 +4,6 @@ package temporal.api.cloud.namespace.v1;
 
 option go_package = "go.temporal.io/api/cloud/namespace/v1;namespace";
 
-import "temporal/api/cloud/sink/v1/message.proto";
-
 import "google/protobuf/timestamp.proto";
 
 message CertificateFilterSpec {
@@ -85,7 +83,7 @@ message Namespace {
     // Allowed principals is a list of principals that allowed to access the private links on the namespace
     repeated string allowed_principals = 8;
     // The export sinks configured for the namespace
-    repeated export_sinks = 9;
+    repeated string export_sinks = 9;
     // The date and time when the user was created
     google.protobuf.Timestamp created_time = 10;
     // The date and time when the namespace was last modified
