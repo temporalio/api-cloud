@@ -88,6 +88,8 @@ message Namespace {
     repeated string allowed_principals = 8;
     // The export sink status keyed on the sink name
     map<string, temporal.api.cloud.sink.v1.ExportSink> export_sinks = 9;
+    // The date and time when the user was created
+    google.protobuf.Timestamp created_time = 10;
     // The date and time when the namespace was last modified
-    google.protobuf.Timestamp last_modified_time = 10;
+    google.protobuf.Timestamp last_modified_time = 11;
 }
