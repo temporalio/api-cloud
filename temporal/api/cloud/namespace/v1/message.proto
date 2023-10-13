@@ -50,8 +50,6 @@ message NamespaceSpec {
     CodecServerPropertySpec codec_spec = 7;
     // The regions where the namespace is (or will be) located - optional
     repeated string passive_regions = 8;
-    // The export sink specifications keyed on the sink name - optional
-    map<string, temporal.api.cloud.sink.v1.ExportSinkSpec> export_sinks = 9;
 }
 
 message NamespaceURI {
@@ -86,8 +84,8 @@ message Namespace {
     NamespaceEnvelope envelope = 7;
     // Allowed principals is a list of principals that allowed to access the private links on the namespace
     repeated string allowed_principals = 8;
-    // The export sink status keyed on the sink name
-    map<string, temporal.api.cloud.sink.v1.ExportSink> export_sinks = 9;
+    // The export sinks configured for the namespace
+    repeated export_sinks = 9;
     // The date and time when the user was created
     google.protobuf.Timestamp created_time = 10;
     // The date and time when the namespace was last modified
