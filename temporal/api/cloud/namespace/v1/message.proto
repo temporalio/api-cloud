@@ -77,10 +77,8 @@ message NamespaceSpec {
 message Endpoints {
     // The web ui address.
     string web_address = 1;
-    // The grpc hostport temporal workers, clients and tctl connect to.
+    // The grpc hostport that the temporal workers, clients and tctl connect to.
     string grpc_hostport = 2;
-    // The list of private links, if any, that are associated with the namespace.
-    repeated string vpc_endpoint_service_names = 3;
 }
 
 message OperatingEnvelope {
@@ -88,9 +86,11 @@ message OperatingEnvelope {
     int32 actions_per_second_limit = 1;
 }
 
-message PrivateLink {
+message AWSPrivateLink {
     // The list of principals that are allowed to access the private links on the namespace.
-    repeated string allowed_principals = 1;
+    repeated string allowed_principal_arns = 1;
+    // The list of private links, if any, that are associated with the namespace.
+    repeated string vpc_endpoint_service_names = 2;
 }
 
 message Namespace {
@@ -110,7 +110,9 @@ message Namespace {
     // The envelope is a list of service level agreements (SLAs) that can be provided around a given namespace.
     OperatingEnvelope operating_envelope = 7;
     // The private link for the namespace, if any.
-    PrivateLink private_link = 8;
+    oneof private_link {
+    	AWSPrivateLink aws_private_link = 8;
+    }
     // The date and time when the user was created.
     google.protobuf.Timestamp created_time = 9;
     // The date and time when the namespace was last modified.
