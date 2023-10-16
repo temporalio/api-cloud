@@ -40,40 +40,41 @@ message CodecServerSpec {
     bool include_cross_origin_credentials = 3;
 }
 
+message GlobalSpec {
+    // The regions where the namespace is (or will be) located.
+    // Optional, default is empty.
+    repeated string passive_regions = 1;
+}
+
 message NamespaceSpec {
-    // The prefix to use for the namespace.
-    // This will create a namespace that's available at '<namespace_prefix>.<account>.tmprl.cloud:7233'.
-    // The prefix is immutable. Once set, it cannot be changed.
-    string namespace_prefix = 1;
+    // The name to use for the namespace.
+    // This will create a namespace that's available at '<name>.<account>.tmprl.cloud:7233'.
+    // The name is immutable. Once set, it cannot be changed.
+    string name = 1;
     // The region where the namespace is (or will be) active.
     // The region is immutable. Once set, it cannot be changed.
     string region = 2;
     // The number of days the workflows data will be retained for.
     // Changes to the retention period may impact your storage costs.
     // Any changes to the retention period will be applied to all new running workflows.
-    int32 retention_period_days = 3;
+    int32 retention_days = 3;
     // The mtls authentication and authorization to enforce on the namespace.
-    MtlsAuthSpec mtls_auth = 5;
+    MtlsAuthSpec mtls_auth = 4;
     // The custom search attributes to use for the namespace.
     // The name of the attribute is the key and the type is the value.
     // Supported attribute types: text, keyword, int, double, bool, datetime, keyword_list.
     // NOTE: currently deleting a search attribute is not supported.
     // Optional, default is empty.
-    map<string, string> custom_search_attributes = 4;
-    // Environment of the namespace.
-    // NOTE: currently there is no additional SLA or functional guarantee implied by the value of this field.
-    // supported environments: dev, test, prod.
-    // Optional, default is unset.
-    string environment = 7;
+    map<string, string> custom_search_attributes = 5;
     // Codec server spec used by UI to decode payloads for all users interacting with this namespace.
     // Optional, default is unset.
-    CodecServerSpec codec_server = 8;
-    // The regions where the namespace is (or will be) located.
-    // Optional, default is empty.
-    repeated string passive_regions = 9;
+    CodecServerSpec codec_server = 6;
+    // The global namespace spec.
+    // Optional, default is unset.
+    GlobalSpec global = 7;
 }
 
-message NamespaceEndpoints {
+message Endpoints {
     // The web ui address.
     string web_address = 1;
     // The grpc hostport temporal workers, clients and tctl connect to.
@@ -82,9 +83,14 @@ message NamespaceEndpoints {
     repeated string vpc_endpoint_service_names = 3;
 }
 
-message NamespaceEnvelope {
+message OperatingEnvelope {
     // The namespace may be throttled if its APS exceeds the limit.
     int32 actions_per_second_limit = 1;
+}
+
+message PrivateLink {
+    // The list of principals that are allowed to access the private links on the namespace.
+    repeated string allowed_principals = 1;
 }
 
 message Namespace {
@@ -100,13 +106,13 @@ message Namespace {
     // The id of the async operation that is creating/updating/deleting the namespace, if any.
     string async_operation_id = 5;
     // The endpoints for the namespace.
-    NamespaceEndpoints endpoints = 6;
+    Endpoints endpoints = 6;
     // The envelope is a list of service level agreements (SLAs) that can be provided around a given namespace.
-    NamespaceEnvelope envelope = 7;
-    // Allowed principals is a list of principals that allowed to access the private links on the namespace.
-    repeated string allowed_principals = 8;
+    OperatingEnvelope operating_envelope = 7;
+    // The private link for the namespace, if any.
+    PrivateLink private_link = 8;
     // The date and time when the user was created.
-    google.protobuf.Timestamp created_time = 10;
+    google.protobuf.Timestamp created_time = 9;
     // The date and time when the namespace was last modified.
-    google.protobuf.Timestamp last_modified_time = 11;
+    google.protobuf.Timestamp last_modified_time = 10;
 }
