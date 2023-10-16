@@ -7,83 +7,106 @@ option go_package = "go.temporal.io/api/cloud/namespace/v1;namespace";
 import "google/protobuf/timestamp.proto";
 
 message CertificateFilterSpec {
-    // The common_name in the certificate
+    // The common_name in the certificate.
+    // Optional, default is empty.
     string common_name = 1;
-    // The organization in the certificate
+    // The organization in the certificate.
+    // Optional, default is empty.
     string organization = 2;
-    // The organizational_unit in the certificate
+    // The organizational_unit in the certificate.
+    // Optional, default is empty.
     string organizational_unit = 3;
-    // The subject_alternative_name in the certificate
+    // The subject_alternative_name in the certificate.
+    // Optional, default is empty.
     string subject_alternative_name = 4;
 }
 
-message CodecServerPropertySpec {
-    // Server endpoints
+message MtlsAuthSpec {
+    // The base64 encoded ca cert(s) in PEM format that the clients can use for authentication and authorization.
+    // This must only be one value, but the CA can have a chain.
+    string accepted_client_ca = 1;
+    // Certificate filters which, if specified, only allow connections from client certificates whose distinguished name properties match at least one of the filters.
+    // This allows limiting access to specific end-entity certificates.
+    // Optional, default is empty.
+    repeated CertificateFilterSpec certificate_filters = 2;
+}
+
+message CodecServerSpec {
+    // The codec server endpoint.
     string endpoint = 1;
-    // Whether to pass access token, i.e. jwt
+    // Whether to pass the user access token with your endpoint.
     bool pass_access_token = 2;
-    // Whether to include credentials
-    bool include_credentials = 3;
+    // Whether to include cross-origin credentials.
+    bool include_cross_origin_credentials = 3;
 }
 
 message NamespaceSpec {
-    // The region where the namespace is (or will be) active
-    string region = 1;
-    // The base64 encoded ca cert(s) that the clients can use for authentication and authorization
-    string accepted_client_ca = 2;
-    // The number of days the workflows data will be retained for
-    int32 retention_days = 3;
-    // The custom search attributes to use for the namespace
-    // The name of the attribute is the key and the type is the value
-    // Supported attribute types: text, keyword, int, double, bool, datetime, keyword_list
-    map<string, string> search_attributes = 4;
-    // Certificate filters which, if specified, only allow connections from client certificates
-    // whose distinguished name properties match at least one of the filters
-    repeated CertificateFilterSpec certificate_filters = 5;
-    // Environment of the namespace. - optional
+    // The prefix to use for the namespace.
+    // This will create a namespace that's available at '<namespace_prefix>.<account>.tmprl.cloud:7233'.
+    // The prefix is immutable. Once set, it cannot be changed.
+    string namespace_prefix = 1;
+    // The region where the namespace is (or will be) active.
+    // The region is immutable. Once set, it cannot be changed.
+    string region = 2;
+    // The number of days the workflows data will be retained for.
+    // Changes to the retention period may impact your storage costs.
+    // Any changes to the retention period will be applied to all new running workflows.
+    int32 retention_period_days = 3;
+    // The mtls authentication and authorization to enforce on the namespace.
+    MtlsAuthSpec mtls_auth = 5;
+    // The custom search attributes to use for the namespace.
+    // The name of the attribute is the key and the type is the value.
+    // Supported attribute types: text, keyword, int, double, bool, datetime, keyword_list.
+    // NOTE: currently deleting a search attribute is not supported.
+    // Optional, default is empty.
+    map<string, string> custom_search_attributes = 4;
+    // Environment of the namespace.
     // NOTE: currently there is no additional SLA or functional guarantee implied by the value of this field.
-    // supported environments: dev, test, prod
-    string environment = 6;
-    // Codec server property spec needed for user to set and retrieve - optional
-    CodecServerPropertySpec codec_spec = 7;
-    // The regions where the namespace is (or will be) located - optional
-    repeated string passive_regions = 8;
+    // supported environments: dev, test, prod.
+    // Optional, default is unset.
+    string environment = 7;
+    // Codec server spec used by UI to decode payloads for all users interacting with this namespace.
+    // Optional, default is unset.
+    CodecServerSpec codec_server = 8;
+    // The regions where the namespace is (or will be) located.
+    // Optional, default is empty.
+    repeated string passive_regions = 9;
 }
 
-message NamespaceURI {
-    // The web ui address
-    string web = 1;
-    // The grpc address
-    string grpc = 2;
-    // The list of private links
+message NamespaceEndpoints {
+    // The web ui address.
+    string web_address = 1;
+    // The grpc hostport temporal workers, clients and tctl connect to.
+    string grpc_hostport = 2;
+    // The list of private links, if any, that are associated with the namespace.
     repeated string vpc_endpoint_service_names = 3;
 }
 
 message NamespaceEnvelope {
-    // The namespace may be throttled if its APS exceeds the limit
+    // The namespace may be throttled if its APS exceeds the limit.
     int32 actions_per_second_limit = 1;
 }
 
 message Namespace {
-    // The namespace name
+    // The namespace identifier.
     string namespace = 1;
-    // The current version of the namespace specification
-    // The next update operation will have to include this version
+    // The current version of the namespace specification.
+    // The next update operation will have to include this version.
     string resource_version = 2;
-    // The namespace specification
+    // The namespace specification.
     NamespaceSpec spec = 3;
-    // The current state of the namespace
+    // The current state of the namespace.
     string state = 4;
-    // The id of the async operation that is creating/updating/deleting the namespace, if any
+    // The id of the async operation that is creating/updating/deleting the namespace, if any.
     string async_operation_id = 5;
-    // The web uri for the namespace
-    NamespaceURI uri = 6;
-    // The envelope is a list of service level agreements (SLAs) that can be provided around a given namespace
+    // The endpoints for the namespace.
+    NamespaceEndpoints endpoints = 6;
+    // The envelope is a list of service level agreements (SLAs) that can be provided around a given namespace.
     NamespaceEnvelope envelope = 7;
-    // Allowed principals is a list of principals that allowed to access the private links on the namespace
+    // Allowed principals is a list of principals that allowed to access the private links on the namespace.
     repeated string allowed_principals = 8;
-    // The date and time when the user was created
+    // The date and time when the user was created.
     google.protobuf.Timestamp created_time = 10;
-    // The date and time when the namespace was last modified
+    // The date and time when the namespace was last modified.
     google.protobuf.Timestamp last_modified_time = 11;
 }
