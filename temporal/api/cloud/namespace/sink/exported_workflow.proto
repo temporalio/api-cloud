@@ -1,8 +1,8 @@
 syntax = "proto3";
 
-package export.v1;
+package temporal.api.cloud.namespace.sink.export.v1;
 
-import "temporal/api/history/v1/message.proto";
+import "proto/api/temporal/api/history/v1/message.proto";
 
 message ExportedWorkflows {
     repeated Workflow workflows = 1;

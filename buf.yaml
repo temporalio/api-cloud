@@ -4,6 +4,10 @@ deps:
 breaking:
   use:
     - FILE
+  ignore:
+    - proto/api # from `api` root: do not lint public api
 lint:
   use:
     - DEFAULT
+  ignore:
+    - proto/api # from `api` root: do not lint public api
