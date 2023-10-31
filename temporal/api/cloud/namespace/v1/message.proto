@@ -40,7 +40,7 @@ message CodecServerSpec {
     bool include_cross_origin_credentials = 3;
 }
 
-message GlobalSpec {
+message GlobalNamespaceSpec {
     // The regions where the namespace is (or will be) located.
     // Optional, default is empty.
     repeated string passive_regions = 1;
@@ -71,17 +71,18 @@ message NamespaceSpec {
     CodecServerSpec codec_server = 6;
     // The global namespace spec.
     // Optional, default is unset.
-    GlobalSpec global = 7;
+    GlobalNamespaceSpec global = 7;
 }
 
 message Endpoints {
     // The web ui address.
     string web_address = 1;
-    // The grpc hostport that the temporal workers, clients and tctl connect to.
-    string grpc_hostport = 2;
+    // The grpc hostport address that the temporal workers, clients and tctl connect to.
+    string grpc_address = 2;
 }
 
-message OperatingEnvelope {
+message Limits {
+    // The number of actions per second (APS) that is currently allowed for the namespace.
     // The namespace may be throttled if its APS exceeds the limit.
     int32 actions_per_second_limit = 1;
 }
@@ -107,14 +108,15 @@ message Namespace {
     string async_operation_id = 5;
     // The endpoints for the namespace.
     Endpoints endpoints = 6;
-    // The envelope is a list of service level agreements (SLAs) that can be provided around a given namespace.
-    OperatingEnvelope operating_envelope = 7;
+    // The limits set on the namespace currently.
+    Limits limits = 7;
     // The private link for the namespace, if any.
     oneof private_link {
     	AWSPrivateLink aws_private_link = 8;
     }
-    // The date and time when the user was created.
+    // The date and time when the namespace was created.
     google.protobuf.Timestamp created_time = 9;
     // The date and time when the namespace was last modified.
+    // Will not be set if the namespace has never been modified.
     google.protobuf.Timestamp last_modified_time = 10;
 }
