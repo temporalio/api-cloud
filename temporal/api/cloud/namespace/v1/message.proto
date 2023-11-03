@@ -89,7 +89,7 @@ message AWSPrivateLinkInfo {
 }
 
 message PrivateConnectivity {
-    oneof Info {
+    oneof info {
         // AWS PrivateLink info.
         AWSPrivateLinkInfo aws_private_link = 1;
     }
