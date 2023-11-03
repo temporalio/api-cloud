@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+package temporal.api.cloud.export.v1;
+
+option go_package = "go.temporal.io/api/cloud/export/v1;export";
+
+import "temporal/api/history/v1/message.proto";
+
+message ExportedWorkflows {
+    repeated Workflow workflows = 1;
+}
+
+message Workflow{
+    temporal.api.history.v1.History history = 1;
+}
