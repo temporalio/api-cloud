@@ -49,7 +49,7 @@ message NamespaceSpec {
     // Specifying more than one region makes the namespace "global", which is currently a preview only feature with restricted access.
     // Please reach out to Temporal support for more information on global namespaces.
     // When provisioned the Global Namespace will be active on the first region in the list and passive on the rest.
-    // Number of supported regions today is 2. Could be more in the future.
+    // Number of supported regions is 2. 
     // The regions is immutable. Once set, it cannot be changed.
     repeated string regions = 2;
     // The number of days the workflows data will be retained for.
