@@ -90,10 +90,12 @@ message AWSPrivateLinkInfo {
 }
 
 message PrivateConnectivity {
-    oneof info {
-        // AWS PrivateLink info.
-        AWSPrivateLinkInfo aws_private_link = 1;
-    }
+    // The type of private connectivity.
+    // Currently only "aws-privatelink" is supported.
+    string type = 1;
+    // The AWS PrivateLink info.
+    // This will only be set if the type is "aws-privatelink".
+    AWSPrivateLinkInfo aws_private_link = 2;
 }
 
 message Namespace {
@@ -112,8 +114,8 @@ message Namespace {
     Endpoints endpoints = 6;
     // The limits set on the namespace currently.
     Limits limits = 7;
-    // The private connectivity for the namespace, if any.
-    // The private connectivity is keyed on the region where it applies.
+    // The private connectivity for the namespace by region where they apply, if any.
+    // The region is the key and the private connectivity is the value.
     map<string, PrivateConnectivity> private_connectivity = 8;
     // The date and time when the namespace was created.
     google.protobuf.Timestamp created_time = 9;
