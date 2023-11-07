@@ -83,9 +83,9 @@ message Limits {
 }
 
 message AWSPrivateLinkInfo {
-    // The list of principals that are allowed to access the private links on the namespace.
+    // The list of principal arns that are allowed to access the namespace on the private link.
     repeated string allowed_principal_arns = 1;
-    // The list of private links, if any, that are associated with the namespace.
+    // The list of vpc endpoint service names that are associated with the namespace.
     repeated string vpc_endpoint_service_names = 2;
 }
 
