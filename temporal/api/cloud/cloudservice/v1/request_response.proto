@@ -208,18 +208,11 @@ message DeleteNamespaceResponse {
 }
 
 message GetRegionsRequest {
-    // The requested size of the page to retrieve - optional.
-    // Cannot exceed 1000. Defaults to 100. 
-    int32 page_size = 1;
-    // The page token if this is continuing from another response - optional.
-    string page_token = 2;
 }
 
 message GetRegionsResponse {
     // The temporal cloud regions.
     repeated temporal.api.cloud.region.v1.Region regions = 1;
-    // The next page's token.
-    string next_page_token = 2;
 }
 
 message GetRegionRequest {
