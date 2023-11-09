@@ -218,6 +218,8 @@ message GetRegionsRequest {
 message GetRegionsResponse {
     // The temporal cloud regions.
     repeated temporal.api.cloud.region.v1.Region regions = 1;
+    // The next page's token.
+    string next_page_token = 2;
 }
 
 message GetRegionRequest {

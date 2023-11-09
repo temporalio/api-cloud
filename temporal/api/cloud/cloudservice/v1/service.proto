@@ -104,4 +104,18 @@ service CloudService {
             delete: "/api/v1/namespaces/{namespace}",
         };
     }
+
+    // Get all regions
+    rpc GetRegions (GetRegionsRequest)  returns (GetRegionsResponse) {
+	option (google.api.http) = {
+            get: "/api/v1/regions",
+        };
+    }
+
+    // Get a region
+    rpc GetNamespace (GetRegionRequest) returns (GetRegionResponse) {
+	option (google.api.http) = {
+            get: "/api/v1/regions/{region}",
+        };
+    }
 }
