@@ -87,6 +87,7 @@ message AWSPrivateLinkInfo {
     repeated string allowed_principal_arns = 1;
     // The list of vpc endpoint service names that are associated with the namespace.
     repeated string vpc_endpoint_service_names = 2;
+}
 
 
 message PrivateConnectivity {
