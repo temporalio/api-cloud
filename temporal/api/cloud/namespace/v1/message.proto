@@ -95,7 +95,7 @@ message PrivateConnectivity {
     string region = 1;
     // The AWS PrivateLink info.
     // This will only be set for an aws region.
-    AWSPrivateLinkInfo aws_private_link = 3;
+    AWSPrivateLinkInfo aws_private_link = 2;
 }
 
 message Namespace {
