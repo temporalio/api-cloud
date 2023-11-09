@@ -94,7 +94,7 @@ message PrivateConnectivity {
     // The id of the region where the private connectivity applies.
     string region = 1;
     // The AWS PrivateLink info.
-    // This will only be set for a aws region.
+    // This will only be set for an aws region.
     AWSPrivateLinkInfo aws_private_link = 3;
 }
 
