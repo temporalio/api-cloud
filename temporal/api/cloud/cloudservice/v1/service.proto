@@ -113,7 +113,7 @@ service CloudService {
     }
 
     // Get a region
-    rpc GetNamespace (GetRegionRequest) returns (GetRegionResponse) {
+    rpc GetRegion (GetRegionRequest) returns (GetRegionResponse) {
 	option (google.api.http) = {
             get: "/api/v1/regions/{region}",
         };
