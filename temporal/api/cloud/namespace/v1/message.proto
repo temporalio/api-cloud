@@ -40,20 +40,18 @@ message CodecServerSpec {
     bool include_cross_origin_credentials = 3;
 }
 
-message GlobalNamespaceSpec {
-    // The regions where the namespace is (or will be) located.
-    // Optional, default is empty.
-    repeated string passive_regions = 1;
-}
-
 message NamespaceSpec {
     // The name to use for the namespace.
     // This will create a namespace that's available at '<name>.<account>.tmprl.cloud:7233'.
     // The name is immutable. Once set, it cannot be changed.
     string name = 1;
-    // The region where the namespace is (or will be) active.
-    // The region is immutable. Once set, it cannot be changed.
-    string region = 2;
+    // The ids of the regions where the namespace should be available.
+    // Specifying more than one region makes the namespace "global", which is currently a preview only feature with restricted access.
+    // Please reach out to Temporal support for more information on global namespaces.
+    // When provisioned the global namespace will be active on the first region in the list and passive on the rest.
+    // Number of supported regions is 2. 
+    // The regions is immutable. Once set, it cannot be changed.
+    repeated string regions = 2;
     // The number of days the workflows data will be retained for.
     // Changes to the retention period may impact your storage costs.
     // Any changes to the retention period will be applied to all new running workflows.
@@ -69,9 +67,6 @@ message NamespaceSpec {
     // Codec server spec used by UI to decode payloads for all users interacting with this namespace.
     // Optional, default is unset.
     CodecServerSpec codec_server = 6;
-    // The global namespace spec.
-    // Optional, default is unset.
-    GlobalNamespaceSpec global = 7;
 }
 
 message Endpoints {
@@ -87,11 +82,20 @@ message Limits {
     int32 actions_per_second_limit = 1;
 }
 
-message AWSPrivateLink {
-    // The list of principals that are allowed to access the private links on the namespace.
+message AWSPrivateLinkInfo {
+    // The list of principal arns that are allowed to access the namespace on the private link.
     repeated string allowed_principal_arns = 1;
-    // The list of private links, if any, that are associated with the namespace.
+    // The list of vpc endpoint service names that are associated with the namespace.
     repeated string vpc_endpoint_service_names = 2;
+}
+
+
+message PrivateConnectivity {
+    // The id of the region where the private connectivity applies.
+    string region = 1;
+    // The AWS PrivateLink info.
+    // This will only be set for an aws region.
+    AWSPrivateLinkInfo aws_private_link = 2;
 }
 
 message Namespace {
@@ -110,10 +114,8 @@ message Namespace {
     Endpoints endpoints = 6;
     // The limits set on the namespace currently.
     Limits limits = 7;
-    // The private link for the namespace, if any.
-    oneof private_link {
-    	AWSPrivateLink aws_private_link = 8;
-    }
+    // The private connectivities for the namespace, if any.
+    repeated PrivateConnectivity private_connectivities = 8;
     // The date and time when the namespace was created.
     google.protobuf.Timestamp created_time = 9;
     // The date and time when the namespace was last modified.
