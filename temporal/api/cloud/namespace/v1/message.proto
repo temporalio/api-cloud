@@ -45,7 +45,7 @@ message NamespaceSpec {
     // This will create a namespace that's available at '<name>.<account>.tmprl.cloud:7233'.
     // The name is immutable. Once set, it cannot be changed.
     string name = 1;
-    // The regions of availability for the namespace.
+    // The ids of the regions where the namespace should be available.
     // Specifying more than one region makes the namespace "global", which is currently a preview only feature with restricted access.
     // Please reach out to Temporal support for more information on global namespaces.
     // When provisioned the global namespace will be active on the first region in the list and passive on the rest.
@@ -87,15 +87,14 @@ message AWSPrivateLinkInfo {
     repeated string allowed_principal_arns = 1;
     // The list of vpc endpoint service names that are associated with the namespace.
     repeated string vpc_endpoint_service_names = 2;
-}
+
 
 message PrivateConnectivity {
-    // The type of private connectivity.
-    // Currently only "aws-privatelink" is supported.
-    string type = 1;
+    // The id of the region where the private connectivity applies.
+    string region = 1;
     // The AWS PrivateLink info.
-    // This will only be set if the type is "aws-privatelink".
-    AWSPrivateLinkInfo aws_private_link = 2;
+    // This will only be set for a aws region.
+    AWSPrivateLinkInfo aws_private_link = 3;
 }
 
 message Namespace {
@@ -114,9 +113,8 @@ message Namespace {
     Endpoints endpoints = 6;
     // The limits set on the namespace currently.
     Limits limits = 7;
-    // The private connectivity for the namespace by region where they apply, if any.
-    // The region is the key and the private connectivity is the value.
-    map<string, PrivateConnectivity> private_connectivity = 8;
+    // The private connectivities for the namespace, if any.
+    repeated PrivateConnectivity private_connectivities = 8;
     // The date and time when the namespace was created.
     google.protobuf.Timestamp created_time = 9;
     // The date and time when the namespace was last modified.
