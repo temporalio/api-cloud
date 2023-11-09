@@ -112,13 +112,15 @@ message Namespace {
     string async_operation_id = 5;
     // The endpoints for the namespace.
     Endpoints endpoints = 6;
+    // The currently active region for the namespace.
+    string active_region = 7;
     // The limits set on the namespace currently.
-    Limits limits = 7;
+    Limits limits = 8;
     // The private connectivities for the namespace, if any.
-    repeated PrivateConnectivity private_connectivities = 8;
+    repeated PrivateConnectivity private_connectivities = 9;
     // The date and time when the namespace was created.
-    google.protobuf.Timestamp created_time = 9;
+    google.protobuf.Timestamp created_time = 10;
     // The date and time when the namespace was last modified.
     // Will not be set if the namespace has never been modified.
-    google.protobuf.Timestamp last_modified_time = 10;
+    google.protobuf.Timestamp last_modified_time = 11;
 }
