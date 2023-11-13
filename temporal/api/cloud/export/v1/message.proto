@@ -7,7 +7,7 @@ option go_package = "go.temporal.io/api/cloud/export/v1;export";
 import "temporal/api/history/v1/message.proto";
 
 message ExportedWorkflows {
-    repeated Workflow workflows = 1;
+    repeated ExportedWorkflow workflows = 1;
 }
 
 message ExportedWorkflow {
