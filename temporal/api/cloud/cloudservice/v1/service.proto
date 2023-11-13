@@ -106,7 +106,7 @@ service CloudService {
     }
 
     // Get all regions
-    rpc GetRegions (GetRegionsRequest)  returns (GetRegionsResponse) {
+    rpc GetRegions (GetRegionsRequest) returns (GetRegionsResponse) {
 	option (google.api.http) = {
             get: "/api/v1/regions",
         };
