@@ -44,6 +44,18 @@ openapiv2-install:
 	printf $(COLOR) "Install/update openapiv2 protoc gen..."
 	go install github.com/grpc-ecosystem/grpc-gateway/v2/protoc-gen-openapiv2@v2.16.2
 
+PROTO_ROOT := temporal-api
+
+##### Import Proto files #####
+install-proto-submodule:
+	@printf $(COLOR) "Install proto submodule..."
+	git submodule update --init $(PROTO_ROOT)
+
+update-proto-submodule:
+	@printf $(COLOR) "Update proto submodule from remote..."
+	git submodule update --force --remote $(PROTO_ROOT)
+
+
 ##### Linters #####
 buf-lint:
 	printf $(COLOR) "Run buf linter..."

@@ -4,6 +4,12 @@ deps:
 breaking:
   use:
     - FILE
+build:
+  excludes:
+    - temporal-api/google
 lint:
   use:
     - DEFAULT
+  ignore:
+    - temporal-api  # don't lint temporal-api
+
