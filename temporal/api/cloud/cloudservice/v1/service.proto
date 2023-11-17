@@ -59,4 +59,63 @@ service CloudService {
             get: "/api/v1/operations/{async_operation_id}",
         };
     }
+
+    // Create a new namespace
+    rpc CreateNamespace (CreateNamespaceRequest) returns (CreateNamespaceResponse) {
+	option (google.api.http) = {
+            post: "/api/v1/namespaces",
+	    body: "*"
+        };
+    }
+    
+    // Get all namespaces
+    rpc GetNamespaces (GetNamespacesRequest)  returns (GetNamespacesResponse) {
+	option (google.api.http) = {
+            get: "/api/v1/namespaces",
+        };
+    }
+
+    // Get a namespace
+    rpc GetNamespace (GetNamespaceRequest) returns (GetNamespaceResponse) {
+	option (google.api.http) = {
+            get: "/api/v1/namespaces/{namespace}",
+        };
+    }
+
+    // Update a namespace
+    rpc UpdateNamespace (UpdateNamespaceRequest) returns (UpdateNamespaceResponse) {
+	option (google.api.http) = {
+            post: "/api/v1/namespaces/{namespace}",
+	    body: "*"
+        };
+    }
+
+    // Rename an existing customer search attribute
+    rpc RenameCustomSearchAttribute (RenameCustomSearchAttributeRequest) returns (RenameCustomSearchAttributeResponse) {
+	option (google.api.http) = {
+            post: "/api/v1/namespaces/{namespace}/rename-custom-search-attribute",
+	    body: "*"
+        };
+    }
+
+    // Delete a namespace
+    rpc DeleteNamespace (DeleteNamespaceRequest) returns (DeleteNamespaceResponse) {
+	option (google.api.http) = {
+            delete: "/api/v1/namespaces/{namespace}",
+        };
+    }
+
+    // Get all regions
+    rpc GetRegions (GetRegionsRequest) returns (GetRegionsResponse) {
+	option (google.api.http) = {
+            get: "/api/v1/regions",
+        };
+    }
+
+    // Get a region
+    rpc GetRegion (GetRegionRequest) returns (GetRegionResponse) {
+	option (google.api.http) = {
+            get: "/api/v1/regions/{region}",
+        };
+    }
 }

@@ -61,6 +61,7 @@ message User {
     // The date and time when the user was created
     google.protobuf.Timestamp created_time = 7;
     // The date and time when the user was last modified
+    // Will not be set if the user has never been modified.
     google.protobuf.Timestamp last_modified_time = 8;
 }
 
