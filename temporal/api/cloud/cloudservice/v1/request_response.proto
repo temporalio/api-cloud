@@ -8,6 +8,8 @@ import "temporal/api/cloud/operation/v1/message.proto";
 import "temporal/api/cloud/identity/v1/message.proto";
 import "temporal/api/cloud/namespace/v1/message.proto";
 import "temporal/api/cloud/region/v1/message.proto";
+import "temporal/api/cloud/account/v1/message.proto";
+import "temporal/api/cloud/sink/v1/message.proto";
 
 message GetUsersRequest {
     // The requested size of the page to retrieve - optional.
@@ -212,6 +214,94 @@ message DeleteNamespaceResponse {
     temporal.api.cloud.operation.v1.AsyncOperation async_operation = 1;
 }
 
+message GetNamespaceExportSinksRequest {
+    // The namespace the sinks are scoped to.
+    string namespace = 1;
+    // The requested size of the page to retrieve.
+    // Cannot exceed 1000.
+    // Optional, defaults to 100.
+    int32 page_size = 2;
+    // The page token if this is continuing from another response.
+    // Optional, defaults to empty.
+    string page_token = 3;
+    // Filter sinks by their name.
+    // Optional, defaults to empty.
+    string name = 4;
+}
+
+message GetNamespaceExportSinksResponse {
+    // the list of export sinks.
+    repeated temporal.api.cloud.sink.v1.ExportSink sinks = 1;
+    // The next page's token.
+    string next_page_token = 2;
+}
+
+message GetNamespaceExportSinkRequest {
+    // The namespace the sink is scoped to.
+    string namespace = 1;
+    // The sink id to retrieve.
+    string id = 2;
+}
+
+message GetNamespaceExportSinkResponse {
+    // The export sink.
+    temporal.api.cloud.sink.v1.ExportSink sink = 1;
+}
+
+message CreateNamespaceExportSinkRequest {
+    // The namespace the sink is scoped to.
+    string namespace = 1;
+    // The specification of the sink to create.
+    temporal.api.cloud.sink.v1.ExportSinkSpec spec = 2;
+    // The id to use for this async operation.
+    // Optional, if not provided a random id will be generated.
+    string async_operation_id = 3;
+}
+
+message CreateNamespaceExportSinkResponse {
+    // The id of the sink that was created.
+    string id = 1;
+    // The async operation.
+    temporal.api.cloud.operation.v1.AsyncOperation async_operation = 2;
+}
+
+message UpdateNamespaceExportSinkRequest {
+    // The namespace the sink is scoped to.
+    string namespace = 1;
+    // The sink id to update.
+    string id = 2;
+    // The updated sink specification to apply.
+    temporal.api.cloud.sink.v1.ExportSinkSpec spec = 3;
+    // The version of the export sink for which this update is intended for.
+    // The latest version can be found in the GetNamespaceExportSink operation response.
+    string resource_version = 4;
+    // The id to use for this async operation.
+    // Optional, if not provided a random id will be generated.
+    string async_operation_id = 5;
+}
+
+message UpdateNamespaceExportSinkResponse {
+    // The async operation.
+    temporal.api.cloud.operation.v1.AsyncOperation async_operation = 1;
+}
+
+message DeleteNamespaceExportSinkRequest {
+    // The namespace the sink is scoped to.
+    string namespace = 1;
+    // The sink id to delete.
+    string id = 2;
+    // The version of the user for which this delete is intended for.
+    // The latest version can be found in the GetNamespaceExportSink operation response.
+    string resource_version = 3;
+    // The id to use for this async operation - optional
+    string async_operation_id = 4;
+}
+
+message DeleteNamespaceExportSinkResponse {
+    // The async operation.
+    temporal.api.cloud.operation.v1.AsyncOperation async_operation = 1;
+}
+
 message GetRegionsRequest {
 }
 
@@ -229,3 +319,108 @@ message GetRegionResponse {
     // The temporal cloud region.
     temporal.api.cloud.region.v1.Region region = 1;
 }
+
+message GetAccountRequest {
+}
+
+message GetAccountResponse {
+    // The account.
+    temporal.api.cloud.account.v1.Account account = 1;
+}
+
+message UpdateAccountRequest {
+    // The updated account specification to apply.
+    temporal.api.cloud.account.v1.AccountSpec spec = 1;
+    // The version of the account for which this update is intended for.
+    // The latest version can be found in the GetAccount operation response.
+    string resource_version = 2;
+    // The id to use for this async operation.
+    // Optional, if not provided a random id will be generated.
+    string async_operation_id = 3;
+}
+
+message UpdateAccountResponse {
+    // The async operation.
+    temporal.api.cloud.operation.v1.AsyncOperation async_operation = 1;
+}
+
+message GetAuditLogSinksRequest {
+    // The requested size of the page to retrieve.
+    // Cannot exceed 1000.
+    // Optional, defaults to 100.
+    int32 page_size = 1;
+    // The page token if this is continuing from another response.
+    // Optional, defaults to empty.
+    string page_token = 2;
+    // Filter sinks by their name.
+    // Optional, defaults to empty.
+    string name = 3;
+}
+
+message GetAuditLogSinksResponse {
+    // the list of audit log sinks.
+    repeated temporal.api.cloud.sink.v1.ExportSink sinks = 1;
+    // The next page's token.
+    string next_page_token = 2;
+}
+
+message GetAuditLogSinkRequest {
+    // The audit log sink id to retrieve.
+    string id = 1;
+}
+
+message GetAuditLogSinkResponse {
+    // The audit log sink.
+    temporal.api.cloud.sink.v1.ExportSink sink = 1;
+}
+
+message CreateAuditLogSinkRequest {
+    // The specification of the audit log sink to create.
+    temporal.api.cloud.sink.v1.AuditLogSink spec = 1;
+    // The id to use for this async operation.
+    // Optional, if not provided a random id will be generated.
+    string async_operation_id = 2;
+}
+
+message CreateAuditLogSinkResponse {
+    // The id of the audit log sink that was created.
+    string id = 1;
+    // The async operation.
+    temporal.api.cloud.operation.v1.AsyncOperation async_operation = 2;
+}
+
+message UpdateAuditLogSinkRequest {
+    // The sink id to update.
+    string id = 1;
+    // The updated audit log sink specification to apply.
+    temporal.api.cloud.sink.v1.AuditLogSink spec = 2;
+    // The version of the audit log sink for which this update is intended for.
+    // The latest version can be found in the GetAuditLogSink operation response.
+    string resource_version = 3;
+    // The id to use for this async operation.
+    // Optional, if not provided a random id will be generated.
+    string async_operation_id = 4;
+}
+
+message UpdateAuditLogSinkResponse {
+    // The async operation.
+    temporal.api.cloud.operation.v1.AsyncOperation async_operation = 1;
+}
+
+message DeleteAuditLogSinkRequest {
+    // The namespace the sink is scoped to.
+    string namespace = 1;
+    // The sink id to delete.
+    string id = 2;
+    // The version of the user for which this delete is intended for.
+    // The latest version can be found in the GetAuditLogSink operation response.
+    string resource_version = 3;
+    // The id to use for this async operation - optional
+    string async_operation_id = 4;
+}
+
+message DeleteAuditLogSinkResponse {
+    // The async operation.
+    temporal.api.cloud.operation.v1.AsyncOperation async_operation = 1;
+}
+

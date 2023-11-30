@@ -1,0 +1,122 @@
+syntax = "proto3";
+
+package temporal.api.cloud.sink.v1;
+
+import "google/protobuf/timestamp.proto";
+
+option go_package = "go.temporal.io/api/cloud/sink/v1;sink";
+
+message KinesisSpec {
+    // The role Temporal Cloud assumes when writing records to Kinesis.
+    string assumed_role = 1;
+    // The destination Kinesis endpoint arn where temporal cloud will send data to.
+    string destination_uri = 2;
+    // The region of the Kinesis endpoint.
+    string region = 3;
+}
+
+message S3Spec{
+    // The role that Temporal Cloud assumes for writing records to S3 bucket.
+    string assumed_role = 1;
+    // The destination S3 bucket name for temporal cloud to send data to.
+    string bucket_name = 2;
+    // The region of the S3 bucket
+    string region = 3;
+    // The KMS key ARN that temporal cloud will use to encrypt data in S3 bucket.
+    string kms_arn = 4;
+    // The AWS account id that owns the S3 bucket.
+    string aws_account_id = 5;
+}
+
+message GCSSpec{
+    // The customer service account that Temporal Cloud impersonates when writing records to GCS bucket.
+    string sa_name = 1;
+    // The destination GCS bucket name where Temporal Cloud will send data to.
+    string bucket_name = 2;
+    // The region of the GCS bucket.
+    string region = 3;
+    // The customer-managed encryption key (CMEK) that Temporal Cloud will use for encryption.
+    bool enable_cmek = 4;
+    // The GCP project name that owns the GCS bucket.
+    string gcp_project_name = 5;
+}
+
+message AuditLogSinkSpec {
+    // The name of the sink.
+    string name = 1;
+    // Whether the sink is disabled.
+    bool disabled = 2;
+    // The destination type of the sink.
+    // The supported destination types are: "Kinesis" and "S3".
+    string destination_type = 3;
+    // The kinesis specification.
+    // Required when destination_type is Kinesis.
+    KinesisSpec kinesis_sink = 4;
+    // The S3 specification.
+    // Required when destination_type is S3.
+    S3Spec s3_sink = 5;
+}
+
+message AuditLogSink {
+    // The id of the sink.
+    string id = 1;
+    // The current version of the sink specification.
+    // The next update operation will have to include this version.
+    string resource_version = 2;
+    // The sink specification.
+    AuditLogSinkSpec spec = 3;
+    // The current state of the sink.
+    string state = 4;
+    // The id of the async operation that is creating/updating/deleting the namespace, if any.
+    string async_operation_id = 5;
+    // The AWS external id that Temporal Cloud uses to assume the role when writing data to an AWS sync.
+    // This is to prevent confused deputy problem.
+    // Please refer https://docs.aws.amazon.com/IAM/latest/UserGuide/confused-deputy.html for more details on confused deputy problem.
+    string aws_external_id = 6;
+    // The error message when the sink is malfunctioning, if any.
+    string error_message = 7;
+    // The date and time when data was successfully pushed via the sink.
+    google.protobuf.Timestamp last_succeeded_time =  8;
+    // The date and time when the namespace was created.
+    google.protobuf.Timestamp created_time = 9;
+    // The date and time when the namespace was last modified.
+    // Will not be set if the namespace has never been modified.
+    google.protobuf.Timestamp last_modified_time = 10;
+}
+
+message ExportSinkSpec {
+    // The name of the sink.
+    string name = 1;
+    // Whether the sink is disabled.
+    bool disabled = 2;
+    // The destination type of the sink.
+    // The supported destination types are: "S3" and "GCS".
+    string destination_type = 3;
+    // The S3 specification.
+    // Required when destination_type is S3.
+    S3Spec s3_sink = 4;
+    // The GCS specification.
+    // Required when destination_type is GCS.
+    GCSSpec gcs_sink = 5;
+}
+
+message ExportSink {
+    // The id of the sink.
+    string id = 1;
+    // The current version of the sink specification.
+    // The next update operation will have to include this version.
+    string resource_version = 2;
+    // The sink specification.
+    ExportSinkSpec spec = 3;
+    // The current state of the sink.
+    string state = 4;
+    // The health of the sink.
+    // The possible health values are: "Ok", "ErrInternal", "ErrUserConfiguration".
+    string health = 5;
+    // The error message when the sink is malfunctioning, if any.
+    string error_message = 6;
+    // The date and time when data was successfully exported via the sink.
+    google.protobuf.Timestamp last_succeeded_time = 7;
+    // The date and time when the last health check of the sink was performed.
+    google.protobuf.Timestamp last_health_check_time = 8;
+}
