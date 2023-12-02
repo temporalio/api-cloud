@@ -105,13 +105,6 @@ service CloudService {
         };
     }
 
-    // Delete a audit log sink
-    rpc DeleteAuditLogSink (DeleteAuditLogSinkRequest) returns (DeleteAuditLogSinkResponse) {
-        option (google.api.http) = {
-            delete: "/api/v1/namespaces/{namespace}/audit-log-sinks/{id}",
-        };
-    }
-
     // Create a new namespace export sink
     rpc CreateNamespaceExportSink (CreateNamespaceExportSinkRequest) returns (CreateNamespaceExportSinkResponse) {
         option (google.api.http) = {
@@ -206,6 +199,13 @@ service CloudService {
         option (google.api.http) = {
             post: "/api/v1/audit-log-sinks/{id}",
             body: "*"
+        };
+    }
+
+    // Delete a audit log sink
+    rpc DeleteAuditLogSink (DeleteAuditLogSinkRequest) returns (DeleteAuditLogSinkResponse) {
+        option (google.api.http) = {
+            delete: "/api/v1/namespaces/{namespace}/audit-log-sinks/{id}",
         };
     }
 }
