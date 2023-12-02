@@ -27,10 +27,12 @@ message Account {
     // The current version of the account specification.
     // The next update operation will have to include this version.
     string resource_version = 1;
+    // The account specification
+    AccountSpec spec = 2;
     // The current state of the account.
-    string state = 2;
+    string state = 3;
     // The id of the async operation that is updating the account, if any.
-    string async_operation_id = 3;
+    string async_operation_id = 4;
     // Information related to metrics.
-    Metrics metrics = 4;
+    Metrics metrics = 5;
 }
