@@ -1,0 +1,38 @@
+syntax = "proto3";
+
+package temporal.api.cloud.account.v1;
+
+option go_package = "go.temporal.io/api/cloud/account/v1;account";
+
+message MetricsSpec {
+    // Enables the endpoint from which clients can scrape all their namespace metrics.
+    bool enabled = 1;
+    // The base64 encoded ca cert(s) in PEM format that clients connecting to the metrics endpoint can use for authentication.
+    // This must only be one value, but the CA can have a chain.
+    string accepted_client_ca = 2;
+}
+
+message AccountSpec {
+    // The metrics specification for this account.
+    MetricsSpec metrics = 1;
+}
+
+message Metrics {
+    // The prometheus metrics endpoint uri.
+    // This is only populated when the metrics is enabled in the metrics specification.
+    string uri = 1;
+}
+
+message Account {
+    // The current version of the account specification.
+    // The next update operation will have to include this version.
+    string resource_version = 1;
+    // The account specification
+    AccountSpec spec = 2;
+    // The current state of the account.
+    string state = 3;
+    // The id of the async operation that is updating the account, if any.
+    string async_operation_id = 4;
+    // Information related to metrics.
+    Metrics metrics = 5;
+}

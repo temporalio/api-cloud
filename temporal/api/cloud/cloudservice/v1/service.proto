@@ -10,14 +10,14 @@ import "google/api/annotations.proto";
 service CloudService {
     // Gets all known users
     rpc GetUsers(GetUsersRequest) returns (GetUsersResponse) {
-	option (google.api.http) = {
+        option (google.api.http) = {
             get: "/api/v1/users",
         };
     }
     
     // Get a user
     rpc GetUser(GetUserRequest) returns (GetUserResponse) {
-	option (google.api.http) = {
+        option (google.api.http) = {
             get: "/api/v1/users/{user_id}",
         };
     }
@@ -26,30 +26,30 @@ service CloudService {
     rpc CreateUser(CreateUserRequest) returns (CreateUserResponse) {
         option (google.api.http) = {
             post: "/api/v1/users",
-	    body: "*"
+            body: "*"
         };
     }
 
     // Update a user
     rpc UpdateUser(UpdateUserRequest) returns (UpdateUserResponse) {
-	option (google.api.http) = {
+        option (google.api.http) = {
             post: "/api/v1/users/{user_id}",
-	    body: "*"
+            body: "*"
         };
     }
 
     // Delete a user
     rpc DeleteUser(DeleteUserRequest) returns (DeleteUserResponse) {
-	option (google.api.http) = {
+        option (google.api.http) = {
             delete: "/api/v1/users/{user_id}",
         };
     }
 
     // Set a user's access to a namespace
     rpc SetUserNamespaceAccess(SetUserNamespaceAccessRequest) returns (SetUserNamespaceAccessResponse) {
-	option (google.api.http) = {
+        option (google.api.http) = {
             post: "/api/v1/namespaces/{namespace}/users/{user_id}/access",
-	    body: "*"
+            body: "*"
         };
     }
 
@@ -62,60 +62,75 @@ service CloudService {
 
     // Create a new namespace
     rpc CreateNamespace (CreateNamespaceRequest) returns (CreateNamespaceResponse) {
-	option (google.api.http) = {
+        option (google.api.http) = {
             post: "/api/v1/namespaces",
-	    body: "*"
+            body: "*"
         };
     }
-    
+
     // Get all namespaces
     rpc GetNamespaces (GetNamespacesRequest)  returns (GetNamespacesResponse) {
-	option (google.api.http) = {
+        option (google.api.http) = {
             get: "/api/v1/namespaces",
         };
     }
 
     // Get a namespace
     rpc GetNamespace (GetNamespaceRequest) returns (GetNamespaceResponse) {
-	option (google.api.http) = {
+        option (google.api.http) = {
             get: "/api/v1/namespaces/{namespace}",
         };
     }
 
     // Update a namespace
     rpc UpdateNamespace (UpdateNamespaceRequest) returns (UpdateNamespaceResponse) {
-	option (google.api.http) = {
+        option (google.api.http) = {
             post: "/api/v1/namespaces/{namespace}",
-	    body: "*"
+            body: "*"
         };
     }
 
     // Rename an existing customer search attribute
     rpc RenameCustomSearchAttribute (RenameCustomSearchAttributeRequest) returns (RenameCustomSearchAttributeResponse) {
-	option (google.api.http) = {
+        option (google.api.http) = {
             post: "/api/v1/namespaces/{namespace}/rename-custom-search-attribute",
-	    body: "*"
+            body: "*"
         };
     }
 
     // Delete a namespace
     rpc DeleteNamespace (DeleteNamespaceRequest) returns (DeleteNamespaceResponse) {
-	option (google.api.http) = {
+        option (google.api.http) = {
             delete: "/api/v1/namespaces/{namespace}",
         };
     }
 
     // Get all regions
     rpc GetRegions (GetRegionsRequest) returns (GetRegionsResponse) {
-	option (google.api.http) = {
+        option (google.api.http) = {
             get: "/api/v1/regions",
         };
     }
 
     // Get a region
     rpc GetRegion (GetRegionRequest) returns (GetRegionResponse) {
-	option (google.api.http) = {
-            get: "/api/v1/regions/{region}",
+        option (google.api.http) = {
+            get: "/api/v1/{region}",
+        };
+    }
+
+    // Get account information
+    rpc GetAccount (GetAccountRequest) returns (GetAccountResponse) {
+            option (google.api.http) = {
+            get: "/api/v1/account",
+        };
+    }
+
+    // Update account information
+    rpc UpdateAccount (UpdateAccountRequest) returns (UpdateAccountResponse) {
+            option (google.api.http) = {
+            post: "/api/v1/account",
+            body: "*"
         };
     }
 }
