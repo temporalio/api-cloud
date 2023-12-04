@@ -53,6 +53,8 @@ message User {
     // The user specification
     UserSpec spec = 3;
     // The current state of the user
+    // Possible values: activating, activationfailed, active, updating, updatefailed, deleting, deletefailed, deleted, suspending, suspendfailed, suspended
+    // For any failed state, reach out to Temporal Cloud support for remediation.
     string state = 4;
     // The id of the async operation that is creating/updating/deleting the user, if any
     string async_operation_id = 5;
