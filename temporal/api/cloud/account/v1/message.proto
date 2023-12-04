@@ -24,11 +24,11 @@ message Metrics {
 }
 
 message Account {
+    // The account specification
+    AccountSpec spec = 1;
     // The current version of the account specification.
     // The next update operation will have to include this version.
-    string resource_version = 1;
-    // The account specification
-    AccountSpec spec = 2;
+    string resource_version = 2;
     // The current state of the account.
     string state = 3;
     // The id of the async operation that is updating the account, if any.
