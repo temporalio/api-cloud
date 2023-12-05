@@ -107,6 +107,8 @@ message SetUserNamespaceAccessResponse {
 message GetAsyncOperationRequest {
     // The id of the async operation to get
     string async_operation_id = 1;
+
+    string account_id = 2;
 }
 
 message GetAsyncOperationResponse {
@@ -232,6 +234,7 @@ message GetRegionResponse {
 }
 
 message GetAccountRequest {
+    string account_id = 1;
 }
 
 message GetAccountResponse {
@@ -248,6 +251,8 @@ message UpdateAccountRequest {
     // The id to use for this async operation.
     // Optional, if not provided a random id will be generated.
     string async_operation_id = 3;
+
+    string account_id = 4;
 }
 
 message UpdateAccountResponse {

@@ -56,7 +56,10 @@ service CloudService {
     // Get the latest information on an async operation
     rpc GetAsyncOperation(GetAsyncOperationRequest) returns (GetAsyncOperationResponse) {
         option (google.api.http) = {
-            get: "/api/v1/operations/{async_operation_id}",
+            get: "/api/v1/{account_id}/operations/{async_operation_id}",
+            additional_bindings: {
+                get: "/api/v1/operations/{async_operation_id}",
+            }
         };
     }
 
@@ -122,15 +125,21 @@ service CloudService {
     // Get account information
     rpc GetAccount (GetAccountRequest) returns (GetAccountResponse) {
         option (google.api.http) = {
-            get: "/api/v1/account",
+            get: "/api/v1/{account_id}/account",
+            additional_bindings: {
+                get: "/api/v1/account",
+            }
         };
     }
 
     // Update account information
     rpc UpdateAccount (UpdateAccountRequest) returns (UpdateAccountResponse) {
         option (google.api.http) = {
-            post: "/api/v1/account",
+            post: "/api/v1/{account_id}/account",
             body: "*"
+            additional_bindings: {
+                post: "/api/v1/account",
+            }
         };
     }
 }
