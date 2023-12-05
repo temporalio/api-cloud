@@ -24,13 +24,13 @@ message Metrics {
 }
 
 message Account {
-    // The account specification
+    // The account specification.
     AccountSpec spec = 1;
     // The current version of the account specification.
     // The next update operation will have to include this version.
     string resource_version = 2;
     // The current state of the account.
-    // Possible values: activating, activationfailed, active, updating, updatefailed, deleting, deletefailed, deleted, suspending, suspendfailed, suspended
+    // Possible values: activating, activationfailed, active, updating, updatefailed, deleting, deletefailed, deleted, suspending, suspendfailed, suspended.
     // For any failed state, reach out to Temporal Cloud support for remediation.
     string state = 3;
     // The id of the async operation that is updating the account, if any.
