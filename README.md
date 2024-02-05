@@ -23,4 +23,9 @@ saas-api.tmprl.cloud:443
 
 ## Samples
 
-Refer [cloud-samples-go](https://github.com/temporalio/cloud-samples-go) repository for demonstration on how a project can copy and build Go clients.
+Refer [cloud-samples-go](https://github.com/temporalio/cloud-samples-go) sample repository demonstrating how to use the cloud ops api in a Go client.
+Refer [cloud-samples-java](https://github.com/steveandroulakis/temporal-cloud-api-client-java) sample repository demonstrating how to use the cloud ops api in a Java client.
+Refer [cloud-samples-typescript](https://github.com/steveandroulakis/temporal-cloud-api-client-typescript) sample repository demonstrating how to use the cloud ops api in a Typescript client.
+Refer [temporal-cloud-api-client-kotlin](https://github.com/steveandroulakis/temporal-cloud-api-client-kotlin) sample repository demonstrating how to use the cloud ops api in a Kotlin client.
+
+
