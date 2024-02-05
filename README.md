@@ -1,4 +1,5 @@
-# Temporal Cloud Operations API (Cloud Ops API) proto files (Public Preview)
+# Temporal Cloud Operations API (Cloud Ops API) 
+## proto files (Public Preview)
 
 > These apis are currently offered as a Public Preview. While they are production worthy, they could change. Please reach out to Temporal Support if you have questions.
 
@@ -7,7 +8,7 @@
 To use the Cloud Ops API in your project, preform the following 4 steps:
 1. Copy over the protobuf files under [temporal](temporal) directory to your desired project directory
 2. Use [grpc](https://grpc.io/docs/) to compile and generate code in your desired programming language, adding the generated .proto files to your project
-3. Create a client connection in your code using a Temporal Cloud API Key (see Samples below)
+3. Create a client connection in your code using a Temporal Cloud API Key (see [Samples](#samples) below)
 4. Use the Cloud Operations API services to automate Cloud Operations, such as creating users or namespaces
 
 ### API Version
