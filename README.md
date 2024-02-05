@@ -29,8 +29,8 @@ saas-api.tmprl.cloud:443
 ## Samples
 
 Refer [cloud-samples-go](https://github.com/temporalio/cloud-samples-go/blob/main/cmd/worker/README.md) sample repository demonstrating how to use the cloud ops api in a Go client.   
-> This sample demonstrates how to automate Cloud Operations using Temporal Workflows with Cloud Ops API requests made within Workflow Activities ([Worker Sample README](https://github.com/temporalio/cloud-samples-go/tree/main/cmd/worker)).  
-> See [here](https://github.com/temporalio/cloud-samples-go/blob/60d5cbca8696c87fb184efc56f5ae117561213d2/client/api/client.go#L16) for a quick reference to connect to Temporal Cloud with an API Key for the Cloud Ops API in Go.
+> This sample demonstrates how to automate Temporal Cloud operations using Temporal Workflows that make Cloud Ops API requests within Workflow Activities ([Worker Sample README](https://github.com/temporalio/cloud-samples-go/tree/main/cmd/worker)).  
+> See [here](https://github.com/temporalio/cloud-samples-go/blob/60d5cbca8696c87fb184efc56f5ae117561213d2/client/api/client.go#L16) for a quick reference showing you how to connect to Temporal Cloud with an API Key for the Cloud Ops API in Go.
 
 Refer [temporal-cloud-api-client-typescript](https://github.com/steveandroulakis/temporal-cloud-api-client-typescript) sample repository demonstrating how to use the cloud ops api in a Typescript client.  
 Refer [temporal-cloud-api-client-java](https://github.com/steveandroulakis/temporal-cloud-api-client-java) sample repository demonstrating how to use the cloud ops api in a Java client.  
