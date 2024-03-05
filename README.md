@@ -7,7 +7,7 @@
 
 To use the Cloud Ops API in your project, preform the following 4 steps:
 1. Copy over the protobuf files under [temporal](temporal) directory to your desired project directory
-2. Use [grpc](https://grpc.io/docs/) to compile and generate code in your desired programming language, typically handled as a part of your code build process
+2. Use [gRPC](https://grpc.io/docs/) to compile and generate code in your desired programming language, typically handled as a part of your code build process
 3. Create a client connection in your code using a Temporal Cloud API Key (see [Samples](#samples) below)
 4. Use the Cloud Operations API services to automate Cloud Operations, such as creating users or namespaces
 
