@@ -155,4 +155,41 @@ service CloudService {
             delete: "/api/v1/nexus/incomingservices/{incoming_service_id}",
         };
     }
+
+    // Gets all known nexus outgoing services for a given namespace
+    rpc GetOutgoingServices(GetOutgoingServicesRequest) returns (GetOutgoingServicesResponse) {
+	option (google.api.http) = {
+            get: "/api/v1/namespaces/{namespace}/nexus/outgoingservices",
+        };
+    }
+    
+    // Get an outgoing service
+    rpc GetOutgoingService(GetOutgoingServiceRequest) returns (GetOutgoingServiceResponse) {
+	option (google.api.http) = {
+            get: "/api/v1/namespaces/{namespace}/nexus/outgoingservices/{name}",
+        };
+    }
+
+    // Create an outgoing service
+    rpc CreateOutgoingService(CreateOutgoingServiceRequest) returns (CreateOutgoingServiceResponse) {
+        option (google.api.http) = {
+            post: "/api/v1/namespaces/{namespace}/nexus/outgoingservices",
+	    body: "*"
+        };
+    }
+
+    // Update an outgoing service
+    rpc UpdateOutgoingService(UpdateOutgoingServiceRequest) returns (UpdateOutgoingServiceResponse) {
+	option (google.api.http) = {
+            post: "/api/v1/namespaces/{namespace}/nexus/outgoingservices/{name}",
+	    body: "*"
+        };
+    }
+
+    // Delete an outgoing service
+    rpc DeleteOutgoingService(DeleteOutgoingServiceRequest) returns (DeleteOutgoingServiceResponse) {
+	option (google.api.http) = {
+            delete: "/api/v1/namespaces/{namespace}/nexus/outgoingservices/{name}",
+        };
+    }
 }

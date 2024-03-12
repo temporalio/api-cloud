@@ -44,3 +44,42 @@ message IncomingService {
     google.protobuf.Timestamp last_modified_time = 7;
 }
 
+message OutgoingServiceSpec {
+    // The name of the outgoing  service. Must be unique within the namespace
+    // The name must match `[a-zA-Z_][a-zA-Z0-9_]*`.
+    // This name is immutable
+    string name = 1;
+
+    BindingSpec binding = 2;
+}
+
+message BindingSpec {
+    string incoming_service_id = 1;
+}
+
+// A per-namespace binding from service name to destination service to invoke Nexus requests
+// that are initiated by workflows.
+message OutgoingService {
+    // The name of the outgoing service.
+    string name = 1;
+
+    // The current version of the incoming service specification
+    // The next update operation must include this version
+    string resource_version = 2;
+
+    // The incoming service specification
+    OutgoingServiceSpec spec = 3;
+
+    // The current state of the service
+    string state = 4;
+
+    // The id of the async operation that is creating/updating/deleting the service, if any
+    string async_operation_id = 5;
+
+    // The date and time when the service was created
+    google.protobuf.Timestamp created_time = 6;
+
+    // The date and time when the service was last modified
+    // Will not be set if the service has never been modified.
+    google.protobuf.Timestamp last_modified_time = 7;
+}
