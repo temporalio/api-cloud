@@ -16,6 +16,14 @@ message IncomingServiceSpec {
 
     // The task queue to route requests to
     string task_queue = 3;
+
+    // The authorization specification for this service
+    IncomingServiceAuthorizationSpec authorization_spec = 4;
+}
+
+message IncomingServiceAuthorizationSpec {
+    // The set of namespaces that are allowed to call into this service
+    repeated string namespaces = 1;
 }
 
 // A binding from a service name to namespace and task queue for dispatching incoming Nexus requests.
@@ -45,7 +53,7 @@ message IncomingService {
 }
 
 message OutgoingServiceSpec {
-    // The name of the outgoing  service. Must be unique within the namespace
+    // The name of the outgoing service. Must be unique within the namespace
     // The name must match `[a-zA-Z_][a-zA-Z0-9_]*`.
     // This name is immutable
     string name = 1;
