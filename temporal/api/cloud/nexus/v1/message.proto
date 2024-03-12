@@ -22,6 +22,10 @@ message IncomingServiceSpec {
 }
 
 message IncomingServiceAuthorizationSpec {
+    AllowedNamespacePolicy allowed_namespace_policy = 1;
+}
+
+message AllowedNamespacePolicy {
     // The set of namespaces that are allowed to call into this service
     repeated string namespaces = 1;
 }
