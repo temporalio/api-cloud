@@ -7,6 +7,7 @@ option go_package = "go.temporal.io/api/cloud/cloudservice/v1;cloudservice";
 import "temporal/api/cloud/operation/v1/message.proto";
 import "temporal/api/cloud/identity/v1/message.proto";
 import "temporal/api/cloud/namespace/v1/message.proto";
+import "temporal/api/cloud/nexus/v1/message.proto";
 import "temporal/api/cloud/region/v1/message.proto";
 
 message GetUsersRequest {
@@ -228,4 +229,90 @@ message GetRegionRequest {
 message GetRegionResponse {
     // The temporal cloud region.
     temporal.api.cloud.region.v1.Region region = 1;
+}
+
+message GetIncomingServicesRequest {
+    // The requested size of the page to retrieve - optional.
+    // Cannot exceed 1000. Defaults to 100. 
+    int32 page_size = 1;
+
+    // The page token if this is continuing from another response - optional.
+    string page_token = 2;
+
+    // Filter incoming services by the namespace they route to - optional.
+    string namespace = 3;
+
+    // Filter incoming services by the task queue they route to - optional.
+    string task_queue = 4;
+}
+
+message GetIncomingServicesResponse {
+    // The list of incoming services in ascending ids order
+    repeated temporal.api.cloud.nexus.v1.IncomingService incoming_services = 1;
+
+    // The next page's token
+    string next_page_token = 2;
+}
+
+message GetIncomingServiceRequest {
+    // The id of the incoming service to get
+    string incoming_service_id = 1;
+}
+
+message GetIncomingServiceResponse {
+    // The incoming service
+    temporal.api.cloud.nexus.v1.IncomingService incoming_service = 1;
+}
+
+message CreateIncomingServiceRequest {
+    // The spec for the incoming service
+    temporal.api.cloud.nexus.v1.IncomingServiceSpec spec = 1;
+
+    // The id to use for this async operation - optional
+    string async_operation_id = 2;
+}
+
+message CreateIncomingServiceResponse {
+    // The id of the service that was created
+    string incoming_service_id = 1;
+
+    // The async operation
+    temporal.api.cloud.operation.v1.AsyncOperation async_operation = 2;
+}
+
+message UpdateIncomingServiceRequest {
+    // The id of the incoming service to update
+    string incoming_service_id = 1;
+
+    // The updated incoming service specification
+    temporal.api.cloud.nexus.v1.IncomingServiceSpec spec = 2;
+
+    // The version of the incoming service for which this update is intended for
+    // The latest version can be found in the GetIncomingService operation response
+    string resource_version = 3;
+
+    // The id to use for this async operation - optional
+    string async_operation_id = 4;
+}
+
+message UpdateIncomingServiceResponse {
+    // The async operation
+    temporal.api.cloud.operation.v1.AsyncOperation async_operation = 1;
+}
+
+message DeleteIncomingServiceRequest {
+    // The id of the incoming service to delete
+    string incoming_service_id = 1;
+
+    // The version of the incoming service for which this delete is intended for
+    // The latest version can be found in the GetIncomingService operation response
+    string resource_version = 2;
+
+    // The id to use for this async operation - optional
+    string async_operation_id = 3;
+}
+
+message DeleteIncomingServiceResponse {
+    // The async operation
+    temporal.api.cloud.operation.v1.AsyncOperation async_operation = 1;
 }
