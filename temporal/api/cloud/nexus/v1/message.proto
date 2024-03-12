@@ -22,10 +22,10 @@ message IncomingServiceSpec {
 }
 
 message IncomingServiceAuthorizationSpec {
-    AllowedNamespacePolicy allowed_namespace_policy = 1;
+    AllowedNamespacePolicySpec allowed_namespace_policy_spec = 1;
 }
 
-message AllowedNamespacePolicy {
+message AllowedNamespacePolicySpec {
     // The set of namespaces that are allowed to call into this service
     repeated string namespaces = 1;
 }
@@ -62,10 +62,14 @@ message OutgoingServiceSpec {
     // This name is immutable
     string name = 1;
 
-    BindingSpec binding = 2;
+    BindingSpec spec = 2;
 }
 
 message BindingSpec {
+    IntraAccountServiceSpec intra_account_service_spec = 1;
+}
+
+message IntraAccountServiceSpec {
     string incoming_service_id = 1;
 }
 
