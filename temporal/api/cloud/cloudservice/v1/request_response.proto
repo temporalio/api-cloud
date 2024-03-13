@@ -245,8 +245,8 @@ message GetIncomingServicesRequest {
     // Filter incoming services by the task queue they route to - optional.
     string task_queue = 4;
 
-    // Filter incoming services by their service name - optional. Specifying this will result in zero or one results.
-    string service_name = 5;
+    // Filter incoming services by their name - optional. Specifying this will result in zero or one results.
+    string name = 5;
 }
 
 message GetIncomingServicesResponse {
@@ -332,7 +332,7 @@ message GetOutgoingServicesRequest {
     string namespace = 3;
 
     // The name of the outgoing service to filter on - optional. Specifying this will result in zero or one results.
-    string service_name = 4;
+    string name = 4;
 }
 
 message GetOutgoingServicesResponse {
