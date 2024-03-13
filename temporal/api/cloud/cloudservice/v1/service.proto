@@ -119,7 +119,7 @@ service CloudService {
         };
     }
 
-    // Gets all known nexus incoming services
+    // Gets all known incoming services
     rpc GetIncomingServices(GetIncomingServicesRequest) returns (GetIncomingServicesResponse) {
 	option (google.api.http) = {
             get: "/api/v1/nexus/incomingservices",
@@ -156,7 +156,7 @@ service CloudService {
         };
     }
 
-    // Gets all known nexus outgoing services for a given namespace
+    // Gets all outgoing services for a namespace
     rpc GetOutgoingServices(GetOutgoingServicesRequest) returns (GetOutgoingServicesResponse) {
 	option (google.api.http) = {
             get: "/api/v1/namespaces/{namespace}/nexus/outgoingservices",
