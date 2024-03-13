@@ -331,7 +331,7 @@ message GetOutgoingServicesRequest {
     // The namespace to get all the outgoing services from
     string namespace = 3;
 
-    // The name of the outgoing service to filter on. - optional. Specifying this will result in zero or one results.
+    // The name of the outgoing service to filter on - optional. Specifying this will result in zero or one results.
     string service_name = 4;
 }
 
