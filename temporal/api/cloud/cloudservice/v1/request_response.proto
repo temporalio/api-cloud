@@ -239,13 +239,13 @@ message GetIncomingServicesRequest {
     // The page token if this is continuing from another response - optional.
     string page_token = 2;
 
-    // Filter incoming services by the namespace they route to - optional.
+    // Filter incoming services by the namespace they route to - optional, treated as an AND if specified.
     string namespace = 3;
 
-    // Filter incoming services by the task queue they route to - optional.
+    // Filter incoming services by the task queue they route to - optional, treated as an AND if specified.
     string task_queue = 4;
 
-    // Filter incoming services by their name - optional. Specifying this will result in zero or one results.
+    // Filter incoming services by their name - optional, treated as an AND if specified. Specifying this will result in zero or one results.
     string name = 5;
 }
 

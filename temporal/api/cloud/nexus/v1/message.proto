@@ -92,11 +92,11 @@ message TargetCloudIncomingServiceSpec {
 // A per-namespace binding from service name to destination service to invoke Nexus requests
 // that are initiated by workflows.
 message OutgoingService {
-    // The name of the outgoing service.
-    string name = 1;
-
     // The namespace this outgoing service is attached to.
-    string namespace = 2;
+    string namespace = 1;
+
+    // The name of the outgoing service.
+    string name = 2;
 
     // The current version of the incoming service specification.
     // The next update operation must include this version.
