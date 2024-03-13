@@ -25,7 +25,7 @@ message IncomingServiceSpec {
 
 message IncomingServiceAuthorizationSpec {
     // The policy set on this incoming service authorization spec.
-    // Possible values are: ALLOWED_CLOUD_NAMESPACE
+    // Possible values are: allowed_cloud_namespace
     string policy_type = 1;
 
     // A policy spec that allows one caller namespace to access the service.
@@ -50,6 +50,8 @@ message IncomingService {
     IncomingServiceSpec spec = 3;
 
     // The current state of the service.
+    // Possible values: activating, activationfailed, active, updating, updatefailed, deleting, deletefailed, deleted
+    // For any failed state, reach out to Temporal Cloud support for remediation.
     string state = 4;
 
     // The id of the async operation that is creating/updating/deleting the service, if any.
@@ -75,7 +77,7 @@ message OutgoingServiceSpec {
 
 message TargetSpec {
     // The type of target that is set in this spec.
-    // Possible values are: CLOUD_INCOMING_SERVICE
+    // Possible values are: cloud_incoming_service
     string target_type = 1;
     
     // A target spec for an incoming service within the same account as the outgoing service.
@@ -104,6 +106,8 @@ message OutgoingService {
     OutgoingServiceSpec spec = 4;
 
     // The current state of the service.
+    // Possible values: activating, activationfailed, active, updating, updatefailed, deleting, deletefailed, deleted
+    // For any failed state, reach out to Temporal Cloud support for remediation.
     string state = 5;
 
     // The id of the async operation that is creating/updating/deleting the service, if any.
