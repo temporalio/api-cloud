@@ -12,7 +12,7 @@ message AsyncOperation {
     // The operation id
     string id = 1;
     // The current state of this operation
-    // Possible values are: PENDING, IN_PROGRESS, FAILED, CANCELLED, FULFILLED
+    // Possible values are: pending, in_progress, failed, cancelled, fulfilled
     string state = 2;
     // The recommended duration to check back for an update in the operation's state
     google.protobuf.Duration check_duration = 3;
