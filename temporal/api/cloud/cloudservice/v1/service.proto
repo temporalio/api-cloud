@@ -118,4 +118,78 @@ service CloudService {
             get: "/api/v1/regions/{region}",
         };
     }
+
+    // Gets all known incoming services
+    rpc GetIncomingServices(GetIncomingServicesRequest) returns (GetIncomingServicesResponse) {
+	option (google.api.http) = {
+            get: "/api/v1/nexus/incomingservices",
+        };
+    }
+    
+    // Get an incoming service
+    rpc GetIncomingService(GetIncomingServiceRequest) returns (GetIncomingServiceResponse) {
+	option (google.api.http) = {
+            get: "/api/v1/nexus/incomingservices/{incoming_service_id}",
+        };
+    }
+
+    // Create an incoming service
+    rpc CreateIncomingService(CreateIncomingServiceRequest) returns (CreateIncomingServiceResponse) {
+        option (google.api.http) = {
+            post: "/api/v1/nexus/incomingservices",
+	    body: "*"
+        };
+    }
+
+    // Update an incoming service
+    rpc UpdateIncomingService(UpdateIncomingServiceRequest) returns (UpdateIncomingServiceResponse) {
+	option (google.api.http) = {
+            post: "/api/v1/nexus/incomingservices/{incoming_service_id}",
+	    body: "*"
+        };
+    }
+
+    // Delete an incoming service
+    rpc DeleteIncomingService(DeleteIncomingServiceRequest) returns (DeleteIncomingServiceResponse) {
+	option (google.api.http) = {
+            delete: "/api/v1/nexus/incomingservices/{incoming_service_id}",
+        };
+    }
+
+    // Gets all outgoing services for a namespace
+    rpc GetOutgoingServices(GetOutgoingServicesRequest) returns (GetOutgoingServicesResponse) {
+	option (google.api.http) = {
+            get: "/api/v1/namespaces/{namespace}/nexus/outgoingservices",
+        };
+    }
+    
+    // Get an outgoing service
+    rpc GetOutgoingService(GetOutgoingServiceRequest) returns (GetOutgoingServiceResponse) {
+	option (google.api.http) = {
+            get: "/api/v1/namespaces/{namespace}/nexus/outgoingservices/{name}",
+        };
+    }
+
+    // Create an outgoing service
+    rpc CreateOutgoingService(CreateOutgoingServiceRequest) returns (CreateOutgoingServiceResponse) {
+        option (google.api.http) = {
+            post: "/api/v1/namespaces/{namespace}/nexus/outgoingservices",
+	    body: "*"
+        };
+    }
+
+    // Update an outgoing service
+    rpc UpdateOutgoingService(UpdateOutgoingServiceRequest) returns (UpdateOutgoingServiceResponse) {
+	option (google.api.http) = {
+            post: "/api/v1/namespaces/{namespace}/nexus/outgoingservices/{name}",
+	    body: "*"
+        };
+    }
+
+    // Delete an outgoing service
+    rpc DeleteOutgoingService(DeleteOutgoingServiceRequest) returns (DeleteOutgoingServiceResponse) {
+	option (google.api.http) = {
+            delete: "/api/v1/namespaces/{namespace}/nexus/outgoingservices/{name}",
+        };
+    }
 }

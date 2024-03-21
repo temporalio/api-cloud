@@ -7,6 +7,7 @@ option go_package = "go.temporal.io/api/cloud/cloudservice/v1;cloudservice";
 import "temporal/api/cloud/operation/v1/message.proto";
 import "temporal/api/cloud/identity/v1/message.proto";
 import "temporal/api/cloud/namespace/v1/message.proto";
+import "temporal/api/cloud/nexus/v1/message.proto";
 import "temporal/api/cloud/region/v1/message.proto";
 
 message GetUsersRequest {
@@ -228,4 +229,188 @@ message GetRegionRequest {
 message GetRegionResponse {
     // The temporal cloud region.
     temporal.api.cloud.region.v1.Region region = 1;
+}
+
+message GetIncomingServicesRequest {
+    // The requested size of the page to retrieve - optional.
+    // Cannot exceed 1000. Defaults to 100. 
+    int32 page_size = 1;
+
+    // The page token if this is continuing from another response - optional.
+    string page_token = 2;
+
+    // Filter incoming services by the namespace they route to - optional, treated as an AND if specified.
+    string namespace = 3;
+
+    // Filter incoming services by the task queue they route to - optional, treated as an AND if specified.
+    string task_queue = 4;
+
+    // Filter incoming services by their name - optional, treated as an AND if specified. Specifying this will result in zero or one results.
+    string name = 5;
+}
+
+message GetIncomingServicesResponse {
+    // The list of incoming services in ascending ids order.
+    repeated temporal.api.cloud.nexus.v1.IncomingService incoming_services = 1;
+
+    // The next page's token.
+    string next_page_token = 2;
+}
+
+message GetIncomingServiceRequest {
+    // The id of the incoming service to get.
+    string incoming_service_id = 1;
+}
+
+message GetIncomingServiceResponse {
+    // The incoming service.
+    temporal.api.cloud.nexus.v1.IncomingService incoming_service = 1;
+}
+
+message CreateIncomingServiceRequest {
+    // The spec for the incoming service.
+    temporal.api.cloud.nexus.v1.IncomingServiceSpec spec = 1;
+
+    // The id to use for this async operation - optional.
+    string async_operation_id = 2;
+}
+
+message CreateIncomingServiceResponse {
+    // The id of the service that was created.
+    string incoming_service_id = 1;
+
+    // The async operation.
+    temporal.api.cloud.operation.v1.AsyncOperation async_operation = 2;
+}
+
+message UpdateIncomingServiceRequest {
+    // The id of the incoming service to update.
+    string incoming_service_id = 1;
+
+    // The updated incoming service specification.
+    temporal.api.cloud.nexus.v1.IncomingServiceSpec spec = 2;
+
+    // The version of the incoming service for which this update is intended for.
+    // The latest version can be found in the GetIncomingService operation response.
+    string resource_version = 3;
+
+    // The id to use for this async operation - optional.
+    string async_operation_id = 4;
+}
+
+message UpdateIncomingServiceResponse {
+    // The async operation.
+    temporal.api.cloud.operation.v1.AsyncOperation async_operation = 1;
+}
+
+message DeleteIncomingServiceRequest {
+    // The id of the incoming service to delete.
+    string incoming_service_id = 1;
+
+    // The version of the incoming service for which this delete is intended for.
+    // The latest version can be found in the GetIncomingService operation response.
+    string resource_version = 2;
+
+    // The id to use for this async operation - optional.
+    string async_operation_id = 3;
+}
+
+message DeleteIncomingServiceResponse {
+    // The async operation
+    temporal.api.cloud.operation.v1.AsyncOperation async_operation = 1;
+}
+
+message GetOutgoingServicesRequest {
+    // The requested size of the page to retrieve - optional.
+    // Cannot exceed 1000. Defaults to 100. 
+    int32 page_size = 1;
+
+    // The page token if this is continuing from another response - optional.
+    string page_token = 2;
+
+    // The namespace to get all the outgoing services from.
+    string namespace = 3;
+
+    // The name of the outgoing service to filter on - optional. Specifying this will result in zero or one results.
+    string name = 4;
+}
+
+message GetOutgoingServicesResponse {
+    // The list of outgoing services in ascending name order.
+    repeated temporal.api.cloud.nexus.v1.OutgoingService outgoing_services = 1;
+
+    // The next page's token
+    string next_page_token = 2;
+}
+
+message GetOutgoingServiceRequest {
+    // The name of the namespace the outgoing service is registered on.
+    string namespace = 1;
+
+    // The name of the outgoing service.
+    string name = 2;
+}
+
+message GetOutgoingServiceResponse {
+    // The outgoing service
+    temporal.api.cloud.nexus.v1.OutgoingService outgoing_service = 1;
+}
+
+message CreateOutgoingServiceRequest {
+    // The namespace to register this outgoing service request on.
+    string namespace = 1;
+
+    // The spec for the outgoing service.
+    temporal.api.cloud.nexus.v1.OutgoingServiceSpec spec = 2;
+
+    // The id to use for this async operation - optional.
+    string async_operation_id = 3;
+}
+
+message CreateOutgoingServiceResponse {
+    // The async operation.
+    temporal.api.cloud.operation.v1.AsyncOperation async_operation = 1;
+}
+
+message UpdateOutgoingServiceRequest {
+    // The name of the namespace the outgoing service is registered on.
+    string namespace = 1;
+
+    // The name of the outgoing service to update.
+    string name = 2;
+
+    // The updated outcoming service specification.
+    temporal.api.cloud.nexus.v1.OutgoingServiceSpec spec = 3;
+
+    // The version of the outgoing service for which this update is intended for.
+    // The latest version can be found in the GetOutgoingService operation response.
+    string resource_version = 4;
+
+    // The id to use for this async operation - optional.
+    string async_operation_id = 5;
+}
+
+message UpdateOutgoingServiceResponse {
+    // The async operation.
+    temporal.api.cloud.operation.v1.AsyncOperation async_operation = 1;
+}
+
+message DeleteOutgoingServiceRequest {
+    // The id of the namespace to remove the outgoing service from.
+    string namespace = 1;
+
+    // The name outcoming service to delete.
+    string name = 2;
+
+    // The version of the outcoming service for which this delete is intended for.
+    // The latest version can be found in the GetOutgoingService operation response.
+    string resource_version = 3;
+
+    // The id to use for this async operation - optional.
+    string async_operation_id = 4;
+}
+
+message DeleteOutgoingServiceResponse {
+    // The async operation.
+    temporal.api.cloud.operation.v1.AsyncOperation async_operation = 1;
 }
