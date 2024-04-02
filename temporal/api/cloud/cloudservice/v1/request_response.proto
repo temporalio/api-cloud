@@ -212,6 +212,53 @@ message DeleteNamespaceResponse {
     temporal.api.cloud.operation.v1.AsyncOperation async_operation = 1;
 }
 
+message FailoverNamespaceRequest {
+    // The namespace to failover.
+    string namespace = 1;
+    // The target region to failover.
+    temporal.api.cloud.region.v1.Region target_region = 2;
+    // The id to use for this async operation.
+    // Optional, if not provided a random id will be generated.
+    string async_operation_id = 3;
+}
+
+message FailoverNamespaceResponse {
+    // The async operation.
+    temporal.api.cloud.operation.v1.AsyncOperation async_operation = 1;
+}
+
+message GetNamespaceFailoverHistoryRequest {
+    // The requested size of the page to retrieve - optional.
+    // Cannot exceed 1000. Defaults to 100.
+    int32 page_size = 1;
+    // The page token if this is continuing from another response - optional.
+    string page_token = 2;
+    // The namespace to get failover history.
+    string namespace = 3;
+}
+
+message GetNamespaceFailoverHistoryResponse {
+    // The page token if this is continuing from another response
+    string page_token = 1;
+    // Namespace failover history
+    repeated temporal.api.cloud.namespace.v1.FailoverRecord failover_history = 2;
+}
+
+message AddNamespaceRegionRequest {
+    // The namespace to failover.
+    string namespace = 1;
+    // The new region to be added.
+    temporal.api.cloud.region.v1.Region new_region = 2;
+    // The id to use for this async operation.
+    // Optional, if not provided a random id will be generated.
+    string async_operation_id = 3;
+}
+
+message AddNamespaceRegionResponse {
+    // The async operation.
+    temporal.api.cloud.operation.v1.AsyncOperation async_operation = 1;
+}
+
 message GetRegionsRequest {
 }
 

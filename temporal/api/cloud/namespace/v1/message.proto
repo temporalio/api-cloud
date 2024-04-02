@@ -5,6 +5,7 @@ package temporal.api.cloud.namespace.v1;
 option go_package = "go.temporal.io/api/cloud/namespace/v1;namespace";
 
 import "google/protobuf/timestamp.proto";
+import "temporal/api/cloud/region/v1/message.proto";
 
 message CertificateFilterSpec {
     // The common_name in the certificate.
@@ -123,4 +124,26 @@ message Namespace {
     // The date and time when the namespace was last modified.
     // Will not be set if the namespace has never been modified.
     google.protobuf.Timestamp last_modified_time = 11;
+}
+
+enum FailoverType {
+    FAILOVER_TYPE_UNSPECIFIED = 0;
+    FAILOVER_TYPE_GRACEFUL = 1;
+    FAILOVER_TYPE_FORCEFUL = 2;
+}
+
+enum FailoverStatus {
+    FAILOVER_STATUS_UNSPECIFIED = 0;
+    FAILOVER_STATUS_SUCCEEDED = 1;
+    FAILOVER_STATUS_FAILED = 2;
+}
+
+message FailoverRecord {
+    FailoverType failover_type = 1;
+    temporal.api.cloud.region.v1.Region source_region = 2;
+    temporal.api.cloud.region.v1.Region target_region = 3;
+    google.protobuf.Timestamp start_time_utc = 4;
+    google.protobuf.Timestamp end_time_utc = 5;
+    FailoverStatus status = 6;
+    string operator = 7;
 }
