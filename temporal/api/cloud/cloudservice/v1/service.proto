@@ -67,7 +67,7 @@ service CloudService {
             body: "*"
         };
     }
-    
+
     // Get all namespaces
     rpc GetNamespaces (GetNamespacesRequest)  returns (GetNamespacesResponse) {
         option (google.api.http) = {
@@ -119,6 +119,7 @@ service CloudService {
         };
     }
 
+<<<<<<< HEAD
     // Gets all known incoming services
     rpc GetIncomingServices(GetIncomingServicesRequest) returns (GetIncomingServicesResponse) {
 	option (google.api.http) = {
@@ -190,6 +191,20 @@ service CloudService {
     rpc DeleteOutgoingService(DeleteOutgoingServiceRequest) returns (DeleteOutgoingServiceResponse) {
 	option (google.api.http) = {
             delete: "/api/v1/namespaces/{namespace}/nexus/outgoingservices/{name}",
+=======
+    // Get account information
+    rpc GetAccount (GetAccountRequest) returns (GetAccountResponse) {
+        option (google.api.http) = {
+            get: "/api/v1/account",
+        };
+    }
+
+    // Update account information
+    rpc UpdateAccount (UpdateAccountRequest) returns (UpdateAccountResponse) {
+        option (google.api.http) = {
+            post: "/api/v1/account",
+            body: "*"
+>>>>>>> origin/abhinav/accountManagement
         };
     }
 }
