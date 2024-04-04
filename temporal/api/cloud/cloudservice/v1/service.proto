@@ -67,7 +67,7 @@ service CloudService {
             body: "*"
         };
     }
-    
+
     // Get all namespaces
     rpc GetNamespaces (GetNamespacesRequest)  returns (GetNamespacesResponse) {
         option (google.api.http) = {
@@ -116,6 +116,21 @@ service CloudService {
     rpc GetRegion (GetRegionRequest) returns (GetRegionResponse) {
         option (google.api.http) = {
             get: "/api/v1/regions/{region}",
+        };
+    }
+
+    // Get account information
+    rpc GetAccount (GetAccountRequest) returns (GetAccountResponse) {
+        option (google.api.http) = {
+            get: "/api/v1/account",
+        };
+    }
+
+    // Update account information
+    rpc UpdateAccount (UpdateAccountRequest) returns (UpdateAccountResponse) {
+        option (google.api.http) = {
+            post: "/api/v1/account",
+            body: "*"
         };
     }
 }
