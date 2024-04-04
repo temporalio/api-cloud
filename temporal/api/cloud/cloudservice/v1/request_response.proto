@@ -232,7 +232,6 @@ message GetRegionResponse {
     temporal.api.cloud.region.v1.Region region = 1;
 }
 
-<<<<<<< HEAD
 message GetIncomingServicesRequest {
     // The requested size of the page to retrieve - optional.
     // Cannot exceed 1000. Defaults to 100. 
@@ -370,7 +369,10 @@ message CreateOutgoingServiceRequest {
 }
 
 message CreateOutgoingServiceResponse {
-=======
+    // The async operation.
+    temporal.api.cloud.operation.v1.AsyncOperation async_operation = 1;
+}
+
 message GetAccountRequest {
 }
 
@@ -391,12 +393,10 @@ message UpdateAccountRequest {
 }
 
 message UpdateAccountResponse {
->>>>>>> origin/abhinav/accountManagement
     // The async operation.
     temporal.api.cloud.operation.v1.AsyncOperation async_operation = 1;
 }
 
-<<<<<<< HEAD
 message UpdateOutgoingServiceRequest {
     // The name of the namespace the outgoing service is registered on.
     string namespace = 1;
@@ -439,5 +439,3 @@ message DeleteOutgoingServiceResponse {
     // The async operation.
     temporal.api.cloud.operation.v1.AsyncOperation async_operation = 1;
 }
-=======
->>>>>>> origin/abhinav/accountManagement
