@@ -51,6 +51,7 @@ message NamespaceSpec {
     // Please reach out to Temporal support for more information on multi-region namespaces.
     // When provisioned the multi-region namespace will be active on the first region in the list and passive on the rest.
     // Number of supported regions is 2.
+    // To add a region to a existing namespace, please use AddNamespaceRegionRequest
     repeated string regions = 2;
     // The number of days the workflows data will be retained for.
     // Changes to the retention period may impact your storage costs.
