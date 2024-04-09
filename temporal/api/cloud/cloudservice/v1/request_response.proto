@@ -215,8 +215,8 @@ message DeleteNamespaceResponse {
 message FailoverNamespaceRequest {
     // The namespace to failover.
     string namespace = 1;
-    // The target region to failover.
-    temporal.api.cloud.region.v1.Region target_region = 2;
+    // The target region id to failover.
+    string target_region_id = 2;
     // The id to use for this async operation.
     // Optional, if not provided a random id will be generated.
     string async_operation_id = 3;
@@ -247,8 +247,8 @@ message GetNamespaceFailoverHistoryResponse {
 message AddNamespaceRegionRequest {
     // The namespace to failover.
     string namespace = 1;
-    // The new region to be added.
-    temporal.api.cloud.region.v1.Region new_region = 2;
+    // The new region id to be added.
+    string new_region_id = 2;
     // The id to use for this async operation.
     // Optional, if not provided a random id will be generated.
     string async_operation_id = 3;

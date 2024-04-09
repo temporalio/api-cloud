@@ -130,9 +130,9 @@ message FailoverRecord {
     // The type of a failover. Values: Graceful, Forceful.
     string failover_type = 1;
     // The source region of the failover.
-    temporal.api.cloud.region.v1.Region source_region = 2;
+    string source_region_id = 2;
     // The target region of the failover.
-    temporal.api.cloud.region.v1.Region target_region = 3;
+    string target_region_id = 3;
     // The start time of the failover.
     google.protobuf.Timestamp start_time_utc = 4;
     // The end time of the failover.
