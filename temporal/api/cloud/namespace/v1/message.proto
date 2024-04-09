@@ -5,7 +5,6 @@ package temporal.api.cloud.namespace.v1;
 option go_package = "go.temporal.io/api/cloud/namespace/v1;namespace";
 
 import "google/protobuf/timestamp.proto";
-import "temporal/api/cloud/region/v1/message.proto";
 
 message CertificateFilterSpec {
     // The common_name in the certificate.
