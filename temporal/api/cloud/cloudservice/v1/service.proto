@@ -12,6 +12,8 @@ option csharp_namespace = "Temporalio.Api.Cloud.CloudService.V1";
 import "temporal/api/cloud/cloudservice/v1/request_response.proto";
 import "google/api/annotations.proto";
 
+// WARNING: This service is currently experimental and may change in
+// incompatible ways.
 service CloudService {
     // Gets all known users
     rpc GetUsers(GetUsersRequest) returns (GetUsersResponse) {
