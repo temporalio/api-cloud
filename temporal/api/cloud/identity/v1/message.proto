@@ -3,6 +3,11 @@ syntax = "proto3";
 package temporal.api.cloud.identity.v1;
 
 option go_package = "go.temporal.io/api/cloud/identity/v1;identity";
+option java_package = "io.temporal.api.cloud.identity.v1";
+option java_multiple_files = true;
+option java_outer_classname = "MessageProto";
+option ruby_package = "Temporalio::Api::Cloud::Identity::V1";
+option csharp_namespace = "Temporalio.Api.Cloud.Identity.V1";
 
 import "google/protobuf/timestamp.proto";
 
@@ -64,5 +69,3 @@ message User {
     // Will not be set if the user has never been modified.
     google.protobuf.Timestamp last_modified_time = 8;
 }
-
-
