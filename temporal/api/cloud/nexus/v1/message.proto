@@ -61,7 +61,6 @@ message IncomingService {
     google.protobuf.Timestamp created_time = 6;
 
     // The date and time when the service was last modified.
-    // Will not be set if the service has never been modified.
     google.protobuf.Timestamp last_modified_time = 7;
 }
 
@@ -117,6 +116,5 @@ message OutgoingService {
     google.protobuf.Timestamp created_time = 7;
 
     // The date and time when the service was last modified.
-    // Will not be set if the service has never been modified.
     google.protobuf.Timestamp last_modified_time = 8;
 }
