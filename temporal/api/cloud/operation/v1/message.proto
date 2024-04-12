@@ -3,6 +3,11 @@ syntax = "proto3";
 package temporal.api.cloud.operation.v1;
 
 option go_package = "go.temporal.io/api/cloud/operation/v1;operation";
+option java_package = "io.temporal.api.cloud.operation.v1";
+option java_multiple_files = true;
+option java_outer_classname = "MessageProto";
+option ruby_package = "Temporalio::Api::Cloud::Operation::V1";
+option csharp_namespace = "Temporalio.Api.Cloud.Operation.V1";
 
 import "google/protobuf/duration.proto";
 import "google/protobuf/timestamp.proto";
@@ -19,6 +24,8 @@ message AsyncOperation {
     // The type of operation being performed
     string operation_type = 4;
     // The input to the operation being performed
+    //
+    // (-- api-linter: core::0146::any=disabled --)
     google.protobuf.Any operation_input = 5;
     // If the operation failed, the reason for the failure
     string failure_reason = 6;
