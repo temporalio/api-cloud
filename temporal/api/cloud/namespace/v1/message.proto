@@ -3,6 +3,11 @@ syntax = "proto3";
 package temporal.api.cloud.namespace.v1;
 
 option go_package = "go.temporal.io/api/cloud/namespace/v1;namespace";
+option java_package = "io.temporal.api.cloud.namespace.v1";
+option java_multiple_files = true;
+option java_outer_classname = "MessageProto";
+option ruby_package = "Temporalio::Api::Cloud::Namespace::V1";
+option csharp_namespace = "Temporalio.Api.Cloud.Namespace.V1";
 
 import "google/protobuf/timestamp.proto";
 
@@ -24,6 +29,8 @@ message CertificateFilterSpec {
 message MtlsAuthSpec {
     // The base64 encoded ca cert(s) in PEM format that the clients can use for authentication and authorization.
     // This must only be one value, but the CA can have a chain.
+    //
+    // (-- api-linter: core::0140::base64=disabled --)
     string accepted_client_ca = 1;
     // Certificate filters which, if specified, only allow connections from client certificates whose distinguished name properties match at least one of the filters.
     // This allows limiting access to specific end-entity certificates.

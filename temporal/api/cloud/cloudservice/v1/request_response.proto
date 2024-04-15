@@ -3,6 +3,11 @@ syntax = "proto3";
 package temporal.api.cloud.cloudservice.v1;
 
 option go_package = "go.temporal.io/api/cloud/cloudservice/v1;cloudservice";
+option java_package = "io.temporal.api.cloud.cloudservice.v1";
+option java_multiple_files = true;
+option java_outer_classname = "RequestResponseProto";
+option ruby_package = "Temporalio::Api::Cloud::CloudService::V1";
+option csharp_namespace = "Temporalio.Api.Cloud.CloudService.V1";
 
 import "temporal/api/cloud/operation/v1/message.proto";
 import "temporal/api/cloud/identity/v1/message.proto";
