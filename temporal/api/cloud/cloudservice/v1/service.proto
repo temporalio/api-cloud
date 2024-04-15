@@ -113,13 +113,6 @@ service CloudService {
         };
     }
 
-    // Get failover history on a namespace
-    rpc GetNamespaceFailoverHistory (GetNamespaceFailoverHistoryRequest) returns (GetNamespaceFailoverHistoryResponse) {
-        option (google.api.http) = {
-            get: "/api/v1/namespaces/{namespace}/failover-history",
-        };
-    }
-
     // Add a new region to a namespace
     rpc AddNamespaceRegion (AddNamespaceRegionRequest) returns (AddNamespaceRegionResponse) {
         option (google.api.http) = {

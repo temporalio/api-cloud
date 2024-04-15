@@ -227,23 +227,6 @@ message FailoverNamespaceResponse {
     temporal.api.cloud.operation.v1.AsyncOperation async_operation = 1;
 }
 
-message GetNamespaceFailoverHistoryRequest {
-    // The requested size of the page to retrieve - optional.
-    // Cannot exceed 1000. Defaults to 100.
-    int32 page_size = 1;
-    // The page token if this is continuing from another response - optional.
-    string page_token = 2;
-    // The namespace to get failover history.
-    string namespace = 3;
-}
-
-message GetNamespaceFailoverHistoryResponse {
-    // The page token if this is continuing from another response
-    string page_token = 1;
-    // Namespace failover history
-    repeated temporal.api.cloud.namespace.v1.FailoverRecord failover_history = 2;
-}
-
 message AddNamespaceRegionRequest {
     // The namespace to failover.
     string namespace = 1;
