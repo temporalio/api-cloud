@@ -70,7 +70,7 @@ message User {
     google.protobuf.Timestamp last_modified_time = 8;
 }
 
-message GroupSpec {
+message UserGroupSpec {
     // The name of the group as defined in the customer's IdP (e.g. Google group name in Google Workspace).
     // The name is immutable. Once set, it cannot be changed.
     string name = 1;
@@ -81,14 +81,14 @@ message GroupSpec {
     temporal.api.cloud.identity.v1.Access access = 3;
 }
 
-message Group {
+message UserGroup {
     // The id of the group
     string id = 1;
     // The current version of the group specification
     // The next update operation will have to include this version
     string resource_version = 2;
     // The group specification
-    GroupSpec spec = 3;
+    UserGroupSpec spec = 3;
     // The current state of the group
     string state = 4;
     // The id of the async operation that is creating/updating/deleting the group, if any

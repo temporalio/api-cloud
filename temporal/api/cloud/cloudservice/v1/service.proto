@@ -127,46 +127,46 @@ service CloudService {
     }
 
     // Get all groups
-    rpc GetGroups (GetGroupsRequest) returns (GetGroupsResponse) {
+    rpc GetGroups (GetUserGroupsRequest) returns (GetUserGroupsResponse) {
         option (google.api.http) = {
-            get: "/api/v1/cloud/groups",
+            get: "/api/v1/cloud/user-groups",
         };
     }
 
     // Get a group
-    rpc GetGroup (GetGroupRequest) returns (GetGroupResponse) {
+    rpc GetGroup (GetUserGroupRequest) returns (GetUserGroupResponse) {
         option (google.api.http) = {
-            get: "/api/v1/cloud/groups/{group_id}",
+            get: "/api/v1/cloud/user-groups/{group_id}",
         };
     }
 
     // Create new a group
-    rpc CreateGroup (CreateGroupRequest) returns (CreateGroupResponse) {
+    rpc CreateGroup (CreateUserGroupRequest) returns (CreateUserGroupResponse) {
         option (google.api.http) = {
-            post: "/api/v1/cloud/groups",
+            post: "/api/v1/cloud/user-groups",
             body: "*"
         };
     }
 
     // Update a group
-    rpc UpdateGroup (UpdateGroupRequest) returns (UpdateGroupResponse) {
+    rpc UpdateGroup (UpdateUserGroupRequest) returns (UpdateUserGroupResponse) {
         option (google.api.http) = {
-            post: "/api/v1/cloud/groups/{group_id}",
+            post: "/api/v1/cloud/user-groups/{group_id}",
             body: "*"
         };
     }
 
     // Delete a group
-    rpc DeleteGroup (DeleteGroupRequest) returns (DeleteGroupResponse) {
+    rpc DeleteGroup (DeleteUserGroupRequest) returns (DeleteUserGroupResponse) {
         option (google.api.http) = {
-            delete: "/api/v1/cloud/groups/{group_id}",
+            delete: "/api/v1/cloud/user-groups/{group_id}",
         };
     }
 
     // Set a group's access to a namespace
-    rpc SetGroupNamespaceAccess (SetGroupNamespaceAccessRequest) returns (SetGroupNamespaceAccessResponse) {
+    rpc SetGroupNamespaceAccess (SetUserGroupNamespaceAccessRequest) returns (SetUserGroupNamespaceAccessResponse) {
         option (google.api.http) = {
-            post: "/api/v1/cloud/namespaces/{namespace}/groups/{group_id}/access",
+            post: "/api/v1/cloud/namespaces/{namespace}/user-groups/{group_id}/access",
             body: "*"
         };
     }
