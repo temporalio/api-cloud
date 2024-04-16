@@ -129,21 +129,21 @@ service CloudService {
     // Get all groups
     rpc GetGroups (GetGroupsRequest) returns (GetGroupsResponse) {
         option (google.api.http) = {
-            get: "/api/v1/groups",
+            get: "/api/v1/cloud/groups",
         };
     }
 
     // Get a group
     rpc GetGroup (GetGroupRequest) returns (GetGroupResponse) {
         option (google.api.http) = {
-            get: "/api/v1/groups/{group_id}",
+            get: "/api/v1/cloud/groups/{group_id}",
         };
     }
 
     // Create new a group
     rpc CreateGroup (CreateGroupRequest) returns (CreateGroupResponse) {
         option (google.api.http) = {
-            post: "/api/v1/groups",
+            post: "/api/v1/cloud/groups",
             body: "*"
         };
     }
@@ -151,7 +151,7 @@ service CloudService {
     // Update a group
     rpc UpdateGroup (UpdateGroupRequest) returns (UpdateGroupResponse) {
         option (google.api.http) = {
-            post: "/api/v1/groups/{group_id}",
+            post: "/api/v1/cloud/groups/{group_id}",
             body: "*"
         };
     }
@@ -159,14 +159,14 @@ service CloudService {
     // Delete a group
     rpc DeleteGroup (DeleteGroupRequest) returns (DeleteGroupResponse) {
         option (google.api.http) = {
-            delete: "/api/v1/groups/{group_id}",
+            delete: "/api/v1/cloud/groups/{group_id}",
         };
     }
 
     // Set a group's access to a namespace
     rpc SetGroupNamespaceAccess (SetGroupNamespaceAccessRequest) returns (SetGroupNamespaceAccessResponse) {
         option (google.api.http) = {
-            post: "/api/v1/namespaces/{namespace}/groups/{group_id}/access",
+            post: "/api/v1/cloud/namespaces/{namespace}/groups/{group_id}/access",
             body: "*"
         };
     }
