@@ -71,7 +71,7 @@ message User {
 }
 
 message GroupSpec {
-    // The name of the group defined in the customer's IdP (e.g. Google group name in Google Workspace).
+    // The name of the group as defined in the customer's IdP (e.g. Google group name in Google Workspace).
     // The name is immutable. Once set, it cannot be changed.
     string name = 1;
     // The type of the group. e.g. "googleworkspace"
