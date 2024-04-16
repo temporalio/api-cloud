@@ -265,13 +265,11 @@ message GetUserGroupResponse {
 }
 
 message CreateUserGroupRequest {
-    // The id of the group.
-    string group_id = 1;
     // The spec for the group to create.
-    temporal.api.cloud.identity.v1.UserGroupSpec spec = 2;
+    temporal.api.cloud.identity.v1.UserGroupSpec spec = 1;
     // The id to use for this async operation.
     // Optional, if not provided a random id will be generated.
-    string async_operation_id = 3;
+    string async_operation_id = 2;
 }
 
 message CreateUserGroupResponse {
