@@ -87,9 +87,13 @@ message Group {
     string resource_version = 2;
     // The group specification
     GroupSpec spec = 3;
+    // The current state of the group
+    string state = 4;
+    // The id of the async operation that is creating/updating/deleting the group, if any
+    string async_operation_id = 5;
     // The date and time when the group was created
-    google.protobuf.Timestamp created_time = 4;
+    google.protobuf.Timestamp created_time = 6;
     // The date and time when the group was last modified
     // Will not be set if the group has never been modified
-    google.protobuf.Timestamp last_modified_time = 5;
+    google.protobuf.Timestamp last_modified_time = 7;
 }
