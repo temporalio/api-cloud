@@ -69,3 +69,27 @@ message User {
     // Will not be set if the user has never been modified.
     google.protobuf.Timestamp last_modified_time = 8;
 }
+
+message GroupSpec {
+    // The human-readable name of the group
+    string name = 1;
+    // The type of the group. e.g. "googleworkspace"
+    string type = 2;
+    // The access assigned to the group
+    temporal.api.cloud.identity.v1.Access access = 3;
+}
+
+message Group {
+    // The id of the group
+    string id = 1;
+    // The current version of the group specification
+    // The next update operation will have to include this version
+    string resource_version = 2;
+    // The group specification
+    GroupSpec spec = 3;
+    // The date and time when the group was created
+    google.protobuf.Timestamp created_time = 4;
+    // The date and time when the group was last modified
+    // Will not be set if the group has never been modified.
+    google.protobuf.Timestamp last_modified_time = 5;
+}

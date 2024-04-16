@@ -125,4 +125,49 @@ service CloudService {
             get: "/api/v1/cloud/regions/{region}",
         };
     }
+
+    // Get all groups
+    rpc GetGroups (GetGroupsRequest) returns (GetGroupsResponse) {
+        option (google.api.http) = {
+            get: "/api/v1/groups",
+        };
+    }
+
+    // Get a group
+    rpc GetGroup (GetGroupRequest) returns (GetGroupResponse) {
+        option (google.api.http) = {
+            get: "/api/v1/groups/{group_id}",
+        };
+    }
+
+    // Create new a group
+    rpc CreateGroup (CreateGroupRequest) returns (CreateGroupResponse) {
+        option (google.api.http) = {
+            post: "/api/v1/groups",
+            body: "*"
+        };
+    }
+
+    // Update a group
+    rpc UpdateGroup (UpdateGroupRequest) returns (UpdateGroupResponse) {
+        option (google.api.http) = {
+            post: "/api/v1/groups/{group_id}",
+            body: "*"
+        };
+    }
+
+    // Delete a group
+    rpc DeleteGroup (DeleteGroupRequest) returns (DeleteGroupResponse) {
+        option (google.api.http) = {
+            delete: "/api/v1/groups/{group_id}",
+        };
+    }
+
+    // Set a group's access to a namespace
+    rpc SetGroupNamespaceAccess (SetGroupNamespaceAccessRequest) returns (SetGroupNamespaceAccessResponse) {
+        option (google.api.http) = {
+            post: "/api/v1/namespaces/{namespace}/groups/{group_id}/access",
+            body: "*"
+        };
+    }
 }
