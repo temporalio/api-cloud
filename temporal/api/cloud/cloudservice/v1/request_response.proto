@@ -241,14 +241,17 @@ message GetUserGroupsRequest {
     int32 page_size = 1;
     // The page token if this is continuing from another response - optional.
     string page_token = 2;
+    // Filter groups by their connection type - optional.
+    // Allowed values ["google-workspace"].
+    string connection_type = 3;
     // Only return groups that grant access to the specified namespace - optional.
-    string namespace = 3;
+    string namespace = 4;
     // Filter groups by their name - optional.
-    string name = 4;
+    string name = 5;
 }
 
 message GetUserGroupsResponse {
-    // The list of groups in ascending name order.
+    // The list of groups in ascending ids order.
     repeated temporal.api.cloud.identity.v1.UserGroup groups = 1;
     // The next page's token.
     string next_page_token = 2;
