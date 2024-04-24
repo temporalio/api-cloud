@@ -244,7 +244,7 @@ message GetUserGroupsRequest {
     // Only return groups that grant access to the specified namespace - optional.
     string namespace = 3;
     // Filter groups by their type - optional.
-    // Allowed values ["google-workspace"].
+    // Allowed values ["google_workspace"].
     string group_type = 4;
     // Filter groups by their name - optional.
     string group_name = 5;

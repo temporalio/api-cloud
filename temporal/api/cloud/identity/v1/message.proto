@@ -76,7 +76,7 @@ message UserGroupSpec {
     string name = 1;
     // The type of the group.
     // This field is immutable. Once set, it cannot be changed
-    // Allowed values ["google-workspace"].
+    // Allowed values ["google_workspace"].
     string type = 2;
     // The access assigned to the group
     Access access = 3;
