@@ -241,11 +241,11 @@ message GetUserGroupsRequest {
     int32 page_size = 1;
     // The page token if this is continuing from another response - optional.
     string page_token = 2;
-    // Filter groups by their connection type - optional.
-    // Allowed values ["google-workspace"].
-    string connection_type = 3;
     // Only return groups that grant access to the specified namespace - optional.
-    string namespace = 4;
+    string namespace = 3;
+    // Filter groups by their host type - optional.
+    // Allowed values ["google-workspace"].
+    string host_type = 4;
     // Filter groups by their name - optional.
     string name = 5;
 }

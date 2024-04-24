@@ -74,10 +74,10 @@ message UserGroupSpec {
     // The name of the group as defined in the customer's IdP (e.g. Google group name in Google Workspace)
     // The name is immutable. Once set, it cannot be changed
     string name = 1;
-    // The type of the group.
+    // The type of the service that hosts the group.
     // This field is immutable. Once set, it cannot be changed
     // Allowed values ["google-workspace"].
-    string type = 2;
+    string host_type = 2;
     // The access assigned to the group
     Access access = 3;
 }
