@@ -243,11 +243,11 @@ message GetUserGroupsRequest {
     string page_token = 2;
     // Only return groups that grant access to the specified namespace - optional.
     string namespace = 3;
-    // Filter groups by their host type - optional.
+    // Filter groups by their type - optional.
     // Allowed values ["google-workspace"].
-    string host_type = 4;
+    string group_type = 4;
     // Filter groups by their name - optional.
-    string name = 5;
+    string group_name = 5;
 }
 
 message GetUserGroupsResponse {
