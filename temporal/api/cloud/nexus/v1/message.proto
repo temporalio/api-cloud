@@ -26,18 +26,18 @@ message EndpointSpec {
 
 message EndpointTargetSpec {
     // The type of target that this endpoint routes Nexus requests to.
-    // Possible values are: task_queue
+    // Possible values are: cloud_task_queue
     string target_type = 1;
 
-    // A target spec for routing nexus requests to a specific namespace's taskqueue.
-    TaskQueueSpec task_queue_spec = 2;
+    // A target spec for routing nexus requests to a specific cloud namespace's taskqueue.
+    CloudTaskQueueSpec cloud_task_queue_spec = 2;
 }
 
-message TaskQueueSpec {
+message CloudTaskQueueSpec {
     // The target cloud namespace to route requests to. Namespace must be in same account as the endpoint. This field is mutable.
     string namespace = 1;
 
-    // The task queue to route requests to. This field is mutable.
+    // The task queue on the namespace to route requests to. This field is mutable.
     string task_queue = 2;
 }
 
