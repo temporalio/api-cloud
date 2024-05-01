@@ -12,6 +12,7 @@ option csharp_namespace = "Temporalio.Api.Cloud.CloudService.V1";
 import "temporal/api/cloud/operation/v1/message.proto";
 import "temporal/api/cloud/identity/v1/message.proto";
 import "temporal/api/cloud/namespace/v1/message.proto";
+import "temporal/api/cloud/nexus/v1/message.proto";
 import "temporal/api/cloud/region/v1/message.proto";
 
 message GetUsersRequest {
@@ -243,8 +244,8 @@ message GetNexusEndpointsRequest {
     // The page token if this is continuing from another response - optional.
     string page_token = 2;
 
-    // Filter endpoints based on their target specification - optional, treated as an AND if specified. Empty fields within the spec are treated as '*'
-    temporal.api.cloud.nexus.v1.EndpointTargetSpec = 3;
+    // Filter endpoints based on their target specification - optional, treated as an AND if specified. Empty fields within the spec are treated as '*'.
+    temporal.api.cloud.nexus.v1.EndpointTargetSpec spec = 3;
 
     // Filter endpoints by their name - optional, treated as an AND if specified. Specifying this will result in zero or one results.
     string name = 4;
