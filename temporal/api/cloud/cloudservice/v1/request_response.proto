@@ -241,7 +241,7 @@ message GetUserGroupsRequest {
     int32 page_size = 1;
     // The page token if this is continuing from another response - optional.
     string page_token = 2;
-    // Only return groups that grant access to the specified namespace - optional.
+    // Filter groups by the namespace they have access to - optional.
     string namespace = 3;
     // Filter groups by their type - optional.
     // Allowed values ["google_workspace"].
