@@ -40,7 +40,7 @@ service CloudService {
     // Update a user
     rpc UpdateUser(UpdateUserRequest) returns (UpdateUserResponse) {
         option (google.api.http) = {
-            post: "/api/v1/cloud/users/{user_id}",
+            post: "/api/v1/cloud/users/{user_id}/update",
             body: "*"
         };
     }
@@ -92,7 +92,7 @@ service CloudService {
     // Update a namespace
     rpc UpdateNamespace (UpdateNamespaceRequest) returns (UpdateNamespaceResponse) {
         option (google.api.http) = {
-            post: "/api/v1/cloud/namespaces/{namespace}",
+            post: "/api/v1/cloud/namespaces/{namespace}/update",
             body: "*"
         };
     }
@@ -151,7 +151,7 @@ service CloudService {
     // Update a nexus endpoint
     rpc UpdateNexusEndpoint(UpdateNexusEndpointRequest) returns (UpdateNexusEndpointResponse) {
 	option (google.api.http) = {
-            post: "/api/v1/cloud/nexus/endpoints/{endpoint_id}",
+            post: "/api/v1/cloud/nexus/endpoints/{endpoint_id}/update",
 	    body: "*"
         };
     }
