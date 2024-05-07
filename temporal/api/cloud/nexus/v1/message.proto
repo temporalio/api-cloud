@@ -21,6 +21,7 @@ message EndpointSpec {
     repeated EndpointPolicySpec policy_specs = 3;
 
     // Optional description. Can be in markdown for rendering in the UI
+    // Note that this is an experimental field that may be deprecated in the future
     string description = 4;
 }
 
