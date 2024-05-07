@@ -136,7 +136,7 @@ service CloudService {
     // Get a nexus endpoint
     rpc GetNexusEndpoint(GetNexusEndpointRequest) returns (GetNexusEndpointResponse) {
 	option (google.api.http) = {
-            get: "/api/v1/nexus/endpoints/{endpoint_id}",
+            get: "/api/v1/nexus/endpoints/{id}",
         };
     }
 
@@ -151,7 +151,7 @@ service CloudService {
     // Update a nexus endpoint
     rpc UpdateNexusEndpoint(UpdateNexusEndpointRequest) returns (UpdateNexusEndpointResponse) {
 	option (google.api.http) = {
-            post: "/api/v1/nexus/endpoints/{endpoint_id}",
+            post: "/api/v1/nexus/endpoints/{id}",
 	    body: "*"
         };
     }
@@ -159,7 +159,7 @@ service CloudService {
     // Delete a nexus endpoint
     rpc DeleteNexusEndpoint(DeleteNexusEndpointRequest) returns (DeleteNexusEndpointResponse) {
 	option (google.api.http) = {
-            delete: "/api/v1/nexus/endpoints/{endpoint_id}",
+            delete: "/api/v1/nexus/endpoints/{id}",
         };
     }
 }
