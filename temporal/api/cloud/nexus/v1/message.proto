@@ -13,12 +13,12 @@ message EndpointSpec {
     string name = 1;
 
     // Indicates where the endpoint should forward received nexus requests to. 
-    EndpointTargetSpec target_spec = 2;
+    EndpointTargetSpec endpoint_target_spec = 2;
 
-    // The set of authorization policies for the endpoint. Each request's caller
+    // The set of policies (e.g. authorization) for the endpoint. Each request's caller
     // must match with at least one of the specs to be accepted by the endpoint.
     // This field is mutable.
-    repeated EndpointAuthorizationSpec authorization_specs = 3;
+    repeated EndpointPolicySpec policy_specs = 3;
 
     // Optional description. Can be in markdown for rendering in the UI
     string description = 4;
@@ -29,19 +29,19 @@ message EndpointTargetSpec {
     // Possible values are: cloud_task_queue
     string target_type = 1;
 
-    // A target spec for routing nexus requests to a specific cloud namespace's taskqueue.
-    CloudTaskQueueSpec cloud_task_queue_spec = 2;
+    // A target spec for routing nexus requests to a specific cloud namespace worker.
+    CloudWorkerTargetSpec cloud_worker_target_spec = 2;
 }
 
-message CloudTaskQueueSpec {
+message CloudWorkerTargetSpec {
     // The target cloud namespace to route requests to. Namespace must be in same account as the endpoint. This field is mutable.
     string namespace = 1;
 
-    // The task queue on the namespace to route requests to. This field is mutable.
+    // The task queue on the cloud namespace to route requests to. This field is mutable.
     string task_queue = 2;
 }
 
-message EndpointAuthorizationSpec {
+message EndpointPolicySpec {
     // The policy set on this endpoint authorization spec.
     // Possible values are: allowed_cloud_namespace
     string policy_type = 1;
