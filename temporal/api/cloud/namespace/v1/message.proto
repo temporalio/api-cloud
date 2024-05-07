@@ -130,4 +130,19 @@ message Namespace {
     // The date and time when the namespace was last modified.
     // Will not be set if the namespace has never been modified.
     google.protobuf.Timestamp last_modified_time = 11;
+    // Indicates which principals in the account can see that the namespace exists and view its configuration
+    NamespaceVisibility visibility = 12;
+}
+
+// Indicates which principals in an account are able to see that the namespace exists and view its configuration.
+enum NamespaceVisibility {
+  // Unspecified defaults to NAMESPACE_VISIBILITY_PERMISSIONS_REQUIRED
+  NAMESPACE_VISIBILITY_LEVEL_UNSPECIFIED = 0;
+
+  // A principal must have some form of permissions to the namespace in order to be able to see that it exists and view its configuration
+  NAMESPACE_VISIBILITY_LEVEL_PERMISSIONS_REQUIRED = 1;
+
+  // Any principal can see the namespace exists and view its configuration. Note that the actual namespace data (e.g. Workflows) 
+  // still cannot be accessed by a principal without the appropriate namespace permissions attached to it.
+  NAMESPACE_VISIBILITY_LEVEL_ALL_DEVELOPERS = 2;
 }

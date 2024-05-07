@@ -69,3 +69,4 @@ message User {
     // Will not be set if the user has never been modified.
     google.protobuf.Timestamp last_modified_time = 8;
 }
+
