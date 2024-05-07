@@ -144,6 +144,8 @@ message GetNamespacesRequest {
     // Filter namespaces by their name.
     // Optional, defaults to empty.
     string name = 3;
+    // Optional, defaults to showing only namespaces the calling principal has permissions for
+    temporal.api.cloud.namespace.v1.NamespaceVisibility visibility = 4;
 }
 
 message GetNamespacesResponse {
