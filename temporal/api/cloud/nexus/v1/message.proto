@@ -13,7 +13,7 @@ message EndpointSpec {
     string name = 1;
 
     // Indicates where the endpoint should forward received nexus requests to. 
-    EndpointTargetSpec endpoint_target_spec = 2;
+    EndpointTargetSpec target_spec = 2;
 
     // The set of policies (e.g. authorization) for the endpoint. Each request's caller
     // must match with at least one of the specs to be accepted by the endpoint.

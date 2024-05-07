@@ -261,7 +261,7 @@ message GetNexusEndpointsResponse {
 
 message GetNexusEndpointRequest {
     // The id of the nexus endpoint to get.
-    string id = 1;
+    string endpoint_id = 1;
 }
 
 message GetNexusEndpointResponse {
@@ -287,7 +287,7 @@ message CreateNexusEndpointResponse {
 
 message UpdateNexusEndpointRequest {
     // The id of the nexus endpoint to update.
-    string id = 1;
+    string endpoint_id = 1;
 
     // The updated nexus endpoint specification.
     temporal.api.cloud.nexus.v1.EndpointSpec spec = 2;
@@ -307,7 +307,7 @@ message UpdateNexusEndpointResponse {
 
 message DeleteNexusEndpointRequest {
     // The id of the nexus endpoint to delete.
-    string id = 1;
+    string endpoint_id = 1;
 
     // The version of the endpoint for which this delete is intended for.
     // The latest version can be found in the GetNexusEndpoint operation response.
