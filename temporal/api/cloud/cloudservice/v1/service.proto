@@ -125,4 +125,49 @@ service CloudService {
             get: "/api/v1/cloud/regions/{region}",
         };
     }
+
+    // Get all user groups
+    rpc GetUserGroups (GetUserGroupsRequest) returns (GetUserGroupsResponse) {
+        option (google.api.http) = {
+            get: "/api/v1/cloud/user-groups",
+        };
+    }
+
+    // Get a user group
+    rpc GetUserGroup (GetUserGroupRequest) returns (GetUserGroupResponse) {
+        option (google.api.http) = {
+            get: "/api/v1/cloud/user-groups/{group_id}",
+        };
+    }
+
+    // Create new a user group
+    rpc CreateUserGroup (CreateUserGroupRequest) returns (CreateUserGroupResponse) {
+        option (google.api.http) = {
+            post: "/api/v1/cloud/user-groups",
+            body: "*"
+        };
+    }
+
+    // Update a user group
+    rpc UpdateUserGroup (UpdateUserGroupRequest) returns (UpdateUserGroupResponse) {
+        option (google.api.http) = {
+            post: "/api/v1/cloud/user-groups/{group_id}",
+            body: "*"
+        };
+    }
+
+    // Delete a user group
+    rpc DeleteUserGroup (DeleteUserGroupRequest) returns (DeleteUserGroupResponse) {
+        option (google.api.http) = {
+            delete: "/api/v1/cloud/user-groups/{group_id}",
+        };
+    }
+
+    // Set a user group's access to a namespace
+    rpc SetUserGroupNamespaceAccess (SetUserGroupNamespaceAccessRequest) returns (SetUserGroupNamespaceAccessResponse) {
+        option (google.api.http) = {
+            post: "/api/v1/cloud/namespaces/{namespace}/user-groups/{group_id}/access",
+            body: "*"
+        };
+    }
 }
