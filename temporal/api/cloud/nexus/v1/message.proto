@@ -19,10 +19,6 @@ message EndpointSpec {
     // must match with at least one of the specs to be accepted by the endpoint.
     // This field is mutable.
     repeated EndpointPolicySpec policy_specs = 3;
-
-    // Optional description. Can be in markdown for rendering in the UI.
-    // Note that this is an experimental field that may be deprecated in the future
-    string description = 4;
 }
 
 message EndpointTargetSpec {
