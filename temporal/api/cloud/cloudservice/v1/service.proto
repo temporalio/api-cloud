@@ -125,4 +125,41 @@ service CloudService {
             get: "/api/v1/cloud/regions/{region}",
         };
     }
+
+    // Get all known API keys
+    rpc GetAPIKeys (GetAPIKeysRequest) returns (GetAPIKeysResponse) {
+        option (google.api.http) = {
+            get: "/api/v1/cloud/api-keys",
+        };
+    }
+
+    // Get an API key
+    rpc GetAPIKey (GetAPIKeyRequest) returns (GetAPIKeyResponse) {
+        option (google.api.http) = {
+            get: "/api/v1/cloud/api-keys/{api_key_id}",
+        };
+    }
+
+    // Create an API key
+    rpc CreateAPIKey (CreateAPIKeyRequest) returns (CreateAPIKeyResponse) {
+        option (google.api.http) = {
+            post: "/api/v1/cloud/api-keys",
+            body: "*"
+        };
+    }
+
+    // Update an API key
+    rpc UpdateAPIKey (UpdateAPIKeyRequest) returns (UpdateAPIKeyResponse) {
+        option (google.api.http) = {
+            post: "/api/v1/cloud/api-keys/{api_key_id}",
+            body: "*"
+        };
+    }
+
+    // Delete an API key
+    rpc DeleteAPIKey (DeleteAPIKeyRequest) returns (DeleteAPIKeyResponse) {
+        option (google.api.http) = {
+            delete: "/api/v1/cloud/api-keys/{api_key_id}",
+        };
+    }
 }

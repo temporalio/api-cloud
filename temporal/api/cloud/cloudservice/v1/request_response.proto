@@ -234,3 +234,84 @@ message GetRegionResponse {
     // The temporal cloud region.
     temporal.api.cloud.region.v1.Region region = 1;
 }
+
+message GetAPIKeysRequest {
+    // The requested size of the page to retrieve - optional.
+    // Cannot exceed 1000. Defaults to 100.
+    int32 page_size = 1;
+    // The page token if this is continuing from another response - optional.
+    string page_token = 2;
+    // Filter api keys by principal id - optional.
+    string principal_id = 3;
+    // Filter api keys by principal type - optional.
+    string principal_type = 4;
+}
+
+message GetAPIKeysResponse {
+    // The list of API keys in ascending ids order
+    repeated temporal.api.cloud.identity.v1.APIKey api_keys = 1;
+    // The next page's token
+    string next_page_token = 2;
+}
+
+message GetAPIKeyRequest {
+    // The id of the API key to get
+    string key_id = 1;
+}
+
+message GetAPIKeyResponse {
+    // The API key
+    temporal.api.cloud.identity.v1.APIKey api_key = 1;
+}
+
+message CreateAPIKeyRequest {
+    // The id of the principal to create the API key for
+    string principal_id = 1;
+    // The type of the principal to create the API key for
+    string principal_type = 2;
+    // The spec for the API key to invite
+    temporal.api.cloud.identity.v1.APIKeySpec spec = 3;
+    // The id to use for this async operation - optional
+    string async_operation_id = 4;
+}
+
+message CreateAPIKeyResponse {
+    // The id of the API Key created
+    string key_id = 1;
+    // The secret of the API Key created
+    string secret = 2;
+    // The async operation
+    temporal.api.cloud.operation.v1.AsyncOperation async_operation = 3;
+}
+
+message UpdateAPIKeyRequest {
+    // The id of the API key to update
+    string key_id = 1;
+    // The new API key specification
+    temporal.api.cloud.identity.v1.APIKeySpec spec = 2;
+    // The version of the API key for which this update is intended for
+    // The latest version can be found in the GetAPIKey operation response
+    string resource_version = 3;
+    // The id to use for this async operation - optional
+    string async_operation_id = 4;
+}
+
+message UpdateAPIKeyResponse {
+    // The async operation
+    temporal.api.cloud.operation.v1.AsyncOperation async_operation = 1;
+}
+
+message DeleteAPIKeyRequest {
+    // The id of the API key to delete
+    string key_id = 1;
+    // The version of the API key for which this delete is intended for
+    // The latest version can be found in the GetAPIKey operation response
+    string resource_version = 2;
+    // The id to use for this async operation - optional
+    string async_operation_id = 3;
+}
+
+message DeleteAPIKeyResponse {
+    // The async operation
+    temporal.api.cloud.operation.v1.AsyncOperation async_operation = 1;
+}

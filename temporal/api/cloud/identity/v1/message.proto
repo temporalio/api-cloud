@@ -69,3 +69,33 @@ message User {
     // Will not be set if the user has never been modified.
     google.protobuf.Timestamp last_modified_time = 8;
 }
+
+message APIKey {
+    // The id of the API Key
+    string key_id = 1;
+    // The current version of the API key specification
+    // The next update operation will have to include this version
+    string resource_version = 2;
+    // The API key specification
+    APIKeySpec spec = 3;
+    // The current state of the API key
+    string state = 4;
+    // The id of the async operation that is creating/updating/deleting the API key, if any
+    string async_operation_id = 5;
+    // The date and time when the API key was created
+    google.protobuf.Timestamp created_time = 6;
+    // The date and time when the API key was last modified
+    // Will not be set if the API key has never been modified.
+    google.protobuf.Timestamp last_modified_time = 7;
+}
+
+message APIKeySpec {
+    // The name of the API key
+    string name = 1;
+    // The description of the API key
+    string description = 2;
+    // The expiry time of the API key
+    google.protobuf.Timestamp expiry_time = 3;
+    // True if the API key is disabled
+    bool disabled = 4;
+}
