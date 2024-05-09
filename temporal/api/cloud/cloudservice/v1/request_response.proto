@@ -245,16 +245,13 @@ message GetNexusEndpointsRequest {
     string page_token = 2;
 
     // optional, treated as an AND if specified
-    string target_type = 3;
+    string target_namespace_id = 3;
 
     // optional, treated as an AND if specified
-    string target_namespace_id = 4;
-
-    // optional, treated as an AND if specified
-    string target_task_queue = 5;
+    string target_task_queue = 4;
 
     // Filter endpoints by their name - optional, treated as an AND if specified. Specifying this will result in zero or one results.
-    string name = 6;
+    string name = 5;
 }
 
 message GetNexusEndpointsResponse {

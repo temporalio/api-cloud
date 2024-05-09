@@ -26,12 +26,8 @@ message EndpointSpec {
 }
 
 message EndpointTargetSpec {
-    // The type of target that this endpoint routes Nexus requests to.
-    // Possible values are: cloud_task_queue
-    string target_type = 1;
-
     // A target spec for routing nexus requests to a specific cloud namespace worker.
-    CloudWorkerTargetSpec cloud_worker_target_spec = 2;
+    CloudWorkerTargetSpec cloud_worker_target_spec = 1;
 }
 
 message CloudWorkerTargetSpec {
