@@ -35,12 +35,8 @@ message CloudWorkerTargetSpec {
 }
 
 message EndpointPolicySpec {
-    // The policy set on this endpoint authorization spec.
-    // Possible values are: allowed_cloud_namespace
-    string policy_type = 1;
-
     // A policy spec that allows one caller namespace to access the endpoint. 
-    AllowedCloudNamespacePolicySpec allowed_cloud_namespace_policy_spec = 2;
+    AllowedCloudNamespacePolicySpec allowed_cloud_namespace_policy_spec = 1;
 }
 
 message AllowedCloudNamespacePolicySpec {
