@@ -248,7 +248,7 @@ message GetUserGroupsRequest {
 }
 
 message GetUserGroupsResponse {
-    // The list of groups in ascending ids order.
+    // The list of groups in ascending name order.
     repeated temporal.api.cloud.identity.v1.UserGroup groups = 1;
     // The next page's token.
     string next_page_token = 2;
