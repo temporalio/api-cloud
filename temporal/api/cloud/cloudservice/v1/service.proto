@@ -126,7 +126,7 @@ service CloudService {
         };
     }
 
-       // Gets nexus endpoints
+    // Gets nexus endpoints
     rpc GetNexusEndpoints(GetNexusEndpointsRequest) returns (GetNexusEndpointsResponse) {
 	option (google.api.http) = {
             get: "/api/v1/cloud/nexus/endpoints",

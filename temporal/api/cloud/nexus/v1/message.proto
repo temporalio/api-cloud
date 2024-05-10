@@ -28,7 +28,7 @@ message EndpointTargetSpec {
 
 message CloudWorkerTargetSpec {
     // The target cloud namespace to route requests to. Namespace must be in same account as the endpoint. This field is mutable.
-    string namespace = 1;
+    string namespace_id = 1;
 
     // The task queue on the cloud namespace to route requests to. This field is mutable.
     string task_queue = 2;
@@ -41,7 +41,7 @@ message EndpointPolicySpec {
 
 message AllowedCloudNamespacePolicySpec {
     // The namespace that is allowed to call into this endpoint. Calling namespace must be in same account as the endpoint.
-    string namespace = 1;
+    string namespace_id = 1;
 }
 
 // An endpoint that receives and then routes Nexus requests
