@@ -257,7 +257,23 @@ message GetNexusEndpointsRequest {
 message GetNexusEndpointsResponse {
     // The list of endpoints in ascending id order.
     repeated temporal.api.cloud.nexus.v1.Endpoint endpoints = 1;
+}
 
+message GetUserGroupsRequest {
+    // The requested size of the page to retrieve - optional.
+    // Cannot exceed 1000. Defaults to 100.
+    int32 page_size = 1;
+    // The page token if this is continuing from another response - optional.
+    string page_token = 2;
+    // Filter groups by the namespace they have access to - optional.
+    string namespace = 3;
+    // Filter groups by their name - optional.
+    string group_name = 4;
+}
+
+message GetUserGroupsResponse {
+    // The list of groups in ascending name order.
+    repeated temporal.api.cloud.identity.v1.UserGroup groups = 1;
     // The next page's token.
     string next_page_token = 2;
 }
@@ -283,6 +299,29 @@ message CreateNexusEndpointRequest {
 message CreateNexusEndpointResponse {
     // The id of the endpoint that was created.
     string endpoint_id = 1;
+}
+
+message GetUserGroupRequest {
+    // The id of the group to get.
+    string group_id = 1;
+}
+
+message GetUserGroupResponse {
+    // The group.
+    temporal.api.cloud.identity.v1.UserGroup group = 1;
+}
+
+message CreateUserGroupRequest {
+    // The spec for the group to create.
+    temporal.api.cloud.identity.v1.UserGroupSpec spec = 1;
+    // The id to use for this async operation.
+    // Optional, if not provided a random id will be generated.
+    string async_operation_id = 2;
+}
+
+message CreateUserGroupResponse {
+    // The id of the group that was created.
+    string group_id = 1;
 
     // The async operation.
     temporal.api.cloud.operation.v1.AsyncOperation async_operation = 2;
@@ -308,6 +347,24 @@ message UpdateNexusEndpointResponse {
     temporal.api.cloud.operation.v1.AsyncOperation async_operation = 1;
 }
 
+message UpdateUserGroupRequest {
+    // The id of the group to update.
+    string group_id = 1;
+    // The new group specification.
+    temporal.api.cloud.identity.v1.UserGroupSpec spec = 2;
+    // The version of the group for which this update is intended for.
+    // The latest version can be found in the GetGroup operation response.
+    string resource_version = 3;
+    // The id to use for this async operation.
+    // Optional, if not provided a random id will be generated.
+    string async_operation_id = 4;
+}
+
+message UpdateUserGroupResponse {
+    // The async operation.
+    temporal.api.cloud.operation.v1.AsyncOperation async_operation = 1;
+}
+
 message DeleteNexusEndpointRequest {
     // The id of the nexus endpoint to delete.
     string endpoint_id = 1;
@@ -322,5 +379,39 @@ message DeleteNexusEndpointRequest {
 
 message DeleteNexusEndpointResponse {
     // The async operation
+    temporal.api.cloud.operation.v1.AsyncOperation async_operation = 1;
+}
+message DeleteUserGroupRequest {
+    // The id of the group to delete.
+    string group_id = 1;
+    // The version of the group for which this delete is intended for.
+    // The latest version can be found in the GetGroup operation response.
+    string resource_version = 2;
+    // The id to use for this async operation.
+    // Optional, if not provided a random id will be generated.
+    string async_operation_id = 3;
+}
+
+message DeleteUserGroupResponse {
+    // The async operation.
+    temporal.api.cloud.operation.v1.AsyncOperation async_operation = 1;
+}
+
+message SetUserGroupNamespaceAccessRequest {
+    // The namespace to set permissions for.
+    string namespace = 1;
+    // The id of the group to set permissions for.
+    string group_id = 2;
+    // The namespace access to assign the group. If left empty, the group will be removed from the namespace access.
+    temporal.api.cloud.identity.v1.NamespaceAccess access = 3;
+    // The version of the group for which this update is intended for.
+    // The latest version can be found in the GetGroup operation response.
+    string resource_version = 4;
+    // The id to use for this async operation - optional.
+    string async_operation_id = 5;
+}
+
+message SetUserGroupNamespaceAccessResponse {
+    // The async operation.
     temporal.api.cloud.operation.v1.AsyncOperation async_operation = 1;
 }

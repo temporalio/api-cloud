@@ -66,6 +66,33 @@ message User {
     // The date and time when the user was created
     google.protobuf.Timestamp created_time = 7;
     // The date and time when the user was last modified
-    // Will not be set if the user has never been modified.
+    // Will not be set if the user has never been modified
     google.protobuf.Timestamp last_modified_time = 8;
+}
+
+message UserGroupSpec {
+    // The name of the group as defined in the customer's IdP (e.g. Google group name in Google Workspace)
+    // The name is immutable. Once set, it cannot be changed
+    string name = 1;
+    // The access assigned to the group
+    Access access = 2;
+}
+
+message UserGroup {
+    // The id of the group
+    string id = 1;
+    // The current version of the group specification
+    // The next update operation will have to include this version
+    string resource_version = 2;
+    // The group specification
+    UserGroupSpec spec = 3;
+    // The current state of the group
+    string state = 4;
+    // The id of the async operation that is creating/updating/deleting the group, if any
+    string async_operation_id = 5;
+    // The date and time when the group was created
+    google.protobuf.Timestamp created_time = 6;
+    // The date and time when the group was last modified
+    // Will not be set if the group has never been modified
+    google.protobuf.Timestamp last_modified_time = 7;
 }
