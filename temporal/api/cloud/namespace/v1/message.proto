@@ -94,10 +94,10 @@ message NamespaceSpec {
 message Endpoints {
     // The web UI address.
     string web_address = 1;
-    // The gRPC address for API key client connections (may be empty if API keys are disabled).
-    string grpc_address = 2;
     // The gRPC address for mTLS client connections (may be empty if mTLS is disabled).
-    string mtls_grpc_address = 3;
+    string mtls_grpc_address = 2;
+    // The gRPC address for API key client connections (may be empty if API keys are disabled).
+    string grpc_address = 3;
 }
 
 message Limits {
