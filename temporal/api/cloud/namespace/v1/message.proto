@@ -36,6 +36,16 @@ message MtlsAuthSpec {
     // This allows limiting access to specific end-entity certificates.
     // Optional, default is empty.
     repeated CertificateFilterSpec certificate_filters = 2;
+    // Flag to enable mTLS auth (default: disabled).
+    // Note: disabling mTLS auth will cause existing mTLS connections to fail.
+    // temporal:versioning:min_version=2024-05-13-00
+    bool enabled = 3;
+}
+
+message ApiKeyAuthSpec {
+    // Flag to enable API key auth (default: disabled).
+    // Note: disabling API key auth will cause existing API key connections to fail.
+    bool enabled = 1;
 }
 
 message CodecServerSpec {
@@ -56,15 +66,20 @@ message NamespaceSpec {
     // Specifying more than one region makes the namespace "global", which is currently a preview only feature with restricted access.
     // Please reach out to Temporal support for more information on global namespaces.
     // When provisioned the global namespace will be active on the first region in the list and passive on the rest.
-    // Number of supported regions is 2. 
+    // Number of supported regions is 2.
     // The regions is immutable. Once set, it cannot be changed.
     repeated string regions = 2;
     // The number of days the workflows data will be retained for.
     // Changes to the retention period may impact your storage costs.
     // Any changes to the retention period will be applied to all new running workflows.
     int32 retention_days = 3;
-    // The mtls authentication and authorization to enforce on the namespace.
+    // The mTLS auth configuration for the namespace.
+    // If unspecified, mTLS will be disabled.
     MtlsAuthSpec mtls_auth = 4;
+    // The API key auth configuration for the namespace.
+    // If unspecified, API keys will be disabled.
+    // temporal:versioning:min_version=2024-05-13-00
+    ApiKeyAuthSpec api_key_auth = 7;
     // The custom search attributes to use for the namespace.
     // The name of the attribute is the key and the type is the value.
     // Supported attribute types: text, keyword, int, double, bool, datetime, keyword_list.
@@ -77,10 +92,12 @@ message NamespaceSpec {
 }
 
 message Endpoints {
-    // The web ui address.
+    // The web UI address.
     string web_address = 1;
-    // The grpc hostport address that the temporal workers, clients and tctl connect to.
+    // The gRPC address for API key client connections (may be empty if API keys are disabled).
     string grpc_address = 2;
+    // The gRPC address for mTLS client connections (may be empty if mTLS is disabled).
+    string mtls_grpc_address = 3;
 }
 
 message Limits {
