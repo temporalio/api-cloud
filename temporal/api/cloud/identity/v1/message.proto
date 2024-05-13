@@ -96,3 +96,37 @@ message UserGroup {
     // Will not be set if the group has never been modified
     google.protobuf.Timestamp last_modified_time = 7;
 }
+
+message ServiceAccount {
+    // The id of the service account.
+    string id = 1;
+    // The current version of the service account specification.
+    // The next update operation will have to include this version.
+    string resource_version = 2;
+    // The service account specification.
+    ServiceAccountSpec spec = 3;
+    // The current state of the service account.
+    // Possible values: activating, activationfailed, active, updating, updatefailed, deleting, deletefailed, deleted, suspending, suspendfailed, suspended.
+    // For any failed state, reach out to Temporal Cloud support for remediation.
+    string state = 4;
+    // The id of the async operation that is creating/updating/deleting the service account, if any.
+    string async_operation_id = 5;
+    // The date and time when the service account was created.
+    google.protobuf.Timestamp created_time = 6;
+    // The date and time when the service account was last modified
+    // Will not be set if the service account has never been modified.
+    google.protobuf.Timestamp last_modified_time = 7;
+}
+
+message ServiceAccountSpec {
+    // The name associated with the service account.
+    // The name is mutable, but must be unique across all your active service accounts.
+    string name = 1;
+    // The access assigned to the service account.
+    // The access is mutable.
+    Access access = 2;
+    // The description associated with the service account - optional.
+    // The description is mutable.
+    string description = 3;
+}
+
