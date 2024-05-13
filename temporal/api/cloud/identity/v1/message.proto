@@ -90,12 +90,16 @@ message APIKey {
 }
 
 message APIKeySpec {
-    // The name of the API key
-    string name = 1;
+    // The id of the owner the api key belongs to
+    string owner_id = 1;
+    // The type of the owner the api key belongs to
+    string owner_type = 2;
+    // The display name of the API key
+    string display_name = 3;
     // The description of the API key
-    string description = 2;
+    string description = 4;
     // The expiry time of the API key
-    google.protobuf.Timestamp expiry_time = 3;
+    google.protobuf.Timestamp expiry_time = 5;
     // True if the API key is disabled
-    bool disabled = 4;
+    bool disabled = 6;
 }

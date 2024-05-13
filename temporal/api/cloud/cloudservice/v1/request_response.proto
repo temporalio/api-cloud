@@ -241,10 +241,10 @@ message GetAPIKeysRequest {
     int32 page_size = 1;
     // The page token if this is continuing from another response - optional.
     string page_token = 2;
-    // Filter api keys by identity id - optional.
-    string identity_id = 3;
-    // Filter api keys by identity type - optional.
-    string identity_type = 4;
+    // Filter api keys by owner id - optional.
+    string owner_id = 3;
+    // Filter api keys by owner type - optional.
+    string owner_type = 4;
 }
 
 message GetAPIKeysResponse {
@@ -265,14 +265,10 @@ message GetAPIKeyResponse {
 }
 
 message CreateAPIKeyRequest {
-    // The id of the identity to create the API key for
-    string identity_id = 1;
-    // The type of the identity to create the API key for
-    string identity_type = 2;
     // The spec for the API key to invite
-    temporal.api.cloud.identity.v1.APIKeySpec spec = 3;
+    temporal.api.cloud.identity.v1.APIKeySpec spec = 1;
     // The id to use for this async operation - optional
-    string async_operation_id = 4;
+    string async_operation_id = 2;
 }
 
 message CreateAPIKeyResponse {
