@@ -170,4 +170,41 @@ service CloudService {
             body: "*"
         };
     }
+
+    // Create a service account.
+    rpc CreateServiceAccount(CreateServiceAccountRequest) returns (CreateServiceAccountResponse) {
+        option (google.api.http) = {
+            post: "/api/v1/service-accounts",
+            body: "*"
+        };
+    }
+
+    // Get a service account.
+    rpc GetServiceAccount(GetServiceAccountRequest) returns (GetServiceAccountResponse) {
+        option (google.api.http) = {
+            get: "/api/v1/service-accounts/{service_account_id}",
+        };
+    }
+
+    // Get service accounts.
+    rpc GetServiceAccounts(GetServiceAccountsRequest) returns (GetServiceAccountsResponse) {
+        option (google.api.http) = {
+            get: "/api/v1/service-accounts",
+        };
+    }
+
+    // Update a service account.
+    rpc UpdateServiceAccount(UpdateServiceAccountRequest) returns (UpdateServiceAccountResponse) {
+        option (google.api.http) = {
+            post: "/api/v1/service-accounts/{service_account_id}",
+            body: "*"
+        };
+    }
+
+    // Delete a service account.
+    rpc DeleteServiceAccount(DeleteServiceAccountRequest) returns (DeleteServiceAccountResponse) {
+        option (google.api.http) = {
+            delete: "/api/v1/service-accounts/{service_account_id}",
+        };
+    }
 }
