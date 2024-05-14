@@ -223,10 +223,8 @@ message FailoverNamespaceRegionRequest {
     // The id of the region to failover to.
     // Must be a region that the namespace is currently available in.
     string region = 2;
-    // Skip graceful failover and only start forceful failover.
-    bool skip_graceful_failover = 3;
     // The id to use for this async operation - optional.
-    string async_operation_id = 4;
+    string async_operation_id = 3;
 }
 
 message FailoverNamespaceRegionResponse {
@@ -235,9 +233,9 @@ message FailoverNamespaceRegionResponse {
 }
 
 message AddNamespaceRegionRequest {
-    // The namespace to add region to.
+    // The namespace to add the region to.
     string namespace = 1;
-    // The id of the region to add to the namespace.
+    // The id of the standby region to add to the namespace.
     string region = 2;
     // The version of the namespace for which this add region operation is intended for.
     // The latest version can be found in the GetNamespace operation response.
