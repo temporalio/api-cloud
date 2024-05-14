@@ -130,4 +130,16 @@ message Namespace {
     // The date and time when the namespace was last modified.
     // Will not be set if the namespace has never been modified.
     google.protobuf.Timestamp last_modified_time = 11;
+    // The status of each region where the namespace is available.
+    // The id of the region is the key and the status is the value of the map.
+    map<string, NamespaceRegionStatus> region_status = 12;
+}
+
+message NamespaceRegionStatus {
+    // The current state of the namespace region.
+    // Possible values: adding, active, passive, removing, failed.
+    // For any failed state, reach out to Temporal Cloud support for remediation.
+    string state = 1;
+    // The id of the async operation that is making changes to where the namespace is available, if any.
+    string async_operation_id = 2;
 }

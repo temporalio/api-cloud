@@ -112,6 +112,22 @@ service CloudService {
         };
     }
 
+    // Failover a multi-region namespace
+    rpc FailoverNamespaceRegion (FailoverNamespaceRegionRequest) returns (FailoverNamespaceRegionResponse) {
+        option (google.api.http) = {
+            post: "/api/v1/namespaces/{namespace}/failover",
+            body: "*"
+        };
+    }
+
+    // Add a new region to a namespace
+    rpc AddNamespaceRegion (AddNamespaceRegionRequest) returns (AddNamespaceRegionResponse) {
+        option (google.api.http) = {
+            post: "/api/v1/namespaces/{namespace}/add-region",
+            body: "*"
+        };
+    }
+
     // Get all regions
     rpc GetRegions (GetRegionsRequest) returns (GetRegionsResponse) {
         option (google.api.http) = {
