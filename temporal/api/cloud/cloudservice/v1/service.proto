@@ -123,7 +123,7 @@ service CloudService {
     // Add a new region to a namespace
     rpc AddNamespaceRegion (AddNamespaceRegionRequest) returns (AddNamespaceRegionResponse) {
         option (google.api.http) = {
-            post: "/api/v1/namespaces/{namespace}/add-region",
+            post: "/api/v1/cloud/namespaces/{namespace}/add-region",
             body: "*"
         };
     }
