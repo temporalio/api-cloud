@@ -115,7 +115,7 @@ service CloudService {
     // Failover a multi-region namespace
     rpc FailoverNamespaceRegion (FailoverNamespaceRegionRequest) returns (FailoverNamespaceRegionResponse) {
         option (google.api.http) = {
-            post: "/api/v1/namespaces/{namespace}/failover",
+            post: "/api/v1/cloud/namespaces/{namespace}/failover-region",
             body: "*"
         };
     }
