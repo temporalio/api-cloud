@@ -3,7 +3,7 @@ deps:
   - buf.build/googleapis/googleapis
 breaking:
   use:
-    - WIRE
+    - FILE
 lint:
   use:
     - DEFAULT
