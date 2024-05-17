@@ -112,6 +112,22 @@ service CloudService {
         };
     }
 
+    // Failover a multi-region namespace
+    rpc FailoverNamespaceRegion (FailoverNamespaceRegionRequest) returns (FailoverNamespaceRegionResponse) {
+        option (google.api.http) = {
+            post: "/api/v1/cloud/namespaces/{namespace}/failover-region",
+            body: "*"
+        };
+    }
+
+    // Add a new region to a namespace
+    rpc AddNamespaceRegion (AddNamespaceRegionRequest) returns (AddNamespaceRegionResponse) {
+        option (google.api.http) = {
+            post: "/api/v1/cloud/namespaces/{namespace}/add-region",
+            body: "*"
+        };
+    }
+
     // Get all regions
     rpc GetRegions (GetRegionsRequest) returns (GetRegionsResponse) {
         option (google.api.http) = {
@@ -160,6 +176,88 @@ service CloudService {
     rpc DeleteApiKey (DeleteApiKeyRequest) returns (DeleteApiKeyResponse) {
         option (google.api.http) = {
             delete: "/api/v1/cloud/api-keys/{key_id}",
+        };
+    }
+
+    // Get all user groups
+    rpc GetUserGroups (GetUserGroupsRequest) returns (GetUserGroupsResponse) {
+        option (google.api.http) = {
+            get: "/api/v1/cloud/user-groups",
+        };
+    }
+
+    // Get a user group
+    rpc GetUserGroup (GetUserGroupRequest) returns (GetUserGroupResponse) {
+        option (google.api.http) = {
+            get: "/api/v1/cloud/user-groups/{group_id}",
+        };
+    }
+
+    // Create new a user group
+    rpc CreateUserGroup (CreateUserGroupRequest) returns (CreateUserGroupResponse) {
+        option (google.api.http) = {
+            post: "/api/v1/cloud/user-groups",
+            body: "*"
+        };
+    }
+
+    // Update a user group
+    rpc UpdateUserGroup (UpdateUserGroupRequest) returns (UpdateUserGroupResponse) {
+        option (google.api.http) = {
+            post: "/api/v1/cloud/user-groups/{group_id}",
+            body: "*"
+        };
+    }
+
+    // Delete a user group
+    rpc DeleteUserGroup (DeleteUserGroupRequest) returns (DeleteUserGroupResponse) {
+        option (google.api.http) = {
+            delete: "/api/v1/cloud/user-groups/{group_id}",
+        };
+    }
+
+    // Set a user group's access to a namespace
+    rpc SetUserGroupNamespaceAccess (SetUserGroupNamespaceAccessRequest) returns (SetUserGroupNamespaceAccessResponse) {
+        option (google.api.http) = {
+            post: "/api/v1/cloud/namespaces/{namespace}/user-groups/{group_id}/access",
+            body: "*"
+        };
+    }
+
+    // Create a service account.
+    rpc CreateServiceAccount(CreateServiceAccountRequest) returns (CreateServiceAccountResponse) {
+        option (google.api.http) = {
+            post: "/api/v1/service-accounts",
+            body: "*"
+        };
+    }
+
+    // Get a service account.
+    rpc GetServiceAccount(GetServiceAccountRequest) returns (GetServiceAccountResponse) {
+        option (google.api.http) = {
+            get: "/api/v1/service-accounts/{service_account_id}",
+        };
+    }
+
+    // Get service accounts.
+    rpc GetServiceAccounts(GetServiceAccountsRequest) returns (GetServiceAccountsResponse) {
+        option (google.api.http) = {
+            get: "/api/v1/service-accounts",
+        };
+    }
+
+    // Update a service account.
+    rpc UpdateServiceAccount(UpdateServiceAccountRequest) returns (UpdateServiceAccountResponse) {
+        option (google.api.http) = {
+            post: "/api/v1/service-accounts/{service_account_id}",
+            body: "*"
+        };
+    }
+
+    // Delete a service account.
+    rpc DeleteServiceAccount(DeleteServiceAccountRequest) returns (DeleteServiceAccountResponse) {
+        option (google.api.http) = {
+            delete: "/api/v1/service-accounts/{service_account_id}",
         };
     }
 }
