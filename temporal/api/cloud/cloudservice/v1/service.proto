@@ -127,21 +127,21 @@ service CloudService {
     }
 
     // Get all known API keys
-    rpc GetAPIKeys (GetAPIKeysRequest) returns (GetAPIKeysResponse) {
+    rpc GetApiKeys (GetApiKeysRequest) returns (GetApiKeysResponse) {
         option (google.api.http) = {
             get: "/api/v1/cloud/api-keys",
         };
     }
 
     // Get an API key
-    rpc GetAPIKey (GetAPIKeyRequest) returns (GetAPIKeyResponse) {
+    rpc GetApiKey (GetApiKeyRequest) returns (GetApiKeyResponse) {
         option (google.api.http) = {
             get: "/api/v1/cloud/api-keys/{key_id}",
         };
     }
 
     // Create an API key
-    rpc CreateAPIKey (CreateAPIKeyRequest) returns (CreateAPIKeyResponse) {
+    rpc CreateApiKey (CreateApiKeyRequest) returns (CreateApiKeyResponse) {
         option (google.api.http) = {
             post: "/api/v1/cloud/api-keys",
             body: "*"
@@ -149,7 +149,7 @@ service CloudService {
     }
 
     // Update an API key
-    rpc UpdateAPIKey (UpdateAPIKeyRequest) returns (UpdateAPIKeyResponse) {
+    rpc UpdateApiKey (UpdateApiKeyRequest) returns (UpdateApiKeyResponse) {
         option (google.api.http) = {
             post: "/api/v1/cloud/api-keys/{key_id}",
             body: "*"
@@ -157,7 +157,7 @@ service CloudService {
     }
 
     // Delete an API key
-    rpc DeleteAPIKey (DeleteAPIKeyRequest) returns (DeleteAPIKeyResponse) {
+    rpc DeleteApiKey (DeleteApiKeyRequest) returns (DeleteApiKeyResponse) {
         option (google.api.http) = {
             delete: "/api/v1/cloud/api-keys/{key_id}",
         };
