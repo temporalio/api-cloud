@@ -130,3 +130,44 @@ message ServiceAccountSpec {
     string description = 3;
 }
 
+
+message ApiKey {
+    // The id of the API Key.
+    string id = 1;
+    // The current version of the API key specification.
+    // The next update operation will have to include this version.
+    string resource_version = 2;
+    // The API key specification.
+    ApiKeySpec spec = 3;
+    // The current state of the API key.
+    // Possible values: activating, activationfailed, active, updating, updatefailed, deleting, deletefailed, deleted, suspending, suspendfailed, suspended.
+    // For any failed state, reach out to Temporal Cloud support for remediation.
+    string state = 4;
+    // The id of the async operation that is creating/updating/deleting the API key, if any.
+    string async_operation_id = 5;
+    // The date and time when the API key was created.
+    google.protobuf.Timestamp created_time = 6;
+    // The date and time when the API key was last modified.
+    // Will not be set if the API key has never been modified.
+    google.protobuf.Timestamp last_modified_time = 7;
+}
+
+message ApiKeySpec {
+    // The id of the owner to create the API key for.
+    // The owner id is immutable. Once set during creation, it cannot be changed.
+    // The owner id is the id of the user when the owner type is 'user'.
+    // The owner id is the id of the service account when the owner type is 'service-account'.
+    string owner_id = 1;
+    // The type of the owner to create the API key for.
+    // The owner type is immutable. Once set during creation, it cannot be changed.
+    // Possible values: user, service-account.
+    string owner_type = 2;
+    // The display name of the API key.
+    string display_name = 3;
+    // The description of the API key.
+    string description = 4;
+    // The expiry time of the API key.
+    google.protobuf.Timestamp expiry_time = 5;
+    // True if the API key is disabled.
+    bool disabled = 6;
+}

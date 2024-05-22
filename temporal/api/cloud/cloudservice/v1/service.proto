@@ -142,6 +142,43 @@ service CloudService {
         };
     }
 
+    // Get all known API keys
+    rpc GetApiKeys (GetApiKeysRequest) returns (GetApiKeysResponse) {
+        option (google.api.http) = {
+            get: "/api/v1/cloud/api-keys",
+        };
+    }
+
+    // Get an API key
+    rpc GetApiKey (GetApiKeyRequest) returns (GetApiKeyResponse) {
+        option (google.api.http) = {
+            get: "/api/v1/cloud/api-keys/{key_id}",
+        };
+    }
+
+    // Create an API key
+    rpc CreateApiKey (CreateApiKeyRequest) returns (CreateApiKeyResponse) {
+        option (google.api.http) = {
+            post: "/api/v1/cloud/api-keys",
+            body: "*"
+        };
+    }
+
+    // Update an API key
+    rpc UpdateApiKey (UpdateApiKeyRequest) returns (UpdateApiKeyResponse) {
+        option (google.api.http) = {
+            post: "/api/v1/cloud/api-keys/{key_id}",
+            body: "*"
+        };
+    }
+
+    // Delete an API key
+    rpc DeleteApiKey (DeleteApiKeyRequest) returns (DeleteApiKeyResponse) {
+        option (google.api.http) = {
+            delete: "/api/v1/cloud/api-keys/{key_id}",
+        };
+    }
+
     // Get all user groups
     rpc GetUserGroups (GetUserGroupsRequest) returns (GetUserGroupsResponse) {
         option (google.api.http) = {
