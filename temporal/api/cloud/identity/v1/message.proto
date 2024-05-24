@@ -72,13 +72,13 @@ message User {
 
 message GoogleGroupSpec {
     // The email address of the Google group.
-    // THe email address is immutable. Once set during creation, it cannot be changed.
-    string email = 1;
+    // The email address is immutable. Once set during creation, it cannot be changed.
+    string email_address = 1;
 }
 
 message UserGroupSpec {
     // The display name of the group.
-    string name = 1;
+    string display_name = 1;
     // The access assigned to the group.
     Access access = 2;
     // The type of the group.

@@ -357,6 +357,14 @@ message GetUserGroupsRequest {
     string page_token = 2;
     // Filter groups by the namespace they have access to - optional.
     string namespace = 3;
+    // Filter groups by the display name - optional.
+    string display_name = 4;
+    // Filter groups by the group type - optional.
+    // Possible values: google-group
+    string group_type = 5;
+    // Filter groups by the google group email - optional.
+    // Only applicable when group_type filter is set to google group-type.
+    string google_group_email_address = 6;
 }
 
 message GetUserGroupsResponse {
