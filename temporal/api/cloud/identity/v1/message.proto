@@ -85,9 +85,9 @@ message UserGroupSpec {
     // Currently, the only supported type is 'google-group'.
     // The type is immutable. Once set during creation, it cannot be changed.
     string type = 3;
-    // The specification of the Google group.
+    // The specification of the google group.
     // This field is required when the group type is 'google-group'.
-    GoogleGroupSpec google_group_spec = 4;
+    GoogleGroupSpec google_group = 4;
 }
 
 message UserGroup {
