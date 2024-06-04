@@ -82,6 +82,7 @@ message UserGroupSpec {
     // The access assigned to the group.
     Access access = 2;
     // The specification of the google group that this group is associated with.
+    // For now only google groups are supported, and this field is required.
     GoogleGroupSpec google_group = 3;
 }
 
