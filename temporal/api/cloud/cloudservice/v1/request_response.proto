@@ -349,6 +349,11 @@ message DeleteApiKeyResponse {
     temporal.api.cloud.operation.v1.AsyncOperation async_operation = 1;
 }
 
+message GoogleGroupGetUserGroupsFilter {
+    // Filter groups by the google group email - optional.
+    string email_address = 1;
+}
+
 message GetUserGroupsRequest {
     // The requested size of the page to retrieve - optional.
     // Cannot exceed 1000. Defaults to 100.
@@ -359,9 +364,8 @@ message GetUserGroupsRequest {
     string namespace = 3;
     // Filter groups by the display name - optional.
     string display_name = 4;
-    // Filter groups by the google group email - optional.
-    // Only applies to google groups.
-    string google_group_email_address = 5;
+    // Filter groups by the google group specification - optional.
+    GoogleGroupGetUserGroupsFilter google_group = 5;
 }
 
 message GetUserGroupsResponse {
