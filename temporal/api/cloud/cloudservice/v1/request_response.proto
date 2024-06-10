@@ -360,13 +360,13 @@ message GetUserGroupsRequest {
     string namespace = 3;
     // Filter groups by the display name - optional.
     string display_name = 4;
+    // Filter groups by the google group specification - optional.
+    GoogleGroupFilter google_group = 5;
 
     message GoogleGroupFilter {
         // Filter groups by the google group email - optional.
         string email_address = 1;
     }
-    // Filter groups by the google group specification - optional.
-    GoogleGroupFilter google_group = 5;
 }
 
 message GetUserGroupsResponse {
