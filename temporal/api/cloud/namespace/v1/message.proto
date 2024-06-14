@@ -69,6 +69,7 @@ message NamespaceSpec {
     // When provisioned the global namespace will be active on the first region in the list and passive on the rest.
     // Number of supported regions is 2.
     // The regions is immutable. Once set, it cannot be changed.
+    // Example: ["aws-us-west-2"].
     repeated string regions = 2;
     // The number of days the workflows data will be retained for.
     // Changes to the retention period may impact your storage costs.
