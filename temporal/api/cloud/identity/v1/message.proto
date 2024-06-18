@@ -70,12 +70,20 @@ message User {
     google.protobuf.Timestamp last_modified_time = 8;
 }
 
+message GoogleGroupSpec {
+    // The email address of the Google group.
+    // The email address is immutable. Once set during creation, it cannot be changed.
+    string email_address = 1;
+}
+
 message UserGroupSpec {
-    // The name of the group as defined in the customer's IdP (e.g. Google group name in Google Workspace)
-    // The name is immutable. Once set, it cannot be changed
-    string name = 1;
-    // The access assigned to the group
+    // The display name of the group.
+    string display_name = 1;
+    // The access assigned to the group.
     Access access = 2;
+    // The specification of the google group that this group is associated with.
+    // For now only google groups are supported, and this field is required.
+    GoogleGroupSpec google_group = 3;
 }
 
 message UserGroup {
