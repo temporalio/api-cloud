@@ -236,6 +236,8 @@ message AddNamespaceRegionRequest {
     // The namespace to add the region to.
     string namespace = 1;
     // The id of the standby region to add to the namespace.
+    // The GetRegions API can be used to get the list of valid region ids.
+    // Example: "aws-us-west-2".
     string region = 2;
     // The version of the namespace for which this add region operation is intended for.
     // The latest version can be found in the GetNamespace operation response.
