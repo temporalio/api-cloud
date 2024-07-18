@@ -545,7 +545,7 @@ message GetAuditLogsRequest {
 
 message GetAuditLogsResponse {
     // The list of audit logs ordered by inserted time, emit time, log_id
-    repeated temporal.api.cloud.auditlog.v1.LogRecord groups = 1;
+    repeated temporal.api.cloud.auditlog.v1.LogRecord logs = 1;
     // The next page's token.
     string next_page_token = 2;
 }
