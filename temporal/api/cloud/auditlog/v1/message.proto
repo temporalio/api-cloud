@@ -50,10 +50,10 @@ message OperationDetail {
   // The namespace the operation was performed on
   string namespace = 1;
 
-  // The users the operation was performed on
+  // The email addresses of the users on whom the operation was performed
   repeated string target_users = 2;
 
-  // Role information if any role is processed
+  // Names of any roles processed
   repeated string roles = 3;
 
   // Fingerprints if client ca is included
