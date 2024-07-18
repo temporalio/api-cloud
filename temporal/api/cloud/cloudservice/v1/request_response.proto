@@ -534,11 +534,11 @@ message GetAuditLogsRequest {
     // The page token if this is continuing from another response - optional.
     string page_token = 2;
     // Filter for logs inserted at a time >= this.
-    google.protobuf.Timestamp start_time_inclusive = 2;
+    google.protobuf.Timestamp start_time_inclusive = 3;
     // Filter for logs inserted at a time < this. - optional.
-    google.protobuf.Timestamp end_time_exclusive = 3;
+    google.protobuf.Timestamp end_time_exclusive = 4;
     // Filter logs by a user's email address - optional.
-    string user_email_substring = 4;
+    string user_email_substring = 5;
 }
 
 message GetAuditLogsResponse {
