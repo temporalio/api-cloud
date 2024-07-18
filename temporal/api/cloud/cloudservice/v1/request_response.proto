@@ -9,6 +9,8 @@ option java_outer_classname = "RequestResponseProto";
 option ruby_package = "Temporalio::Api::Cloud::CloudService::V1";
 option csharp_namespace = "Temporalio.Api.Cloud.CloudService.V1";
 
+import "google/protobuf/timestamp.proto";
+
 import "temporal/api/cloud/auditlog/v1/message.proto";
 import "temporal/api/cloud/operation/v1/message.proto";
 import "temporal/api/cloud/identity/v1/message.proto";
