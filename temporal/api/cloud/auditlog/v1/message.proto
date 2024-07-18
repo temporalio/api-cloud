@@ -59,7 +59,7 @@ message OperationDetail {
   // Fingerprints if client ca is included
   repeated string client_ca_fingerprints = 4;
 
-  // Search attributes if the search attributes were processed
+  // Details of a search attribute update
   SearchAttributeUpdate search_attribute_update = 5;
 
   // Additional message if there is any
