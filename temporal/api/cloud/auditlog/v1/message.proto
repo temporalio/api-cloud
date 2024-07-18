@@ -1,0 +1,107 @@
+syntax = "proto3";
+
+package temporal.api.cloud.auditlog.v1;
+
+option go_package = "go.temporal.io/api/cloud/auditlog/v1;auditlog";
+option java_package = "io.temporal.api.cloud.auditlog.v1";
+option java_multiple_files = true;
+option java_outer_classname = "MessageProto";
+option ruby_package = "Temporalio::Api::Cloud::AuditLog::V1";
+option csharp_namespace = "Temporalio.Api.Cloud.AuditLog.V1";
+
+import "google/protobuf/timestamp.proto";
+
+// LogRecord represents an audit log entry from Temporal, structured for easy parsing and analysis.
+message LogRecord {
+  // Time when the log was emitted from the source
+  google.protobuf.Timestamp emit_time = 1;
+
+  // Level of the log, i.e. info, warn, error etc
+  LogLevel level = 2;
+
+  // Operator email address
+  string user_email = 3;
+
+  // Operator IP address or server name
+  string caller_ip_address = 4;
+
+  // Operation performed
+  string operation = 5;
+
+  // Detailed information about the operation.
+  OperationDetail details = 6;
+
+  // Operation status from API call
+  string status = 7;
+
+  // Admin or System
+  LogCategory category = 8;
+
+  // Version of the log entry
+  int32 version = 9;
+
+  // Unique ID for the log record.
+  string log_id = 10;
+}
+
+// OperationDetails includes potential more detailed operation logs extracted from the different fields in the
+// Temporal API logs or third party logs, e.g. auth0
+message OperationDetail {
+  // The namespace the operation was performed on
+  string namespace = 1;
+
+  // The users the operation was performed on
+  repeated string target_users = 2;
+
+  // Role information if any role is processed
+  repeated string roles = 3;
+
+  // Fingerprints if client ca is included
+  repeated string client_ca_fingerprints = 4;
+
+  // Search attributes if the search attributes were processed
+  SearchAttributeUpdate search_attribute_update = 5;
+
+  // Additional message if there is any
+  string additional_message = 6;
+
+  // Namespace's region if available
+  string region = 7;
+
+  // If account features were updated i.e. external metrics, audit logging sink etc.
+  repeated string account_features = 8;
+
+  // Third party log details eg: auth0
+  ThirdPartyLogDetail third_party_details = 9;
+}
+
+message SearchAttributeUpdate {
+  string existing_attribute = 1;
+
+  string new_attribute = 2;
+}
+
+message ThirdPartyLogDetail {
+  string id = 1;
+
+  // the third party source, e.g. auth0
+  string source = 2;
+
+  // the raw log message from the third party app, e.g. the whole auth0 event log
+  string raw_message = 3;
+}
+
+enum LogCategory {
+  LOG_CATEGORY_UNSPECIFIED = 0;
+  LOG_CATEGORY_ADMIN = 1;
+  LOG_CATEGORY_SYSTEM = 2;
+}
+
+enum LogLevel {
+  LOG_LEVEL_UNSPECIFIED = 0;
+  LOG_LEVEL_INFO = 1;
+  LOG_LEVEL_DEBUG = 2;
+  LOG_LEVEL_WARN = 3;
+  LOG_LEVEL_ERROR = 4;
+  LOG_LEVEL_FATAL = 5;
+}
