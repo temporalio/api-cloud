@@ -535,7 +535,7 @@ message GetAuditLogsRequest {
     int32 page_size = 1;
     // The page token if this is continuing from another response - optional.
     string page_token = 2;
-    // Filter for logs inserted at a time >= this.
+    // Filter for logs inserted at a time >= this. - required.
     google.protobuf.Timestamp start_time_inclusive = 3;
     // Filter for logs inserted at a time < this. - optional.
     google.protobuf.Timestamp end_time_exclusive = 4;
