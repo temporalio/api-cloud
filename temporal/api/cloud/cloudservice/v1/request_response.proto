@@ -541,6 +541,8 @@ message GetAuditLogsRequest {
     google.protobuf.Timestamp end_time_exclusive = 4;
     // Filter logs by a user's email address - optional.
     string user_email_substring = 5;
+    // Filter logs by the operation - optional.
+    string operation = 6;
 }
 
 message GetAuditLogsResponse {
