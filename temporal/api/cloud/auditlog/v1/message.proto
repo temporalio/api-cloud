@@ -13,13 +13,13 @@ import "google/protobuf/timestamp.proto";
 
 // LogRecord represents an audit log entry from Temporal, structured for easy parsing and analysis.
 message LogRecord {
-  // Time when the log was emitted from the source
+  // Time when the log was emitted from the source 
   google.protobuf.Timestamp emit_time = 1;
 
   // Level of the log, i.e. info, warn, error etc
   LogLevel level = 2;
 
-  // Operator email address
+  // Operator email address - optional
   string user_email = 3;
 
   // Operator IP address or server name
@@ -37,7 +37,7 @@ message LogRecord {
   // Admin or System
   LogCategory category = 8;
 
-  // Version of the log entry
+  // Specifies the version of the log entry to distinguish between different systems on the server side. 
   int32 version = 9;
 
   // Unique ID for the log record.
@@ -47,31 +47,31 @@ message LogRecord {
 // OperationDetails includes potential more detailed operation logs extracted from the different fields in the
 // Temporal API logs or third party logs, e.g. auth0
 message OperationDetail {
-  // The namespace the operation was performed on
+  // The namespace the operation was performed on - optional
   string namespace = 1;
 
-  // The email addresses of the users on whom the operation was performed
+  // The email addresses of the users on whom the operation was performed - optional
   repeated string target_users = 2;
 
-  // Names of any roles processed
+  // Names of any roles/accesses assigned to identities that were processed in this request - optional
   repeated string roles = 3;
 
-  // Fingerprints if client ca is included
+  // Fingerprints if client ca is included - optional
   repeated string client_ca_fingerprints = 4;
 
-  // Details of a search attribute update
+  // Details of a search attribute update - optional
   SearchAttributeUpdate search_attribute_update = 5;
 
-  // Additional message if there is any
+  // Additional relevant message - optional
   string additional_message = 6;
 
-  // Namespace's region if available
+  // Namespace's region - optional
   string region = 7;
 
-  // If account features were updated i.e. external metrics, audit logging sink etc.
+  // If account features were updated i.e. external metrics, audit logging sink etc. - optional
   repeated string account_features = 8;
 
-  // Third party log details eg: auth0
+  // Third party log details eg: auth0 - optional
   ThirdPartyLogDetail third_party_details = 9;
 }
 
