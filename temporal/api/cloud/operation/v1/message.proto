@@ -18,7 +18,11 @@ message AsyncOperation {
     string id = 1;
     // The current state of this operation
     // Possible values are: pending, in_progress, failed, cancelled, fulfilled
-    string state = 2;
+    // Deprecated: Use the state field instead.
+    string state_deprecated = 2 [deprecated = true];
+    // The current state of this operation.
+    // temporal:enums:replaces=state_deprecated
+    State state = 9;
     // The recommended duration to check back for an update in the operation's state
     google.protobuf.Duration check_duration = 3;
     // The type of operation being performed
@@ -33,4 +37,13 @@ message AsyncOperation {
     google.protobuf.Timestamp started_time = 7;
     // The date and time when the operation completed
     google.protobuf.Timestamp finished_time = 8;
+
+    enum State {
+	STATE_UNSPECIFIED = 0;
+	STATE_PENDING = 1;     // The operation is pending.
+	STATE_IN_PROGRESS = 2; // The operation is in progress.
+	STATE_FAILED = 3;      // The operation failed, check failure_reason for more details.
+	STATE_CANCELLED = 4;   // The operation was cancelled.
+	STATE_FULFILLED = 5;   // The operation was fulfilled.
+    }
 }

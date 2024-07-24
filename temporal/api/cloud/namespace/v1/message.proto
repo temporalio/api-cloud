@@ -9,6 +9,7 @@ option java_outer_classname = "MessageProto";
 option ruby_package = "Temporalio::Api::Cloud::Namespace::V1";
 option csharp_namespace = "Temporalio.Api.Cloud.Namespace.V1";
 
+import "temporal/api/cloud/common/v1/message.proto";
 import "google/protobuf/timestamp.proto";
 
 message CertificateFilterSpec {
@@ -133,7 +134,12 @@ message Namespace {
     // The namespace specification.
     NamespaceSpec spec = 3;
     // The current state of the namespace.
-    string state = 4;
+    // Deprecated: Use state instead.
+    string state_deprecated = 4 [deprecated = true];
+    // The current state of the namespace.
+    // For any failed state, reach out to Temporal Cloud support for remediation.
+    // temporal:enums:replaces=state_deprecated
+    temporal.api.cloud.common.v1.ResourceState state = 13;
     // The id of the async operation that is creating/updating/deleting the namespace, if any.
     string async_operation_id = 5;
     // The endpoints for the namespace.
@@ -158,7 +164,20 @@ message NamespaceRegionStatus {
     // The current state of the namespace region.
     // Possible values: adding, active, passive, removing, failed.
     // For any failed state, reach out to Temporal Cloud support for remediation.
-    string state = 1;
+    // Deprecated: Use state instead.
+    string state_deprecated = 1 [deprecated = true];
+    // The current state of the namespace region.
+    // temporal:enums:replaces=state_deprecated
+    State state = 3;
     // The id of the async operation that is making changes to where the namespace is available, if any.
     string async_operation_id = 2;
+
+    enum State {
+        STATE_UNSPECIFIED = 0;
+        STATE_PENDING = 1;     // The operation is pending.
+        STATE_IN_PROGRESS = 2; // The operation is in progress.
+        STATE_FAILED = 3;      // The operation failed, check failure_reason for more details.
+        STATE_CANCELLED = 4;   // The operation was cancelled.
+        STATE_FULFILLED = 5;   // The operation was fulfilled.
+    }
 }
