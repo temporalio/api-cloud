@@ -88,7 +88,9 @@ message NamespaceSpec {
     // Supported attribute types: text, keyword, int, double, bool, datetime, keyword_list.
     // NOTE: currently deleting a search attribute is not supported.
     // Optional, default is empty.
-    map<string, string> custom_search_attributes = 5;
+    // Deprecated: Use the AddSearchAttribute, RenameSearchAttribute operations instead to manage search attributes.
+    // temporal:versioning:max_version=2024-05-13-00
+    map<string, string> custom_search_attributes = 5 [deprecated = true];
     // Codec server spec used by UI to decode payloads for all users interacting with this namespace.
     // Optional, default is unset.
     CodecServerSpec codec_server = 6;
@@ -179,5 +181,46 @@ message NamespaceRegionStatus {
         STATE_FAILED = 3;      // The operation failed, check failure_reason for more details.
         STATE_CANCELLED = 4;   // The operation was cancelled.
         STATE_FULFILLED = 5;   // The operation was fulfilled.
+    }
+}
+
+message SearchAttributeSpec {
+    // The name of the search attribute.
+    // Once created, the name can be changed using the RenameSearchAttribute operation.
+    string name = 1;
+    // The type of the search attribute.
+    // The type of the search attribute cannot be changed once set.
+    SearchAttributeType type = 2;
+
+    enum SearchAttributeType {
+        SEARCH_ATTRIBUTE_TYPE_UNSPECIFIED = 0;
+        SEARCH_ATTRIBUTE_TYPE_TEXT = 1;
+        SEARCH_ATTRIBUTE_TYPE_KEYWORD = 2;
+        SEARCH_ATTRIBUTE_TYPE_INT = 3;
+        SEARCH_ATTRIBUTE_TYPE_DOUBLE = 4;
+        SEARCH_ATTRIBUTE_TYPE_BOOL = 5;
+        SEARCH_ATTRIBUTE_TYPE_DATETIME = 6;
+        SEARCH_ATTRIBUTE_TYPE_KEYWORD_LIST = 7;
+    }
+}
+
+message SearchAttribute {
+    // The search attribute specification.
+    SearchAttributeSpec spec = 1;
+    // Whether the search attribute is system defined.
+    // System defined search attributes cannot be modified or deleted.
+    bool system = 2;
+    // The current state of the search attribute.
+    State state = 3;
+    // The id of the async operation that is making changes to the search attribute, if any.
+    string async_operation_id = 4;
+
+    enum State {
+        STATE_UNSPECIFIED = 0;
+        STATE_ADDING = 1;        // The search attribute is being added.
+        STATE_ADD_FAILED = 2;    // The search attribute failed to be added, check failure_reason for more details.
+        STATE_READY = 3;         // The search attribute is ready for use.
+        STATE_RENAMING = 4;      // The search attribute is being renamed.
+        STATE_RENAME_FAILED = 5; // The search attribute failed to be renamed, check failure_reason for more details.
     }
 }

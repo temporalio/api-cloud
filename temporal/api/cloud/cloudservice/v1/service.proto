@@ -98,11 +98,40 @@ service CloudService {
     }
 
     // Rename an existing customer search attribute
+    // Deprecated: Use RenameSearchAttribute instead
     rpc RenameCustomSearchAttribute (RenameCustomSearchAttributeRequest) returns (RenameCustomSearchAttributeResponse) {
         option (google.api.http) = {
             post: "/cloud/namespaces/{namespace}/rename-custom-search-attribute",
             body: "*"
         };
+    }
+
+    rpc GetSearchAttributes (GetSearchAttributesRequest) returns (GetSearchAttributesResponse) {
+	option (google.api.http) = {
+	    get: "/cloud/namespaces/{namespace}/search-attributes",
+	};
+    }
+
+    rpc GetSearchAttribute (GetSearchAttributeRequest) returns (GetSearchAttributeResponse) {
+        option (google.api.http) = {
+	    get: "/cloud/namespaces/{namespace}/search-attribute/{name}",
+	};
+    }
+
+    // Rename an existing search attribute
+    rpc AddSearchAttribute(AddSearchAttributeRequest) returns (AddSearchAttributeResponse) {
+	option (google.api.http) = {
+	    post: "/cloud/namespaces/{namespace}/search-attributes",
+	    body: "*"
+	};
+    }
+
+    // Rename an existing search attribute
+    rpc RenameSearchAttribute (RenameSearchAttributeRequest) returns (RenameSearchAttributeResponse) {
+	option (google.api.http) = {
+	    post: "/cloud/namespaces/{namespace}/search-attribute/{name}/rename",
+	    body: "*"
+	};
     }
 
     // Delete a namespace
