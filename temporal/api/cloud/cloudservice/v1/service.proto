@@ -105,13 +105,15 @@ service CloudService {
             body: "*"
         };
     }
-
+    
+    // Get all search attributes registered for a namespace.
     rpc GetSearchAttributes (GetSearchAttributesRequest) returns (GetSearchAttributesResponse) {
 	option (google.api.http) = {
 	    get: "/cloud/namespaces/{namespace}/search-attributes",
 	};
     }
 
+    // Get a search attribute registered for a namespace.
     rpc GetSearchAttribute (GetSearchAttributeRequest) returns (GetSearchAttributeResponse) {
         option (google.api.http) = {
 	    get: "/cloud/namespaces/{namespace}/search-attribute/{name}",
