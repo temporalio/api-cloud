@@ -120,7 +120,7 @@ service CloudService {
 	};
     }
 
-    // Rename an existing search attribute
+    // Add a new search attribute to a namespace.
     rpc AddSearchAttribute(AddSearchAttributeRequest) returns (AddSearchAttributeResponse) {
 	option (google.api.http) = {
 	    post: "/cloud/namespaces/{namespace}/search-attributes",
@@ -128,7 +128,7 @@ service CloudService {
 	};
     }
 
-    // Rename an existing search attribute
+    // Rename an existing search attribute.
     rpc RenameSearchAttribute (RenameSearchAttributeRequest) returns (RenameSearchAttributeResponse) {
 	option (google.api.http) = {
 	    post: "/cloud/namespaces/{namespace}/search-attribute/{name}/rename",
