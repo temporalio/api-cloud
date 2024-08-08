@@ -88,13 +88,14 @@ message NamespaceSpec {
     // Supported attribute types: text, keyword, int, double, bool, datetime, keyword_list.
     // NOTE: currently deleting a search attribute is not supported.
     // Optional, default is empty.
-    // Deprecated: Use custom_search_attributes instead.
-    map<string, string> custom_search_attributes_deprecated = 5 [deprecated = true];
+    // Deprecated: Use search_attributes instead.
+    map<string, string> custom_search_attributes = 5 [deprecated = true];
     // The custom search attributes to use for the namespace.
-    // NOTE: currently deleting a search attribute is not supported.
+    // The name of the attribute is the key and the type is the value.
+    // Note: currently deleting a search attribute is not supported.
     // Optional, default is empty.
-    // temporal:enums:replaces=custom_search_attributes_deprecated
-    map<string, SearchAttributeType> custom_search_attributes = 8;
+    // temporal:enums:replaces=custom_search_attributes
+    map<string, SearchAttributeType> search_attributes = 8;
     // Codec server spec used by UI to decode payloads for all users interacting with this namespace.
     // Optional, default is unset.
     CodecServerSpec codec_server = 6;
