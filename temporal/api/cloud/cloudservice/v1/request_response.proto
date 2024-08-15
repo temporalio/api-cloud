@@ -257,23 +257,7 @@ message GetNexusEndpointsRequest {
 message GetNexusEndpointsResponse {
     // The list of endpoints in ascending id order.
     repeated temporal.api.cloud.nexus.v1.Endpoint endpoints = 1;
-}
 
-message GetUserGroupsRequest {
-    // The requested size of the page to retrieve - optional.
-    // Cannot exceed 1000. Defaults to 100.
-    int32 page_size = 1;
-    // The page token if this is continuing from another response - optional.
-    string page_token = 2;
-    // Filter groups by the namespace they have access to - optional.
-    string namespace = 3;
-    // Filter groups by their name - optional.
-    string group_name = 4;
-}
-
-message GetUserGroupsResponse {
-    // The list of groups in ascending name order.
-    repeated temporal.api.cloud.identity.v1.UserGroup groups = 1;
     // The next page's token.
     string next_page_token = 2;
 }
@@ -299,6 +283,65 @@ message CreateNexusEndpointRequest {
 message CreateNexusEndpointResponse {
     // The id of the endpoint that was created.
     string endpoint_id = 1;
+
+    // The async operation.
+    temporal.api.cloud.operation.v1.AsyncOperation async_operation = 2;
+}
+
+message UpdateNexusEndpointRequest {
+    // The id of the nexus endpoint to update.
+    string endpoint_id = 1;
+
+    // The updated nexus endpoint specification.
+    temporal.api.cloud.nexus.v1.EndpointSpec spec = 2;
+
+    // The version of the nexus endpoint for which this update is intended for.
+    // The latest version can be found in the GetNexusEndpoint operation response.
+    string resource_version = 3;
+
+    // The id to use for this async operation - optional.
+    string async_operation_id = 4;
+}
+
+message UpdateNexusEndpointResponse {
+    // The async operation.
+    temporal.api.cloud.operation.v1.AsyncOperation async_operation = 1;
+}
+
+message DeleteNexusEndpointRequest {
+    // The id of the nexus endpoint to delete.
+    string endpoint_id = 1;
+
+    // The version of the endpoint for which this delete is intended for.
+    // The latest version can be found in the GetNexusEndpoint operation response.
+    string resource_version = 2;
+
+    // The id to use for this async operation - optional.
+    string async_operation_id = 3;
+}
+
+message DeleteNexusEndpointResponse {
+    // The async operation
+    temporal.api.cloud.operation.v1.AsyncOperation async_operation = 1;
+}
+
+message GetUserGroupsRequest {
+    // The requested size of the page to retrieve - optional.
+    // Cannot exceed 1000. Defaults to 100.
+    int32 page_size = 1;
+    // The page token if this is continuing from another response - optional.
+    string page_token = 2;
+    // Filter groups by the namespace they have access to - optional.
+    string namespace = 3;
+    // Filter groups by their name - optional.
+    string group_name = 4;
+}
+
+message GetUserGroupsResponse {
+    // The list of groups in ascending name order.
+    repeated temporal.api.cloud.identity.v1.UserGroup groups = 1;
+    // The next page's token.
+    string next_page_token = 2;
 }
 
 message GetUserGroupRequest {
@@ -327,26 +370,6 @@ message CreateUserGroupResponse {
     temporal.api.cloud.operation.v1.AsyncOperation async_operation = 2;
 }
 
-message UpdateNexusEndpointRequest {
-    // The id of the nexus endpoint to update.
-    string endpoint_id = 1;
-
-    // The updated nexus endpoint specification.
-    temporal.api.cloud.nexus.v1.EndpointSpec spec = 2;
-
-    // The version of the nexus endpoint for which this update is intended for.
-    // The latest version can be found in the GetNexusEndpoint operation response.
-    string resource_version = 3;
-
-    // The id to use for this async operation - optional.
-    string async_operation_id = 4;
-}
-
-message UpdateNexusEndpointResponse {
-    // The async operation.
-    temporal.api.cloud.operation.v1.AsyncOperation async_operation = 1;
-}
-
 message UpdateUserGroupRequest {
     // The id of the group to update.
     string group_id = 1;
@@ -365,22 +388,6 @@ message UpdateUserGroupResponse {
     temporal.api.cloud.operation.v1.AsyncOperation async_operation = 1;
 }
 
-message DeleteNexusEndpointRequest {
-    // The id of the nexus endpoint to delete.
-    string endpoint_id = 1;
-
-    // The version of the endpoint for which this delete is intended for.
-    // The latest version can be found in the GetNexusEndpoint operation response.
-    string resource_version = 2;
-
-    // The id to use for this async operation - optional.
-    string async_operation_id = 3;
-}
-
-message DeleteNexusEndpointResponse {
-    // The async operation
-    temporal.api.cloud.operation.v1.AsyncOperation async_operation = 1;
-}
 message DeleteUserGroupRequest {
     // The id of the group to delete.
     string group_id = 1;
