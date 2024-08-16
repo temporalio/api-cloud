@@ -218,6 +218,40 @@ message DeleteNamespaceResponse {
     temporal.api.cloud.operation.v1.AsyncOperation async_operation = 1;
 }
 
+message FailoverNamespaceRegionRequest {
+    // The namespace to failover.
+    string namespace = 1;
+    // The id of the region to failover to.
+    // Must be a region that the namespace is currently available in.
+    string region = 2;
+    // The id to use for this async operation - optional.
+    string async_operation_id = 3;
+}
+
+message FailoverNamespaceRegionResponse {
+    // The async operation.
+    temporal.api.cloud.operation.v1.AsyncOperation async_operation = 1;
+}
+
+message AddNamespaceRegionRequest {
+    // The namespace to add the region to.
+    string namespace = 1;
+    // The id of the standby region to add to the namespace.
+    // The GetRegions API can be used to get the list of valid region ids.
+    // Example: "aws-us-west-2".
+    string region = 2;
+    // The version of the namespace for which this add region operation is intended for.
+    // The latest version can be found in the GetNamespace operation response.
+    string resource_version = 3;
+    // The id to use for this async operation - optional.
+    string async_operation_id = 4;
+}
+
+message AddNamespaceRegionResponse {
+    // The async operation.
+    temporal.api.cloud.operation.v1.AsyncOperation async_operation = 1;
+}
+
 message GetRegionsRequest {
 }
 
@@ -234,6 +268,91 @@ message GetRegionRequest {
 message GetRegionResponse {
     // The temporal cloud region.
     temporal.api.cloud.region.v1.Region region = 1;
+}
+
+message GetApiKeysRequest {
+    // The requested size of the page to retrieve - optional.
+    // Cannot exceed 1000. Defaults to 100.
+    int32 page_size = 1;
+    // The page token if this is continuing from another response - optional.
+    string page_token = 2;
+    // Filter api keys by owner id - optional.
+    string owner_id = 3;
+    // Filter api keys by owner type - optional.
+    // Possible values: user, service-account
+    string owner_type = 4;
+}
+
+message GetApiKeysResponse {
+    // The list of api keys in ascending id order.
+    repeated temporal.api.cloud.identity.v1.ApiKey api_keys = 1;
+
+    // The next page's token.
+    string next_page_token = 2;
+}
+
+message GetApiKeyRequest {
+    // The id of the api key to get.
+    string key_id = 1;
+}
+
+message GetApiKeyResponse {
+    // The api key.
+    temporal.api.cloud.identity.v1.ApiKey api_key = 1;
+}
+
+message CreateApiKeyRequest {
+    // The spec for the api key to create.
+    // Create api key only supports service-account owner type for now.
+    temporal.api.cloud.identity.v1.ApiKeySpec spec = 1;
+
+    // The id to use for this async operation - optional.
+    string async_operation_id = 2;
+}
+
+message CreateApiKeyResponse {
+    // The id of the api key created.
+    string key_id = 1;
+    // The token of the api key created.
+    // This is a secret and should be stored securely.
+    // It will not be retrievable after this response.
+    string token = 2;
+    // The async operation.
+    temporal.api.cloud.operation.v1.AsyncOperation async_operation = 3;
+}
+
+message UpdateApiKeyRequest {
+    // The id of the api key to update.
+    string key_id = 1;
+    // The new api key specification.
+    temporal.api.cloud.identity.v1.ApiKeySpec spec = 2;
+    // The version of the api key for which this update is intended for.
+    // The latest version can be found in the GetApiKey operation response.
+    string resource_version = 3;
+
+    // The id to use for this async operation - optional.
+    string async_operation_id = 4;
+}
+
+message UpdateApiKeyResponse {
+    // The async operation.
+    temporal.api.cloud.operation.v1.AsyncOperation async_operation = 1;
+}
+
+message DeleteApiKeyRequest {
+    // The id of the api key to delete.
+    string key_id = 1;
+    // The version of the api key for which this delete is intended for.
+    // The latest version can be found in the GetApiKey operation response.
+    string resource_version = 2;
+
+    // The id to use for this async operation - optional.
+    string async_operation_id = 3;
+}
+
+message DeleteApiKeyResponse {
+    // The async operation.
+    temporal.api.cloud.operation.v1.AsyncOperation async_operation = 1;
 }
 
 message GetNexusEndpointsRequest {
@@ -333,8 +452,15 @@ message GetUserGroupsRequest {
     string page_token = 2;
     // Filter groups by the namespace they have access to - optional.
     string namespace = 3;
-    // Filter groups by their name - optional.
-    string group_name = 4;
+    // Filter groups by the display name - optional.
+    string display_name = 4;
+    // Filter groups by the google group specification - optional.
+    GoogleGroupFilter google_group = 5;
+
+    message GoogleGroupFilter {
+        // Filter groups by the google group email - optional.
+        string email_address = 1;
+    }
 }
 
 message GetUserGroupsResponse {
@@ -419,6 +545,77 @@ message SetUserGroupNamespaceAccessRequest {
 }
 
 message SetUserGroupNamespaceAccessResponse {
+    // The async operation.
+    temporal.api.cloud.operation.v1.AsyncOperation async_operation = 1;
+}
+
+message CreateServiceAccountRequest {
+    // The spec of the service account to create.
+    temporal.api.cloud.identity.v1.ServiceAccountSpec spec = 1;
+    // The ID to use for this async operation - optional.
+    string async_operation_id = 2;
+}
+
+message CreateServiceAccountResponse {
+    // The ID of the created service account.
+    string service_account_id = 1;
+    // The async operation.
+    temporal.api.cloud.operation.v1.AsyncOperation async_operation = 2;
+}
+
+message GetServiceAccountRequest {
+    // ID of the service account to retrieve.
+    string service_account_id = 1;
+}
+
+message GetServiceAccountResponse {
+    // The service account retrieved.
+    temporal.api.cloud.identity.v1.ServiceAccount service_account = 1;
+}
+
+message GetServiceAccountsRequest {
+    // The requested size of the page to retrieve - optional.
+    // Cannot exceed 1000. Defaults to 100.
+    int32 page_size = 1;
+    // The page token if this is continuing from another response - optional.
+    string page_token = 2;
+}
+
+message GetServiceAccountsResponse {
+    // The list of service accounts in ascending ID order.
+    repeated temporal.api.cloud.identity.v1.ServiceAccount service_account = 1;
+    // The next page token, set if there is another page.
+    string next_page_token = 2;
+}
+
+message UpdateServiceAccountRequest {
+    // The ID of the service account to update.
+    string service_account_id = 1;
+    // The new service account specification.
+    temporal.api.cloud.identity.v1.ServiceAccountSpec spec = 2;
+    // The version of the service account for which this update is intended for.
+    // The latest version can be found in the GetServiceAccount response.
+    string resource_version = 3;
+    // The ID to use for this async operation - optional.
+    string async_operation_id = 4;
+}
+
+message UpdateServiceAccountResponse {
+    // The async operation.
+    temporal.api.cloud.operation.v1.AsyncOperation async_operation = 1;
+}
+
+message DeleteServiceAccountRequest {
+    // The ID of the service account to delete;
+    string service_account_id = 1;
+    // The version of the service account for which this update is intended for.
+    // The latest version can be found in the GetServiceAccount response.
+    string resource_version = 2;
+    // The ID to use for this async operation - optional.
+    string async_operation_id = 3;
+}
+
+message DeleteServiceAccountResponse {
     // The async operation.
     temporal.api.cloud.operation.v1.AsyncOperation async_operation = 1;
 }
