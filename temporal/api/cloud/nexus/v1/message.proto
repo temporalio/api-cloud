@@ -8,7 +8,7 @@ import "google/protobuf/timestamp.proto";
 
 message EndpointSpec {
     // The name of the endpoint. Must be unique within an account.
-    // The name must match `[a-zA-Z_][a-zA-Z0-9_]*`.
+    // The name must match `^[a-zA-Z][a-zA-Z0-9\-]*[a-zA-Z0-9]$`.
     // This field is mutable.
     string name = 1;
 
@@ -19,14 +19,17 @@ message EndpointSpec {
     // must match with at least one of the specs to be accepted by the endpoint.
     // This field is mutable.
     repeated EndpointPolicySpec policy_specs = 3;
+
+    // The markdown description of the endpoint - optional.
+    string description = 4;
 }
 
 message EndpointTargetSpec {
     // A target spec for routing nexus requests to a specific cloud namespace worker.
-    CloudWorkerTargetSpec cloud_worker_target_spec = 1;
+    WorkerTargetSpec worker_target_spec = 1;
 }
 
-message CloudWorkerTargetSpec {
+message WorkerTargetSpec {
     // The target cloud namespace to route requests to. Namespace must be in same account as the endpoint. This field is mutable.
     string namespace_id = 1;
 
@@ -70,5 +73,3 @@ message Endpoint {
     // The date and time when the endpoint was last modified.
     google.protobuf.Timestamp last_modified_time = 7;
 }
-
-
