@@ -32,7 +32,7 @@ message MtlsAuthSpec {
     // This must only be one value, but the CA can have a chain.
     //
     // (-- api-linter: core::0140::base64=disabled --)
-    // Deprecated: Use accepted_client_ca instead.
+    // Deprecated: Use accepted_client_ca instead. Will be ignored when accepted_client_ca is set.
     string accepted_client_ca_deprecated = 1;
     // The ca cert(s) in PEM format that the clients can use for authentication and authorization.
     // This must only be one value, but the CA can have a chain.
