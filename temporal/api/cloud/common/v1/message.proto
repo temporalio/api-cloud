@@ -21,4 +21,5 @@ enum ResourceState {
     RESOURCE_STATE_DELETE_FAILED = 7;      // The resource failed to delete. This is an error state. Reach out to support for remediation.
     RESOURCE_STATE_DELETED = 8;            // The resource has been deleted.
     RESOURCE_STATE_SUSPENDED = 9;          // The resource is suspended and not available for use. Reach out to support for remediation.
+    RESOURCE_STATE_EXPIRED = 10;           // The resource has expired and is no longer available for use.
 }

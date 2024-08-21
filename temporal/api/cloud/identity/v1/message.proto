@@ -13,9 +13,11 @@ import "temporal/api/cloud/common/v1/message.proto";
 import "google/protobuf/timestamp.proto";
 
 message AccountAccess {
-    // The role on the account, should be one of [admin, developer, read]
+    // The role on the account, should be one of [owner, admin, developer, financeadmin, read]
+    // owner - gives full access to the account, including users, namespaces, and billing
     // admin - gives full access the account, including users and namespaces
     // developer - gives access to create namespaces on the account
+    // financeadmin - gives read only access and write access for billing
     // read - gives read only access to the account
     // Deprecated: Use role field instead.
     string role_deprecated = 1 [deprecated = true];
@@ -24,10 +26,12 @@ message AccountAccess {
     Role role = 2;
 
     enum Role {
-    	ROLE_UNSPECIFIED = 0;
-	ROLE_ADMIN = 1; // Gives full access to the account, including users and namespaces.
-	ROLE_DEVELOPER = 2; // Gives access to create namespaces on the account.
-	ROLE_READ = 3; // Gives read only access to the account.
+        ROLE_UNSPECIFIED = 0;
+	ROLE_OWNER = 1; // Gives full access to the account, including users, namespaces, and billing.
+	ROLE_ADMIN = 2; // Gives full access to the account, including users and namespaces.
+	ROLE_DEVELOPER = 3; // Gives access to create namespaces on the account.
+	ROLE_FINANCE_ADMIN = 4; // Gives read only access and write access for billing.
+	ROLE_READ = 5; // Gives read only access to the account.
     }
 }
 

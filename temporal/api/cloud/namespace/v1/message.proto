@@ -32,7 +32,11 @@ message MtlsAuthSpec {
     // This must only be one value, but the CA can have a chain.
     //
     // (-- api-linter: core::0140::base64=disabled --)
-    string accepted_client_ca = 1;
+    // Deprecated: Use accepted_client_ca instead. Will be ignored when accepted_client_ca is set.
+    string accepted_client_ca_deprecated = 1;
+    // The ca cert(s) in PEM format that the clients can use for authentication and authorization.
+    // This must only be one value, but the CA can have a chain.
+    bytes accepted_client_ca = 4;
     // Certificate filters which, if specified, only allow connections from client certificates whose distinguished name properties match at least one of the filters.
     // This allows limiting access to specific end-entity certificates.
     // Optional, default is empty.
@@ -88,10 +92,28 @@ message NamespaceSpec {
     // Supported attribute types: text, keyword, int, double, bool, datetime, keyword_list.
     // NOTE: currently deleting a search attribute is not supported.
     // Optional, default is empty.
-    map<string, string> custom_search_attributes = 5;
+    // Deprecated: Use search_attributes instead.
+    map<string, string> custom_search_attributes = 5 [deprecated = true];
+    // The custom search attributes to use for the namespace.
+    // The name of the attribute is the key and the type is the value.
+    // Note: currently deleting a search attribute is not supported.
+    // Optional, default is empty.
+    // temporal:enums:replaces=custom_search_attributes
+    map<string, SearchAttributeType> search_attributes = 8;
     // Codec server spec used by UI to decode payloads for all users interacting with this namespace.
     // Optional, default is unset.
     CodecServerSpec codec_server = 6;
+
+    enum SearchAttributeType {
+        SEARCH_ATTRIBUTE_TYPE_UNSPECIFIED = 0;
+        SEARCH_ATTRIBUTE_TYPE_TEXT = 1;
+        SEARCH_ATTRIBUTE_TYPE_KEYWORD = 2;
+        SEARCH_ATTRIBUTE_TYPE_INT = 3;
+        SEARCH_ATTRIBUTE_TYPE_DOUBLE = 4;
+        SEARCH_ATTRIBUTE_TYPE_BOOL = 5;
+        SEARCH_ATTRIBUTE_TYPE_DATETIME = 6;
+        SEARCH_ATTRIBUTE_TYPE_KEYWORD_LIST = 7;
+    }
 }
 
 message Endpoints {
