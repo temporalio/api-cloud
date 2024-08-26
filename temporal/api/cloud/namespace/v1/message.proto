@@ -9,7 +9,7 @@ option java_outer_classname = "MessageProto";
 option ruby_package = "Temporalio::Api::Cloud::Namespace::V1";
 option csharp_namespace = "Temporalio.Api.Cloud.Namespace.V1";
 
-import "temporal/api/cloud/common/v1/message.proto";
+import "temporal/api/cloud/resource/v1/message.proto";
 import "google/protobuf/timestamp.proto";
 
 message CertificateFilterSpec {
@@ -161,7 +161,7 @@ message Namespace {
     // The current state of the namespace.
     // For any failed state, reach out to Temporal Cloud support for remediation.
     // temporal:enums:replaces=state_deprecated
-    temporal.api.cloud.common.v1.ResourceState state = 13;
+    temporal.api.cloud.resource.v1.ResourceState state = 13;
     // The id of the async operation that is creating/updating/deleting the namespace, if any.
     string async_operation_id = 5;
     // The endpoints for the namespace.
