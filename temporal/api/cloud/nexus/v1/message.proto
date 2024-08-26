@@ -4,6 +4,7 @@ package temporal.api.cloud.nexus.v1;
 
 option go_package = "go.temporal.io/api/cloud/nexus/v1;nexus";
 
+import "temporal/api/cloud/resource/v1/message.proto";
 import "google/protobuf/timestamp.proto";
 
 message EndpointSpec {
@@ -25,8 +26,10 @@ message EndpointSpec {
 }
 
 message EndpointTargetSpec {
-    // A target spec for routing nexus requests to a specific cloud namespace worker.
-    WorkerTargetSpec worker_target_spec = 1;
+    oneof variant {
+        // A target spec for routing nexus requests to a specific cloud namespace worker.
+        WorkerTargetSpec worker_target_spec = 1;
+    }
 }
 
 message WorkerTargetSpec {
@@ -38,8 +41,10 @@ message WorkerTargetSpec {
 }
 
 message EndpointPolicySpec {
-    // A policy spec that allows one caller namespace to access the endpoint. 
-    AllowedCloudNamespacePolicySpec allowed_cloud_namespace_policy_spec = 1;
+    oneof variant {
+        // A policy spec that allows one caller namespace to access the endpoint.
+        AllowedCloudNamespacePolicySpec allowed_cloud_namespace_policy_spec = 1;
+    }
 }
 
 message AllowedCloudNamespacePolicySpec {
@@ -60,9 +65,8 @@ message Endpoint {
     EndpointSpec spec = 3;
 
     // The current state of the endpoint.
-    // Possible values: activating, activationfailed, active, updating, updatefailed, deleting, deletefailed, deleted
     // For any failed state, reach out to Temporal Cloud support for remediation.
-    string state = 4;
+    temporal.api.cloud.resource.v1.ResourceState state = 4;
 
     // The id of any ongoing async operation that is creating, updating, or deleting the endpoint, if any.
     string async_operation_id = 5;
