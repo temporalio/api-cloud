@@ -179,6 +179,43 @@ service CloudService {
         };
     }
 
+    // Gets nexus endpoints
+    rpc GetNexusEndpoints(GetNexusEndpointsRequest) returns (GetNexusEndpointsResponse) {
+        option (google.api.http) = {
+            get: "/cloud/nexus/endpoints",
+        };
+    }
+    
+    // Get a nexus endpoint
+    rpc GetNexusEndpoint(GetNexusEndpointRequest) returns (GetNexusEndpointResponse) {
+        option (google.api.http) = {
+            get: "/cloud/nexus/endpoints/{endpoint_id}",
+        };
+    }
+
+    // Create a nexus endpoint
+    rpc CreateNexusEndpoint(CreateNexusEndpointRequest) returns (CreateNexusEndpointResponse) {
+        option (google.api.http) = {
+            post: "/cloud/nexus/endpoints",
+            body: "*"
+        };
+    }
+
+    // Update a nexus endpoint
+    rpc UpdateNexusEndpoint(UpdateNexusEndpointRequest) returns (UpdateNexusEndpointResponse) {
+        option (google.api.http) = {
+            post: "/cloud/nexus/endpoints/{endpoint_id}",
+            body: "*"
+        };
+    }
+
+    // Delete a nexus endpoint
+    rpc DeleteNexusEndpoint(DeleteNexusEndpointRequest) returns (DeleteNexusEndpointResponse) {
+        option (google.api.http) = {
+            delete: "/cloud/nexus/endpoints/{endpoint_id}",
+        };
+    }
+
     // Get all user groups
     rpc GetUserGroups (GetUserGroupsRequest) returns (GetUserGroupsResponse) {
         option (google.api.http) = {
