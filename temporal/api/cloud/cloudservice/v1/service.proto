@@ -297,4 +297,11 @@ service CloudService {
             delete: "/cloud/service-accounts/{service_account_id}",
         };
     }
+            
+    // Get audit logs
+    rpc GetAuditLogs(GetAuditLogsRequest) returns (GetAuditLogsResponse) {
+        option (google.api.http) = {
+            get: "/cloud/audit-logs",
+        };
+    }
 }

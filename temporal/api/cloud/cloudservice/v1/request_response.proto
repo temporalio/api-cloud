@@ -9,6 +9,9 @@ option java_outer_classname = "RequestResponseProto";
 option ruby_package = "Temporalio::Api::Cloud::CloudService::V1";
 option csharp_namespace = "Temporalio.Api.Cloud.CloudService.V1";
 
+import "google/protobuf/timestamp.proto";
+
+import "temporal/api/cloud/auditlog/v1/message.proto";
 import "temporal/api/cloud/operation/v1/message.proto";
 import "temporal/api/cloud/identity/v1/message.proto";
 import "temporal/api/cloud/namespace/v1/message.proto";
@@ -618,4 +621,23 @@ message DeleteServiceAccountRequest {
 message DeleteServiceAccountResponse {
     // The async operation.
     temporal.api.cloud.operation.v1.AsyncOperation async_operation = 1;
+}
+
+message GetAuditLogsRequest {
+    // The requested size of the page to retrieve - optional.
+    // Cannot exceed 1000. Defaults to 100.
+    int32 page_size = 1;
+    // The page token if this is continuing from another response - optional.
+    string page_token = 2;
+    // Filter for UTC time >= (defaults to 30 days ago) - optional.
+    google.protobuf.Timestamp start_time_inclusive = 3;
+    // Filter for UTC time < (defaults to current time) - optional.
+    google.protobuf.Timestamp end_time_exclusive = 4;
+}
+
+message GetAuditLogsResponse {
+    // The list of audit logs ordered by inserted time, emit time, log_id
+    repeated temporal.api.cloud.auditlog.v1.LogRecord logs = 1;
+    // The next page's token.
+    string next_page_token = 2;
 }
