@@ -23,6 +23,7 @@ message Summary {
 }
 
 message RecordGroup {
+    // GroupBy keys and their values for this record group. Multiple fields are combined with logical AND.
     repeated GroupBy group_bys = 1;
     repeated Record records = 2;
 }
