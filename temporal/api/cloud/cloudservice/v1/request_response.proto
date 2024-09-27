@@ -9,11 +9,14 @@ option java_outer_classname = "RequestResponseProto";
 option ruby_package = "Temporalio::Api::Cloud::CloudService::V1";
 option csharp_namespace = "Temporalio.Api.Cloud.CloudService.V1";
 
+import "google/protobuf/timestamp.proto";
+
 import "temporal/api/cloud/operation/v1/message.proto";
 import "temporal/api/cloud/identity/v1/message.proto";
 import "temporal/api/cloud/namespace/v1/message.proto";
 import "temporal/api/cloud/nexus/v1/message.proto";
 import "temporal/api/cloud/region/v1/message.proto";
+import "temporal/api/cloud/usage/v1/message.proto";
 
 message GetUsersRequest {
     // The requested size of the page to retrieve - optional.
@@ -618,4 +621,34 @@ message DeleteServiceAccountRequest {
 message DeleteServiceAccountResponse {
     // The async operation.
     temporal.api.cloud.operation.v1.AsyncOperation async_operation = 1;
+}
+
+message GetUsageRequest {
+    // Filter for UTC time >= - optional.
+    // Defaults to: start of the current month.
+    // Must be: within the last 90 days from the current date.
+    // Must be: midnight UTC time.
+    google.protobuf.Timestamp start_time_inclusive = 1;
+    
+    // Filter for UTC time < - optional.
+    // Defaults to: start of the next UTC day.
+    // Must be: within the last 90 days from the current date.
+    // Must be: midnight UTC time.
+    google.protobuf.Timestamp end_time_exclusive = 2;
+    
+    // The requested size of the page to retrieve - optional.
+    // Each count corresponds to a single object - per day per namespace
+    // Cannot exceed 1000. Defaults to 100.
+    int32 page_size = 3;
+    
+    // The page token if this is continuing from another response - optional.
+    string page_token = 4;
+}
+
+message GetUsageResponse {
+    // The list of data based on granularity (per Day for now)
+    // Ordered by: time range in ascending order
+    repeated temporal.api.cloud.usage.v1.Summary summaries = 1;
+    // The next page's token.
+    string next_page_token = 2;
 }
