@@ -19,7 +19,7 @@ message Summary {
     // Records grouped by namespace
     repeated RecordGroup record_groups = 3;
     // True if data for given time window is not fully available yet (e.g. delays)
-    // When true, records for the given time range could still be added in the future (until false) 
+    // When true, records for the given time range could still be added/updated in the future (until false) 
     bool incomplete = 4;
 }
 
