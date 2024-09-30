@@ -1,0 +1,70 @@
+syntax = "proto3";
+
+package api.cloud.sink.v1;
+
+enum ExportSinkHealth {
+    EXPORT_SINK_HEALTH_UNSPECIFIED = 0;
+    EXPORT_SINK_HEALTH_OK = 1;
+    EXPORT_SINK_HEALTH_ERROR_INTERNAL = 2;
+    EXPORT_SINK_HEALTH_ERROR_USER_CONFIGURATION = 3;
+}
+
+enum ExportSinkState {
+    EXPORT_SINK_STATE_UNSPECIFIED = 0;
+    EXPORT_SINK_STATE_ACTIVATING = 1;
+    EXPORT_SINK_STATE_ACTIVE = 2;
+    EXPORT_SINK_STATE_ACTIVATION_FAILED = 3;
+    EXPORT_SINK_STATE_DELETING = 4;
+    EXPORT_SINK_STATE_DELETED = 5;
+    EXPORT_SINK_STATE_UPDATING = 6;
+    EXPORT_SINK_STATE_UPDATE_FAILED = 7;
+}
+
+message ExportSinkSpec {
+    string name = 1;
+
+    bool enabled = 2;
+
+    // The receiving service type.  
+    ExportDestinationType destination_type = 3;
+    
+    // The S3spec when destination_type is S3
+    S3Spec s3_sink = 4;
+
+    // The GCSspec when destination_type is GCS
+    GCSSpec gcs_sink = 5;
+
+    enum ExportDestinationType {
+        EXPORT_DESTINATION_TYPE_UNSPECIFIED = 0;
+        EXPORT_DESTINATION_TYPE_S3 = 1;
+        EXPORT_DESTINATION_TYPE_GCS = 2;
+    }
+}
+
+message S3Spec{
+    // The role that Temporal Cloud assumes for writing records to customer's S3 bucket
+    string role_name = 1;
+
+    // Destination S3 bucket name for temporal to send data to
+    string bucket_name = 2;
+    
+    // The region of the S3 bucket
+    string region = 3;
+
+    // The kms key ARN used for encryption
+    string kms_arn = 4;
+
+    // The aws account id of s3 bucket and assumed role
+    string aws_account_id = 5;
+}
+
+message GCSSpec{
+    // The customer service account id that Temporal Cloud impersonates for writing records to customer's gcs bucket
+    string sa_id = 1;
+
+    // Destination gcs bucket name for temporal to send data to
+    string bucket_name = 2;
+
+    // The gcp project id of gcs bucket and service account
+    string gcp_project_id = 3;
+}
