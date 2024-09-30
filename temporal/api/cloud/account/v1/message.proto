@@ -7,9 +7,9 @@ option go_package = "go.temporal.io/api/cloud/account/v1;account";
 message MetricsSpec {
     // Enables the endpoint from which clients can scrape all their namespace metrics.
     bool enabled = 1;
-    // The base64 encoded ca cert(s) in PEM format that clients connecting to the metrics endpoint can use for authentication.
+    // The ca cert(s) in PEM format that clients connecting to the metrics endpoint can use for authentication.
     // This must only be one value, but the CA can have a chain.
-    string accepted_client_ca = 2;
+    bytes accepted_client_ca = 2;
 }
 
 message AccountSpec {
@@ -24,17 +24,19 @@ message Metrics {
 }
 
 message Account {
+    // The id of the account.
+    string id = 1;
     // The account specification.
-    AccountSpec spec = 1;
+    AccountSpec spec = 2;
     // The current version of the account specification.
     // The next update operation will have to include this version.
-    string resource_version = 2;
+    string resource_version = 3;
     // The current state of the account.
     // Possible values: activating, activationfailed, active, updating, updatefailed, deleting, deletefailed, deleted, suspending, suspendfailed, suspended.
     // For any failed state, reach out to Temporal Cloud support for remediation.
-    string state = 3;
+    string state = 4;
     // The id of the async operation that is updating the account, if any.
-    string async_operation_id = 4;
+    string async_operation_id = 5;
     // Information related to metrics.
-    Metrics metrics = 5;
+    Metrics metrics = 6;
 }
