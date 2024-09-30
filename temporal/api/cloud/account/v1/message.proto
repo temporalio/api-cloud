@@ -7,8 +7,6 @@ option go_package = "go.temporal.io/api/cloud/account/v1;account";
 import "temporal/api/cloud/resource/v1/message.proto";
 
 message MetricsSpec {
-    // Enables the endpoint from which clients can scrape all their namespace metrics.
-    bool enabled = 1;
     // The ca cert(s) in PEM format that clients connecting to the metrics endpoint can use for authentication.
     // This must only be one value, but the CA can have a chain.
     bytes accepted_client_ca = 2;
@@ -16,6 +14,7 @@ message MetricsSpec {
 
 message AccountSpec {
     // The metrics specification for this account.
+    // If not specified, metrics will not be enabled.
     MetricsSpec metrics = 1;
 }
 
