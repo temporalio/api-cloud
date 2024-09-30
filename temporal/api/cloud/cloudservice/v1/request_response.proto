@@ -681,3 +681,18 @@ message UpdateAccountResponse {
     temporal.api.cloud.operation.v1.AsyncOperation async_operation = 1;
 }
 
+message CreateExportSinkRequest {
+    // the namespace the sink is configured under
+    string namespace = 1;
+    // the spec for the sink
+    temporal.api.cloud.sink.v1.ExportSinkSpec spec = 2;
+    // The id to use for this async operation - optional
+    string async_operation_id = 3;
+}
+
+message CreateExportSinkResponse {
+    // The ID of the created service account.
+    string sink_name = 1;
+    // The async operation.
+    temporal.api.cloud.operation.v1.AsyncOperation async_operation = 2;
+}

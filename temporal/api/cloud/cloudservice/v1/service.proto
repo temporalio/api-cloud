@@ -319,5 +319,34 @@ service CloudService {
             post: "/cloud/account",
             body: "*"
 	};
+    
+    // Create an export sink
+    rpc CreateExportSink(CreateExportSinkRequest) returns (CreateExportSinkResponse){
+        ption (google.api.http) = {
+            post: "/cloud/namespaces/{namespace}/sinks",
+            body: "*"
+        };
     }
+
+    // Get an export sink 
+    rpc GetExportSink(GetExportSinkReqeust) returns (GetExportSinkResponse){
+        ption (google.api.http) = {
+            post: "/cloud/namespaces/{namespace}/sinks/{sink_name}",
+            body: "*"
+        };
+    }
+
+    // Get export sinks
+    rpc GetExportSinks(GetExportSinkReqeust) returns (GetExportSinkResponse){
+        ption (google.api.http) = {
+            post: "/cloud/namespaces/{namespace}/sinks/{sink_name}",
+            body: "*"
+        };
+    }
+
+    // Upate an export sink
+
+    // Delete an export sink
+
+    // Validate an export sink
 }
