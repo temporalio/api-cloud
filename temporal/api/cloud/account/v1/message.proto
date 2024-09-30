@@ -4,6 +4,8 @@ package temporal.api.cloud.account.v1;
 
 option go_package = "go.temporal.io/api/cloud/account/v1;account";
 
+import "temporal/api/cloud/resource/v1/message.proto";
+
 message MetricsSpec {
     // Enables the endpoint from which clients can scrape all their namespace metrics.
     bool enabled = 1;
@@ -32,9 +34,7 @@ message Account {
     // The next update operation will have to include this version.
     string resource_version = 3;
     // The current state of the account.
-    // Possible values: activating, activationfailed, active, updating, updatefailed, deleting, deletefailed, deleted, suspending, suspendfailed, suspended.
-    // For any failed state, reach out to Temporal Cloud support for remediation.
-    string state = 4;
+    temporal.api.cloud.resource.v1.ResourceState state = 4;
     // The id of the async operation that is updating the account, if any.
     string async_operation_id = 5;
     // Information related to metrics.
