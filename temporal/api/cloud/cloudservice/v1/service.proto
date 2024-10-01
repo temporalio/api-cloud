@@ -306,14 +306,14 @@ service CloudService {
         };
     }
 
-    // Get account information
+    // Get account information.
     rpc GetAccount (GetAccountRequest) returns (GetAccountResponse) {
         option (google.api.http) = {
             get: "/cloud/account",
         };
     }
 
-    // Update account information
+    // Update account information.
     rpc UpdateAccount (UpdateAccountRequest) returns (UpdateAccountResponse) {
         option (google.api.http) = {
             post: "/cloud/account",

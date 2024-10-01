@@ -678,4 +678,3 @@ message UpdateAccountResponse {
     temporal.api.cloud.operation.v1.AsyncOperation async_operation = 1;
 }
 
-
