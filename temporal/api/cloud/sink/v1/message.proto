@@ -1,37 +1,31 @@
 syntax = "proto3";
 
-package api.cloud.sink.v1;
+package temporal.api.cloud.sink.v1;
 
-enum ExportSinkHealth {
-    EXPORT_SINK_HEALTH_UNSPECIFIED = 0;
-    EXPORT_SINK_HEALTH_OK = 1;
-    EXPORT_SINK_HEALTH_ERROR_INTERNAL = 2;
-    EXPORT_SINK_HEALTH_ERROR_USER_CONFIGURATION = 3;
-}
+import "google/protobuf/timestamp.proto";
 
-enum ExportSinkState {
-    EXPORT_SINK_STATE_UNSPECIFIED = 0;
-    EXPORT_SINK_STATE_ACTIVATING = 1;
-    EXPORT_SINK_STATE_ACTIVE = 2;
-    EXPORT_SINK_STATE_ACTIVATION_FAILED = 3;
-    EXPORT_SINK_STATE_DELETING = 4;
-    EXPORT_SINK_STATE_DELETED = 5;
-    EXPORT_SINK_STATE_UPDATING = 6;
-    EXPORT_SINK_STATE_UPDATE_FAILED = 7;
-}
+
+option go_package = "go.temporal.io/api/cloud/sink/v1;sink";
+option java_package = "io.temporal.api.cloud.sink.v1";
+option java_multiple_files = true;
+option java_outer_classname = "MessageProto";
+option ruby_package = "Temporalio::Api::Cloud::Sink::V1";
+option csharp_namespace = "Temporalio.Api.Cloud.Sink.V1";
 
 message ExportSinkSpec {
+    // The name of the export sink.
     string name = 1;
 
+    // A flag indicating whether the export sink is enabled or not.
     bool enabled = 2;
 
-    // The receiving service type.  
+    // The receiving sink type for export.
     ExportDestinationType destination_type = 3;
     
-    // The S3spec when destination_type is S3
+    // The S3 configuration details when destination_type is S3.
     S3Spec s3_sink = 4;
 
-    // The GCSspec when destination_type is GCS
+    // The GCS configuration details when destination_type is GCS.
     GCSSpec gcs_sink = 5;
 
     enum ExportDestinationType {
@@ -41,30 +35,75 @@ message ExportSinkSpec {
     }
 }
 
-message S3Spec{
-    // The role that Temporal Cloud assumes for writing records to customer's S3 bucket
+
+message ExportSink {
+    // The name of the export sink.
+    string name = 1;
+
+    // The version of the export sink resource.
+    string resource_version = 2;
+
+    // The current state of the export sink.
+    ExportSinkState state = 3;
+
+    // The specification details of the export sink.
+    ExportSinkSpec spec = 4;
+
+    // The health status of the export sink.
+    ExportSinkHealth health = 5;
+
+    // An error message describing any issues with the export sink, if applicable.
+    string error_message = 6;
+
+    // The timestamp of the latest successful data export.
+    google.protobuf.Timestamp latest_data_export_time = 7;
+
+    // The timestamp of the last health check performed on the export sink.
+    google.protobuf.Timestamp last_health_check_time = 8;
+
+    enum ExportSinkHealth {
+        EXPORT_SINK_HEALTH_UNSPECIFIED = 0;
+        EXPORT_SINK_HEALTH_OK = 1;
+        EXPORT_SINK_HEALTH_ERROR_INTERNAL = 2;
+        EXPORT_SINK_HEALTH_ERROR_USER_CONFIGURATION = 3;
+    }
+
+    enum ExportSinkState {
+        EXPORT_SINK_STATE_UNSPECIFIED = 0;
+        EXPORT_SINK_STATE_ACTIVATING = 1;
+        EXPORT_SINK_STATE_ACTIVE = 2;
+        EXPORT_SINK_STATE_ACTIVATION_FAILED = 3;
+        EXPORT_SINK_STATE_DELETING = 4;
+        EXPORT_SINK_STATE_DELETED = 5;
+        EXPORT_SINK_STATE_UPDATING = 6;
+        EXPORT_SINK_STATE_UPDATE_FAILED = 7;
+    }
+}
+
+message S3Spec {
+    // The IAM role that Temporal Cloud assumes for writing records to the customer's S3 bucket.
     string role_name = 1;
 
-    // Destination S3 bucket name for temporal to send data to
+    // The name of the destination S3 bucket where Temporal will send data.
     string bucket_name = 2;
     
-    // The region of the S3 bucket
+    // The region where the S3 bucket is located.
     string region = 3;
 
-    // The kms key ARN used for encryption
+    // The AWS Key Management Service (KMS) ARN used for encryption.
     string kms_arn = 4;
 
-    // The aws account id of s3 bucket and assumed role
+    // The AWS account ID associated with the S3 bucket and the assumed role.
     string aws_account_id = 5;
 }
 
-message GCSSpec{
-    // The customer service account id that Temporal Cloud impersonates for writing records to customer's gcs bucket
+message GCSSpec {
+    // The customer service account ID that Temporal Cloud impersonates for writing records to the customer's GCS bucket.
     string sa_id = 1;
 
-    // Destination gcs bucket name for temporal to send data to
+    // The name of the destination GCS bucket where Temporal will send data.
     string bucket_name = 2;
 
-    // The gcp project id of gcs bucket and service account
+    // The GCP project ID associated with the GCS bucket and service account.
     string gcp_project_id = 3;
 }
