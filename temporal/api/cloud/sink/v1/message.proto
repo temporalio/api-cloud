@@ -3,6 +3,7 @@ syntax = "proto3";
 package temporal.api.cloud.sink.v1;
 
 import "google/protobuf/timestamp.proto";
+import "temporal/api/cloud/resource/v1/message.proto";
 
 
 option go_package = "go.temporal.io/api/cloud/sink/v1;sink";
@@ -13,38 +14,30 @@ option ruby_package = "Temporalio::Api::Cloud::Sink::V1";
 option csharp_namespace = "Temporalio.Api.Cloud.Sink.V1";
 
 message ExportSinkSpec {
-    // The name of the export sink.
+    // The unique name of the export sink.
     string name = 1;
 
     // A flag indicating whether the export sink is enabled or not.
     bool enabled = 2;
-
-    // The receiving sink type for export.
-    ExportDestinationType destination_type = 3;
     
     // The S3 configuration details when destination_type is S3.
-    S3Spec s3_sink = 4;
+    S3Spec s3 = 3;
 
-    // The GCS configuration details when destination_type is GCS.
-    GCSSpec gcs_sink = 5;
-
-    enum ExportDestinationType {
-        EXPORT_DESTINATION_TYPE_UNSPECIFIED = 0;
-        EXPORT_DESTINATION_TYPE_S3 = 1;
-        EXPORT_DESTINATION_TYPE_GCS = 2;
-    }
+    // This is a feature under development. We will allow GCS sink support for GCP Namespaces.
+    // The GCS configuration details when destination_type is GCS. 
+    GCSSpec gcs = 4;
 }
 
 
 message ExportSink {
-    // The name of the export sink.
+    // The unique name of the export sink.
     string name = 1;
 
     // The version of the export sink resource.
     string resource_version = 2;
 
     // The current state of the export sink.
-    ExportSinkState state = 3;
+    temporal.api.cloud.resource.v1.ResourceState state = 3;
 
     // The specification details of the export sink.
     ExportSinkSpec spec = 4;
@@ -66,17 +59,6 @@ message ExportSink {
         EXPORT_SINK_HEALTH_OK = 1;
         EXPORT_SINK_HEALTH_ERROR_INTERNAL = 2;
         EXPORT_SINK_HEALTH_ERROR_USER_CONFIGURATION = 3;
-    }
-
-    enum ExportSinkState {
-        EXPORT_SINK_STATE_UNSPECIFIED = 0;
-        EXPORT_SINK_STATE_ACTIVATING = 1;
-        EXPORT_SINK_STATE_ACTIVE = 2;
-        EXPORT_SINK_STATE_ACTIVATION_FAILED = 3;
-        EXPORT_SINK_STATE_DELETING = 4;
-        EXPORT_SINK_STATE_DELETED = 5;
-        EXPORT_SINK_STATE_UPDATING = 6;
-        EXPORT_SINK_STATE_UPDATE_FAILED = 7;
     }
 }
 
