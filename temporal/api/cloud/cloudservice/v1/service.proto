@@ -307,7 +307,7 @@ service CloudService {
     }
 
    // Create an export sink
-    rpc CreateExportSink(CreateExportSinkRequest) returns (CreateExportSinkResponse) {
+    rpc CreateNamespaceExportSink(CreateNamespaceExportSinkRequest) returns (CreateNamespaceExportSinkResponse) {
         option (google.api.http) = {
             post: "/cloud/namespaces/{namespace}/sinks",
             body: "*"
@@ -315,36 +315,36 @@ service CloudService {
     }
 
     // Get an export sink 
-    rpc GetExportSink(GetExportSinkRequest) returns (GetExportSinkResponse) {
+    rpc GetNamespaceExportSink(GetNamespaceExportSinkRequest) returns (GetNamespaceExportSinkResponse) {
     option (google.api.http) = {
-            get: "/cloud/namespaces/{namespace}/sinks/{sink_name}"
+            get: "/cloud/namespaces/{namespace}/sinks/{name}"
         };
     }
 
     // Get export sinks
-    rpc GetExportSinks(GetExportSinksRequest) returns (GetExportSinksResponse) {
+    rpc GetNamespaceExportSinks(GetNamespaceExportSinksRequest) returns (GetNamespaceExportSinksResponse) {
         option (google.api.http) = {
             get: "/cloud/namespaces/{namespace}/sinks"
         };
     }
 
     // Update an export sink
-    rpc UpdateExportSink(UpdateExportSinkRequest) returns (UpdateExportSinkResponse) {
+    rpc UpdateNamespaceExportSink(UpdateNamespaceExportSinkRequest) returns (UpdateNamespaceExportSinkResponse) {
     option (google.api.http) = {
-            post: "/cloud/namespaces/{namespace}/sinks/{sink_name}",
+            post: "/cloud/namespaces/{namespace}/sinks/{name}",
             body: "*"
         };
     }
 
     // Delete an export sink
-    rpc DeleteExportSink(DeleteExportSinkRequest) returns (DeleteExportSinkResponse) {
+    rpc DeleteNamespaceExportSink(DeleteNamespaceExportSinkRequest) returns (DeleteNamespaceExportSinkResponse) {
     option (google.api.http) = {
-            delete: "/cloud/namespaces/{namespace}/sinks/{sink_name}"
+            delete: "/cloud/namespaces/{namespace}/sinks/{name}"
         };
     }
 
     // Validate an export sink
-    rpc ValidateExportSink(ValidateExportSinkRequest) returns (ValidateExportSinkResponse) {
+    rpc ValidateNamespaceExportSink(ValidateNamespaceExportSinkRequest) returns (ValidateNamespaceExportSinkResponse) {
     option (google.api.http) = {
             post: "/cloud/namespaces/{namespace}/sinks/validate",
             body: "*"

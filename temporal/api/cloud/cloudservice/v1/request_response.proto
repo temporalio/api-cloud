@@ -683,6 +683,7 @@ message UpdateAccountResponse {
 }
 
 message CreateExportSinkRequest {
+message CreateNamespaceExportSinkRequest {
     // The namespace under which the sink is configured.
     string namespace = 1;
     // The specification for the export sink.
@@ -691,24 +692,24 @@ message CreateExportSinkRequest {
     string async_operation_id = 3;
 }
 
-message CreateExportSinkResponse {
+message CreateNamespaceExportSinkResponse {
     // The async operation.
     temporal.api.cloud.operation.v1.AsyncOperation async_operation = 2;
 }
 
-message GetExportSinkRequest {
+message GetNamespaceExportSinkRequest {
     // The namespace to which the sink belongs.
     string namespace = 1;
     // The name of the sink to retrieve.
-    string sink_name = 2;
+    string name = 2;
 }
 
-message GetExportSinkResponse {
+message GetNamespaceExportSinkResponse {
     // The export sink retrieved.
    temporal.api.cloud.sink.v1.ExportSink sink = 1;
 }
 
-message GetExportSinksRequest {
+message GetNamespaceExportSinksRequest {
     // The namespace to which the sinks belong.
     string namespace = 1;
     // The requested size of the page to retrieve. Cannot exceed 1000.
@@ -718,58 +719,56 @@ message GetExportSinksRequest {
     string page_token = 3;
 }
 
-message GetExportSinksResponse {
+message GetNamespaceExportSinksResponse {
     // The list of export sinks retrieved.
     repeated temporal.api.cloud.sink.v1.ExportSink sinks = 1;
     // The next page token, set if there is another page.
     string next_page_token = 2;
 }
 
-message UpdateExportSinkRequest {
+message UpdateNamespaceExportSinkRequest {
     // The namespace to which the sink belongs.
     string namespace = 1;
     // The name of the sink to update.
-    string sink_name = 2;
+    string name = 2;
     // The updated export sink specification.
     temporal.api.cloud.sink.v1.ExportSinkSpec spec = 3;
     // The version of the sink to update. The latest version can be
-    // retrieved using the GetExportSink call.
+    // retrieved using the GetNamespaceExportSink call.
     string resource_version = 4;
     // The ID to use for this async operation - optional.
     string async_operation_id = 5;
 }
 
-message UpdateExportSinkResponse {
+message UpdateNamespaceExportSinkResponse {
     // The async operation.
     temporal.api.cloud.operation.v1.AsyncOperation async_operation = 1;
 }
 
 
-message DeleteExportSinkRequest {
+message DeleteNamespaceExportSinkRequest {
     // The namespace to which the sink belongs.
     string namespace = 1;
     // The name of the sink to delete.
-    string sink_name = 2;
+    string name = 2;
     // The version of the sink to delete. The latest version can be
-    // retrieved using the GetExportSink call.
+    // retrieved using the GetNamespaceExportSink call.
     string resource_version = 3;
     // The ID to use for this async operation - optional.
     string async_operation_id = 4;
 }
 
-message DeleteExportSinkResponse {
+message DeleteNamespaceExportSinkResponse {
     // The async operation.
     temporal.api.cloud.operation.v1.AsyncOperation async_operation = 1;
 }
 
-message ValidateExportSinkRequest {
+message ValidateNamespaceExportSinkRequest {
     // The namespace to which the sink belongs.
     string namespace = 1;
     // The export sink specification to validate.
     temporal.api.cloud.sink.v1.ExportSinkSpec spec = 2;
 }
 
-message ValidateExportSinkResponse {
-    // The async operation.
-    temporal.api.cloud.operation.v1.AsyncOperation async_operation = 1;
+message ValidateNamespaceExportSinkResponse {
 }
