@@ -74,7 +74,7 @@ service CloudService {
             body: "*"
         };
     }
-    
+
     // Get all namespaces
     rpc GetNamespaces (GetNamespacesRequest)  returns (GetNamespacesResponse) {
         option (google.api.http) = {
@@ -304,5 +304,20 @@ service CloudService {
         option (google.api.http) = {
             get: "/cloud/usage",
         };
+    }
+
+    // Get account information.
+    rpc GetAccount (GetAccountRequest) returns (GetAccountResponse) {
+        option (google.api.http) = {
+            get: "/cloud/account",
+        };
+    }
+
+    // Update account information.
+    rpc UpdateAccount (UpdateAccountRequest) returns (UpdateAccountResponse) {
+        option (google.api.http) = {
+            post: "/cloud/account",
+            body: "*"
+	};
     }
 }
