@@ -284,7 +284,10 @@ message GetApiKeysRequest {
     string owner_id = 3;
     // Filter api keys by owner type - optional.
     // Possible values: user, service-account
-    string owner_type = 4;
+    string owner_type_deprecated = 4 [deprecated = true];
+    // Filter api keys by owner type - optional.
+    // temporal:enums:replaces=owner_type_deprecated
+    temporal.api.cloud.identity.v1.OwnerType owner_type = 5;
 }
 
 message GetApiKeysResponse {
