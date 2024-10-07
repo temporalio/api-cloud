@@ -19,9 +19,11 @@ message AccountAccess {
     // developer - gives access to create namespaces on the account
     // financeadmin - gives read only access and write access for billing
     // read - gives read only access to the account
-    // Deprecated: Use role field instead.
+    // Deprecated: Not supported after 2024-10-01-00 api version. Use role instead.
+    // temporal:versioning:max_version=2024-10-01-00
     string role_deprecated = 1 [deprecated = true];
     // The role on the account.
+    // temporal:versioning:min_version=2024-10-01-00
     // temporal:enums:replaces=role_deprecated
     Role role = 2;
 
@@ -40,10 +42,12 @@ message NamespaceAccess {
     // admin - gives full access to the namespace, including assigning namespace access to other users
     // write - gives write access to the namespace configuration and workflows within the namespace
     // read - gives read only access to the namespace configuration and workflows within the namespace
-    // Deprecated: Use permission field instead.
+    // Deprecated: Not supported after 2024-10-01-00 api version. Use permission instead.
+    // temporal:versioning:max_version=2024-10-01-00
     string permission_deprecated = 1 [deprecated = true];
 
     // The permission to the namespace.
+    // temporal:versioning:min_version=2024-10-01-00
     // temporal:enums:replaces=permission_deprecated
     Permission permission = 2;
 
@@ -92,10 +96,12 @@ message User {
     // The user specification
     UserSpec spec = 3;
     // The current state of the user
-    // Deprecated: Use state field instead.
+    // Deprecated: Not supported after 2024-10-01-00 api version. Use state instead.
+    // temporal:versioning:max_version=2024-10-01-00
     string state_deprecated = 4 [deprecated = true];
     // The current state of the user.
     // For any failed state, reach out to Temporal Cloud support for remediation.
+    // temporal:versioning:min_version=2024-10-01-00
     // temporal:enums:replaces=state_deprecated
     temporal.api.cloud.resource.v1.ResourceState state = 9;
     // The id of the async operation that is creating/updating/deleting the user, if any
@@ -134,10 +140,12 @@ message UserGroup {
     // The group specification
     UserGroupSpec spec = 3;
     // The current state of the group.
-    // Deprecated: Use state field instead.
+    // Deprecated: Not supported after 2024-10-01-00 api version. Use state instead.
+    // temporal:versioning:max_version=2024-10-01-00
     string state_deprecated = 4 [deprecated = true];
     // The current state of the group.
     // For any failed state, reach out to Temporal Cloud support for remediation.
+    // temporal:versioning:min_version=2024-10-01-00
     // temporal:enums:replaces=state_deprecated
     temporal.api.cloud.resource.v1.ResourceState state = 8;
     // The id of the async operation that is creating/updating/deleting the group, if any
@@ -160,10 +168,12 @@ message ServiceAccount {
     // The current state of the service account.
     // Possible values: activating, activationfailed, active, updating, updatefailed, deleting, deletefailed, deleted, suspending, suspendfailed, suspended.
     // For any failed state, reach out to Temporal Cloud support for remediation.
-    // Deprecated: Use state field instead.
+    // Deprecated: Not supported after 2024-10-01-00 api version. Use state instead.
+    // temporal:versioning:max_version=2024-10-01-00
     string state_deprecated = 4 [deprecated = true];
     // The current state of the service account.
     // For any failed state, reach out to Temporal Cloud support for remediation.
+    // temporal:versioning:min_version=2024-10-01-00
     // temporal:enums:replaces=state_deprecated
     temporal.api.cloud.resource.v1.ResourceState state = 8;
     // The id of the async operation that is creating/updating/deleting the service account, if any.
@@ -199,9 +209,11 @@ message ApiKey {
     // The current state of the API key.
     // Possible values: activating, activationfailed, active, updating, updatefailed, deleting, deletefailed, deleted, suspending, suspendfailed, suspended.
     // For any failed state, reach out to Temporal Cloud support for remediation.
-    // Deprecated: Use state field instead.
+    // Deprecated: Not supported after 2024-10-01-00 api version. Use state instead.
+    // temporal:versioning:max_version=2024-10-01-00
     string state_deprecated = 4 [deprecated = true];
     // The current state of the API key.
+    // temporal:versioning:min_version=2024-10-01-00
     // temporal:enums:replaces=state_deprecated
     temporal.api.cloud.resource.v1.ResourceState state = 8;
     // The id of the async operation that is creating/updating/deleting the API key, if any.
@@ -222,9 +234,11 @@ message ApiKeySpec {
     // The type of the owner to create the API key for.
     // The owner type is immutable. Once set during creation, it cannot be changed.
     // Possible values: user, service-account.
-    // Deprecated: Use owner_type field instead.
+    // Deprecated: Not supported after 2024-10-01-00 api version. Use owner_type instead.
+    // temporal:versioning:max_version=2024-10-01-00
     string owner_type_deprecated = 2 [deprecated = true];
     // The type of the owner to create the API key for.
+    // temporal:versioning:min_version=2024-10-01-00
     // temporal:enums:replaces=owner_type_deprecated
     OwnerType owner_type = 7;
     // The display name of the API key.
