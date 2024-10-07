@@ -9,7 +9,7 @@ option java_outer_classname = "MessageProto";
 option ruby_package = "Temporalio::Api::Cloud::Identity::V1";
 option csharp_namespace = "Temporalio.Api.Cloud.Identity.V1";
 
-import "temporal/api/cloud/common/v1/message.proto";
+import "temporal/api/cloud/resource/v1/message.proto";
 import "google/protobuf/timestamp.proto";
 
 message AccountAccess {
@@ -97,7 +97,7 @@ message User {
     // The current state of the user.
     // For any failed state, reach out to Temporal Cloud support for remediation.
     // temporal:enums:replaces=state_deprecated
-    temporal.api.cloud.common.v1.ResourceState state = 9;
+    temporal.api.cloud.resource.v1.ResourceState state = 9;
     // The id of the async operation that is creating/updating/deleting the user, if any
     string async_operation_id = 5;
     // The details of the open invitation sent to the user, if any
@@ -139,7 +139,7 @@ message UserGroup {
     // The current state of the group.
     // For any failed state, reach out to Temporal Cloud support for remediation.
     // temporal:enums:replaces=state_deprecated
-    temporal.api.cloud.common.v1.ResourceState state = 8;
+    temporal.api.cloud.resource.v1.ResourceState state = 8;
     // The id of the async operation that is creating/updating/deleting the group, if any
     string async_operation_id = 5;
     // The date and time when the group was created
@@ -165,7 +165,7 @@ message ServiceAccount {
     // The current state of the service account.
     // For any failed state, reach out to Temporal Cloud support for remediation.
     // temporal:enums:replaces=state_deprecated
-    temporal.api.cloud.common.v1.ResourceState state = 8;
+    temporal.api.cloud.resource.v1.ResourceState state = 8;
     // The id of the async operation that is creating/updating/deleting the service account, if any.
     string async_operation_id = 5;
     // The date and time when the service account was created.
@@ -203,7 +203,7 @@ message ApiKey {
     string state_deprecated = 4 [deprecated = true];
     // The current state of the API key.
     // temporal:enums:replaces=state_deprecated
-    temporal.api.cloud.common.v1.ResourceState state = 8;
+    temporal.api.cloud.resource.v1.ResourceState state = 8;
     // The id of the async operation that is creating/updating/deleting the API key, if any.
     string async_operation_id = 5;
     // The date and time when the API key was created.
