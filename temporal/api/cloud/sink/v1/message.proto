@@ -2,65 +2,12 @@ syntax = "proto3";
 
 package temporal.api.cloud.sink.v1;
 
-import "google/protobuf/timestamp.proto";
-import "temporal/api/cloud/resource/v1/message.proto";
-
-
 option go_package = "go.temporal.io/api/cloud/sink/v1;sink";
 option java_package = "io.temporal.api.cloud.sink.v1";
 option java_multiple_files = true;
 option java_outer_classname = "MessageProto";
 option ruby_package = "Temporalio::Api::Cloud::Sink::V1";
 option csharp_namespace = "Temporalio.Api.Cloud.Sink.V1";
-
-message ExportSinkSpec {
-    // The unique name of the export sink.
-    string name = 1;
-
-    // A flag indicating whether the export sink is enabled or not.
-    bool enabled = 2;
-    
-    // The S3 configuration details when destination_type is S3.
-    S3Spec s3 = 3;
-
-    // This is a feature under development. We will allow GCS sink support for GCP Namespaces.
-    // The GCS configuration details when destination_type is GCS. 
-    GCSSpec gcs = 4;
-}
-
-
-message ExportSink {
-    // The unique name of the export sink.
-    string name = 1;
-
-    // The version of the export sink resource.
-    string resource_version = 2;
-
-    // The current state of the export sink.
-    temporal.api.cloud.resource.v1.ResourceState state = 3;
-
-    // The specification details of the export sink.
-    ExportSinkSpec spec = 4;
-
-    // The health status of the export sink.
-    ExportSinkHealth health = 5;
-
-    // An error message describing any issues with the export sink, if applicable.
-    string error_message = 6;
-
-    // The timestamp of the latest successful data export.
-    google.protobuf.Timestamp latest_data_export_time = 7;
-
-    // The timestamp of the last health check performed on the export sink.
-    google.protobuf.Timestamp last_health_check_time = 8;
-
-    enum ExportSinkHealth {
-        EXPORT_SINK_HEALTH_UNSPECIFIED = 0;
-        EXPORT_SINK_HEALTH_OK = 1;
-        EXPORT_SINK_HEALTH_ERROR_INTERNAL = 2;
-        EXPORT_SINK_HEALTH_ERROR_USER_CONFIGURATION = 3;
-    }
-}
 
 message S3Spec {
     // The IAM role that Temporal Cloud assumes for writing records to the customer's S3 bucket.

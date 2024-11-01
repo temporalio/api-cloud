@@ -18,7 +18,6 @@ import "temporal/api/cloud/nexus/v1/message.proto";
 import "temporal/api/cloud/region/v1/message.proto";
 import "temporal/api/cloud/account/v1/message.proto";
 import "temporal/api/cloud/usage/v1/message.proto";
-import "temporal/api/cloud/sink/v1/message.proto";
 
 message GetUsersRequest {
     // The requested size of the page to retrieve - optional.
@@ -686,7 +685,7 @@ message CreateNamespaceExportSinkRequest {
     // The namespace under which the sink is configured.
     string namespace = 1;
     // The specification for the export sink.
-    temporal.api.cloud.sink.v1.ExportSinkSpec spec = 2;
+    temporal.api.cloud.namespace.v1.ExportSinkSpec spec = 2;
     // Optional. The ID to use for this async operation.
     string async_operation_id = 3;
 }
@@ -705,7 +704,7 @@ message GetNamespaceExportSinkRequest {
 
 message GetNamespaceExportSinkResponse {
     // The export sink retrieved.
-   temporal.api.cloud.sink.v1.ExportSink sink = 1;
+   temporal.api.cloud.namespace.v1.ExportSink sink = 1;
 }
 
 message GetNamespaceExportSinksRequest {
@@ -720,7 +719,7 @@ message GetNamespaceExportSinksRequest {
 
 message GetNamespaceExportSinksResponse {
     // The list of export sinks retrieved.
-    repeated temporal.api.cloud.sink.v1.ExportSink sinks = 1;
+    repeated temporal.api.cloud.namespace.v1.ExportSink sinks = 1;
     // The next page token, set if there is another page.
     string next_page_token = 2;
 }
@@ -729,7 +728,7 @@ message UpdateNamespaceExportSinkRequest {
     // The namespace to which the sink belongs.
     string namespace = 1;
     // The updated export sink specification.
-    temporal.api.cloud.sink.v1.ExportSinkSpec spec = 2;
+    temporal.api.cloud.namespace.v1.ExportSinkSpec spec = 2;
     // The version of the sink to update. The latest version can be
     // retrieved using the GetNamespaceExportSink call.
     string resource_version = 3;
@@ -763,7 +762,7 @@ message ValidateNamespaceExportSinkRequest {
     // The namespace to which the sink belongs.
     string namespace = 1;
     // The export sink specification to validate.
-    temporal.api.cloud.sink.v1.ExportSinkSpec spec = 2;
+    temporal.api.cloud.namespace.v1.ExportSinkSpec spec = 2;
 }
 
 message ValidateNamespaceExportSinkResponse {
