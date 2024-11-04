@@ -214,7 +214,7 @@ message NamespaceRegionStatus {
 }
 
 message ExportSinkSpec {
-    // The unique name of the export sink.
+    // The unique name of the export sink, it can't be changed once set. 
     string name = 1;
 
     // A flag indicating whether the export sink is enabled or not.
@@ -242,7 +242,7 @@ message ExportSink {
     ExportSinkSpec spec = 4;
 
     // The health status of the export sink.
-    ExportSinkHealth health = 5;
+    Health health = 5;
 
     // An error message describing any issues with the export sink, if applicable.
     string error_message = 6;
@@ -253,10 +253,10 @@ message ExportSink {
     // The timestamp of the last health check performed on the export sink.
     google.protobuf.Timestamp last_health_check_time = 8;
 
-    enum ExportSinkHealth {
-        EXPORT_SINK_HEALTH_UNSPECIFIED = 0;
-        EXPORT_SINK_HEALTH_OK = 1;
-        EXPORT_SINK_HEALTH_ERROR_INTERNAL = 2;
-        EXPORT_SINK_HEALTH_ERROR_USER_CONFIGURATION = 3;
+    enum Health {
+        HEALTH_UNSPECIFIED = 0;
+        HEALTH_OK = 1;
+        HEALTH_ERROR_INTERNAL = 2;
+        HEALTH_ERROR_USER_CONFIGURATION = 3;
     }
 }
