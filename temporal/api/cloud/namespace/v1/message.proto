@@ -11,6 +11,7 @@ option csharp_namespace = "Temporalio.Api.Cloud.Namespace.V1";
 
 import "temporal/api/cloud/resource/v1/message.proto";
 import "google/protobuf/timestamp.proto";
+import "temporal/api/cloud/sink/v1/message.proto";
 
 message CertificateFilterSpec {
     // The common_name in the certificate.
@@ -209,5 +210,53 @@ message NamespaceRegionStatus {
         STATE_PASSIVE = 3;      // The namespace is passive in this region.
         STATE_REMOVING = 4;     // The region is being removed from the namespace.
         STATE_FAILED = 5;       // The region failed to be added/removed, check failure_reason in the last async_operation status for more details.
+    }
+}
+
+message ExportSinkSpec {
+    // The unique name of the export sink, it can't be changed once set. 
+    string name = 1;
+
+    // A flag indicating whether the export sink is enabled or not.
+    bool enabled = 2;
+    
+    // The S3 configuration details when destination_type is S3.
+    temporal.api.cloud.sink.v1.S3Spec s3 = 3;
+
+    // This is a feature under development. We will allow GCS sink support for GCP Namespaces.
+    // The GCS configuration details when destination_type is GCS. 
+    temporal.api.cloud.sink.v1.GCSSpec gcs = 4;
+}
+
+message ExportSink {
+    // The unique name of the export sink.
+    string name = 1;
+
+    // The version of the export sink resource.
+    string resource_version = 2;
+
+    // The current state of the export sink.
+    temporal.api.cloud.resource.v1.ResourceState state = 3;
+
+    // The specification details of the export sink.
+    ExportSinkSpec spec = 4;
+
+    // The health status of the export sink.
+    Health health = 5;
+
+    // An error message describing any issues with the export sink, if applicable.
+    string error_message = 6;
+
+    // The timestamp of the latest successful data export.
+    google.protobuf.Timestamp latest_data_export_time = 7;
+
+    // The timestamp of the last health check performed on the export sink.
+    google.protobuf.Timestamp last_health_check_time = 8;
+
+    enum Health {
+        HEALTH_UNSPECIFIED = 0;
+        HEALTH_OK = 1;
+        HEALTH_ERROR_INTERNAL = 2;
+        HEALTH_ERROR_USER_CONFIGURATION = 3;
     }
 }

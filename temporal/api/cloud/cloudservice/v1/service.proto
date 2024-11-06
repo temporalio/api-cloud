@@ -320,4 +320,50 @@ service CloudService {
             body: "*"
 	};
     }
+
+    // Create an export sink
+    rpc CreateNamespaceExportSink(CreateNamespaceExportSinkRequest) returns (CreateNamespaceExportSinkResponse) {
+        option (google.api.http) = {
+            post: "/cloud/namespaces/{namespace}/export-sinks",
+            body: "*"
+        };
+    }
+
+    // Get an export sink 
+    rpc GetNamespaceExportSink(GetNamespaceExportSinkRequest) returns (GetNamespaceExportSinkResponse) {
+        option (google.api.http) = {
+            get: "/cloud/namespaces/{namespace}/export-sinks/{name}"
+        };
+    }
+
+    // Get export sinks
+    rpc GetNamespaceExportSinks(GetNamespaceExportSinksRequest) returns (GetNamespaceExportSinksResponse) {
+        option (google.api.http) = {
+            get: "/cloud/namespaces/{namespace}/export-sinks"
+        };
+    }
+
+    // Update an export sink
+    rpc UpdateNamespaceExportSink(UpdateNamespaceExportSinkRequest) returns (UpdateNamespaceExportSinkResponse) {
+        option (google.api.http) = {
+            post: "/cloud/namespaces/{namespace}/export-sinks/{spec.name}",
+            body: "*"
+        };
+    }
+
+    // Delete an export sink
+    rpc DeleteNamespaceExportSink(DeleteNamespaceExportSinkRequest) returns (DeleteNamespaceExportSinkResponse) {
+        option (google.api.http) = {
+            delete: "/cloud/namespaces/{namespace}/export-sinks/{name}"
+        };
+    }
+
+    // Validates an export sink configuration by delivering an empty test file to the specified sink.
+    // This operation verifies that the sink is correctly configured, accessible, and ready for data export.
+    rpc ValidateNamespaceExportSink(ValidateNamespaceExportSinkRequest) returns (ValidateNamespaceExportSinkResponse) {
+        option (google.api.http) = {
+            post: "/cloud/namespaces/{namespace}/export-sinks/validate",
+            body: "*"
+        };
+    }
 }
