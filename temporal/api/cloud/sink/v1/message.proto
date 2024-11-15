@@ -35,4 +35,7 @@ message GCSSpec {
 
     // The GCP project ID associated with the GCS bucket and service account.
     string gcp_project_id = 3;
+
+    // The region of the gcs bucket
+    string region = 4;
 }
