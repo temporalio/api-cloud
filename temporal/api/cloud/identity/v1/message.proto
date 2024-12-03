@@ -128,14 +128,23 @@ message GoogleGroupSpec {
     string email_address = 1;
 }
 
+message SCIMGroupSpec {
+    // The id used in the upstream identity provider.
+    string idp_id = 1;
+}
+
 message UserGroupSpec {
     // The display name of the group.
     string display_name = 1;
     // The access assigned to the group.
     Access access = 2;
-    // The specification of the google group that this group is associated with.
-    // For now only google groups are supported, and this field is required.
-    GoogleGroupSpec google_group = 3;
+    oneof group_type {
+        // The specification of the google group that this group is associated with.
+        GoogleGroupSpec google_group = 3;
+        // The specification of the SCIM group that this group is associated with.
+        // SCIM groups cannot be created or deleted directly, but their access can be managed.
+        SCIMGroupSpec scim_group = 4;
+    }
 }
 
 message UserGroup {
