@@ -26,8 +26,13 @@ message EndpointSpec {
     // This field is mutable.
     repeated EndpointPolicySpec policy_specs = 3;
 
+    // Deprecated: Not supported after 2025-01-01-00 api version. Use description instead.
+    // temporal:versioning:max_version=2025-01-01-00
+    string description_deprecated = 4 [deprecated = true];
+
     // The markdown description of the endpoint - optional.
-    string description = 4;
+    // temporal:versioning:min_version=2025-01-01-00
+    temporal.api.common.v1.Payload description = 5;
 }
 
 message EndpointTargetSpec {
