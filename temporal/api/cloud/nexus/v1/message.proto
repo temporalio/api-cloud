@@ -3,6 +3,11 @@ syntax = "proto3";
 package temporal.api.cloud.nexus.v1;
 
 option go_package = "go.temporal.io/api/cloud/nexus/v1;nexus";
+option java_package = "io.temporal.api.cloud.nexus.v1";
+option java_multiple_files = true;
+option java_outer_classname = "MessageProto";
+option ruby_package = "Temporalio::Api::Cloud::Nexus::V1";
+option csharp_namespace = "Temporalio.Api.Cloud.Nexus.V1";
 
 import "temporal/api/cloud/resource/v1/message.proto";
 import "google/protobuf/timestamp.proto";
