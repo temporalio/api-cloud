@@ -29,11 +29,11 @@ message AccountAccess {
 
     enum Role {
         ROLE_UNSPECIFIED = 0;
-	ROLE_OWNER = 1; // Gives full access to the account, including users, namespaces, and billing.
-	ROLE_ADMIN = 2; // Gives full access to the account, including users and namespaces.
-	ROLE_DEVELOPER = 3; // Gives access to create namespaces on the account.
-	ROLE_FINANCE_ADMIN = 4; // Gives read only access and write access for billing.
-	ROLE_READ = 5; // Gives read only access to the account.
+        ROLE_OWNER = 1; // Gives full access to the account, including users, namespaces, and billing.
+        ROLE_ADMIN = 2; // Gives full access to the account, including users and namespaces.
+        ROLE_DEVELOPER = 3; // Gives access to create namespaces on the account.
+        ROLE_FINANCE_ADMIN = 4; // Gives read only access and write access for billing.
+        ROLE_READ = 5; // Gives read only access to the account.
     }
 }
 
@@ -53,9 +53,9 @@ message NamespaceAccess {
 
     enum Permission {
     	PERMISSION_UNSPECIFIED = 0;
-	PERMISSION_ADMIN = 1; // Gives full access to the namespace, including assigning namespace access to other users.
-	PERMISSION_WRITE = 2; // Gives write access to the namespace configuration and workflows within the namespace.
-	PERMISSION_READ = 3; // Gives read only access to the namespace configuration and workflows within the namespace.
+        PERMISSION_ADMIN = 1; // Gives full access to the namespace, including assigning namespace access to other users.
+        PERMISSION_WRITE = 2; // Gives write access to the namespace configuration and workflows within the namespace.
+        PERMISSION_READ = 3; // Gives read only access to the namespace configuration and workflows within the namespace.
     }
 }
 
@@ -71,6 +71,13 @@ message Access {
     // The map of namespace accesses
     // The key is the namespace name and the value is the access to the namespace
     map<string, NamespaceAccess> namespace_accesses = 2;
+}
+
+message NamespaceScopedAccess {
+    // The namespace the service account is assigned to - immutable.
+    string namespace = 1;
+    // The namespace access assigned to the service account - mutable.
+    NamespaceAccess access = 2;
 }
 
 message UserSpec {
@@ -189,9 +196,18 @@ message ServiceAccountSpec {
     // The name associated with the service account.
     // The name is mutable, but must be unique across all your active service accounts.
     string name = 1;
+
+    // Note: one of `Access` or `NamespaceScopedAccess` must be provided, but not both.
     // The access assigned to the service account.
+    // If set, creates an account scoped service account.
     // The access is mutable.
     Access access = 2;
+    // The namespace scoped access assigned to the service account.
+    // If set, creates a namespace scoped service account (limited to a single namespace).
+    // The namespace scoped access is partially mutable.
+    // Refer to `NamespaceScopedAccess` for details.
+    NamespaceScopedAccess namespace_scoped_access = 4;
+
     // The description associated with the service account - optional.
     // The description is mutable.
     string description = 3;
