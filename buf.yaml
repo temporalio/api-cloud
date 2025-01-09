@@ -4,7 +4,7 @@ deps:
   - buf.build/temporalio/api:v1.43.0
 breaking:
   use:
-    - FILE
+    - WIRE
 lint:
   use:
     - DEFAULT
