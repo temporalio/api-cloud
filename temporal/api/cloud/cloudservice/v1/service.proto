@@ -128,6 +128,13 @@ service CloudService {
         };
     }
 
+    // Remove a region from a namespace
+    rpc RemoveNamespaceRegion (RemoveNamespaceRegionRequest) returns (RemoveNamespaceRegionResponse) {
+        option (google.api.http) = {
+            delete: "/cloud/namespaces/{namespace}/{region}",
+        };
+    }
+
     // Get all regions
     rpc GetRegions (GetRegionsRequest) returns (GetRegionsResponse) {
         option (google.api.http) = {
