@@ -1,9 +1,12 @@
 version: v1
 deps:
   - buf.build/googleapis/googleapis
+  - buf.build/temporalio/api:v1.43.0
 breaking:
   use:
     - FILE
+  except:
+    - FIELD_SAME_ONEOF
 lint:
   use:
     - DEFAULT
