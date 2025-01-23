@@ -5,6 +5,8 @@ deps:
 breaking:
   use:
     - FILE
+  except:
+    - FIELD_SAME_ONEOF
 lint:
   use:
     - DEFAULT
