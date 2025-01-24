@@ -115,6 +115,7 @@ message NamespaceSpec {
     CodecServerSpec codec_server = 6;
 
     // The lifecycle configuration for the namespace.
+    // temporal:versioning:min_version=2025-01-01-00
     LifecycleSpec lifecycle = 9;
 
     enum SearchAttributeType {
