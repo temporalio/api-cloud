@@ -65,6 +65,11 @@ message CodecServerSpec {
     bool include_cross_origin_credentials = 3;
 }
 
+message LifecycleSpec {
+    // Flag to enable delete protection for the namespace.
+    bool enable_delete_protection = 1;
+}
+
 message DisasterRecoverySpec {
     // Flag to disable managed failover for the namespace.
     bool disable_managed_failover = 1;
@@ -113,7 +118,9 @@ message NamespaceSpec {
     // Codec server spec used by UI to decode payloads for all users interacting with this namespace.
     // Optional, default is unset.
     CodecServerSpec codec_server = 6;
-
+    // The lifecycle configuration for the namespace.
+    // temporal:versioning:min_version=v0.4.0
+    LifecycleSpec lifecycle = 9;
     // The disaster recovery configuration for the namespace.
     // temporal:versioning:min_version=v0.4.0
     DisasterRecoverySpec disaster_recovery = 10;
