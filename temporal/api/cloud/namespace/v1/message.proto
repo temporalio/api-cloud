@@ -70,7 +70,7 @@ message LifecycleSpec {
     bool enable_delete_protection = 1;
 }
 
-message DisasterRecoverySpec {
+message HighAvailabilitySpec {
     // Flag to disable managed failover for the namespace.
     bool disable_managed_failover = 1;
 }
@@ -121,9 +121,9 @@ message NamespaceSpec {
     // The lifecycle configuration for the namespace.
     // temporal:versioning:min_version=v0.4.0
     LifecycleSpec lifecycle = 9;
-    // The disaster recovery configuration for the namespace.
+    // The high availability configuration for the namespace.
     // temporal:versioning:min_version=v0.4.0
-    DisasterRecoverySpec disaster_recovery = 10;
+    HighAvailabilitySpec high_availability = 10;
 
     enum SearchAttributeType {
         SEARCH_ATTRIBUTE_TYPE_UNSPECIFIED = 0;
