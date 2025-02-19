@@ -34,5 +34,5 @@ Refer to the [cloud-samples-go](https://github.com/temporalio/cloud-samples-go/b
 
 Refer to the [temporal-cloud-api-client-typescript](https://github.com/steveandroulakis/temporal-cloud-api-client-typescript) sample repository for how to use the cloud ops api in Typescript.  
 Refer to the [temporal-cloud-api-client-java](https://github.com/steveandroulakis/temporal-cloud-api-client-java) sample repository for how to use the cloud ops api in Java.  
-Refer [temporal-cloud-api-client-kotlin](https://github.com/steveandroulakis/temporal-cloud-api-client-kotlin) sample repository demonstrating how to use the cloud ops api in a Kotlin client.
+Refer to the [temporal-cloud-api-client-kotlin](https://github.com/steveandroulakis/temporal-cloud-api-client-kotlin) sample repository for how to use the cloud ops api in Kotlin.
 > The Java, Typescript, and Kotlin sample apps all provide a simple HTML UI that demonstrates how to use the Cloud Ops API to CRUD Namespaces and Users.
