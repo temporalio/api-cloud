@@ -1,5 +1,5 @@
 version: v1
-name: buf.build/temporalio/api-cloud
+name: buf.build/temporalio/cloud-api
 deps:
   - buf.build/googleapis/googleapis
 breaking:
