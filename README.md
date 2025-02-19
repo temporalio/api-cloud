@@ -1,7 +1,7 @@
 # Temporal Cloud Operations API (Public Preview)
 
 > aka the Cloud Ops API  
-> These apis (proto files) are currently offered as a Public Preview. While they are production worthy, they could change. Please reach out to Temporal Support if you have questions.
+> These apis (proto files) are currently offered as a Public Preview. While they are production worthy, they are subject to change. Please reach out to Temporal Support if you have questions.
 
 ## How to use
 
