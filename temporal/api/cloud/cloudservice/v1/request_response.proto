@@ -256,6 +256,25 @@ message AddNamespaceRegionResponse {
     temporal.api.cloud.operation.v1.AsyncOperation async_operation = 1;
 }
 
+message DeleteNamespaceRegionRequest {
+    // The namespace to delete a region.
+    string namespace = 1;
+    // The id of the standby region to be deleted.
+    // The GetRegions API can be used to get the list of valid region ids.
+    // Example: "aws-us-west-2".
+    string region = 2;
+    // The version of the namespace for which this delete region operation is intended for.
+    // The latest version can be found in the GetNamespace operation response.
+    string resource_version = 3;
+    // The id to use for this async operation - optional.
+    string async_operation_id = 4;
+}
+
+message DeleteNamespaceRegionResponse {
+    // The async operation.
+    temporal.api.cloud.operation.v1.AsyncOperation async_operation = 1;
+}
+
 message GetRegionsRequest {
 }
 
