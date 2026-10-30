@@ -995,7 +995,7 @@ message GetCallerRateLimitsRequest {
 
     message CallerFilter {
         // The type of caller to filter on.
-        // Required when caller_filter is set.
+        // Required when caller_filter is set. Accepted values are "namespace".
         string caller_type = 1;
 
         // Optional, list the default rate limit for the type.

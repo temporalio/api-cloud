@@ -46,7 +46,7 @@ option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_swagger) = {
         {name: "High Availability"; description: "Manage high availability (multi-region, multi-cloud, and same-region replication) namespace configurations"},
         {name: "Export"; description: "Manage workflow history export configurations"},
         {name: "Connectivity Rules"; description: "Manage network connectivity rules"},
-        {name: "Caller Rate Limits"; description: "Manage per-caller rate limits for namespaces"},
+        {name: "Caller Rate Limits"; description: "Manage per-caller rate limits for namespaces (Pre-Release: To get early access contact Temporal Cloud support)."},
         {name: "Regions"; description: "Query available regions"},
         {name: "Account"; description: "Manage account settings and usage"},
         {name: "Custom Roles"; description: "Manage custom roles and their permissions"},
