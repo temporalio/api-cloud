@@ -938,6 +938,134 @@ message ValidateNamespaceExportSinkRequest {
 message ValidateNamespaceExportSinkResponse {
 }
 
+message CreateCallerRateLimitRequest {
+    // The target namespace for this caller rate limit.
+    // Required.
+    string namespace = 1;
+
+    // The caller rate limit specification.
+    // Required.
+    temporal.api.cloud.namespace.v1.CallerRateLimitSpec spec = 2;
+
+    // The id to use for this async operation.
+    // Optional, if not provided a random id will be generated.
+    string async_operation_id = 3;
+}
+
+message CreateCallerRateLimitResponse {
+    // The target namespace for this caller rate limit.
+    string namespace = 1;
+
+    // The id of the created caller rate limit.
+    string caller_rate_limit_id = 2;
+
+    // The async operation.
+    temporal.api.cloud.operation.v1.AsyncOperation async_operation = 3;
+}
+
+message GetCallerRateLimitRequest {
+    // The target namespace for the caller rate limit.
+    // Required.
+    string namespace = 1;
+
+    // The id of the caller rate limit.
+    // Required.
+    string caller_rate_limit_id = 2;
+}
+
+message GetCallerRateLimitResponse {
+    // The caller rate limit retrieved.
+    temporal.api.cloud.namespace.v1.CallerRateLimit caller_rate_limit = 1;
+}
+
+message GetCallerRateLimitsRequest {
+    // The target namespace for the caller rate limits.
+    // Required.
+    string namespace = 1;
+
+    // The size of the page to retrieve.
+    // Optional, defaults to 100. Cannot exceed 1000.
+    int32 page_size = 2;
+
+    // Optional. The page token when continuing from another response.
+    string page_token = 3;
+
+    // Optional. Filter the caller rate limits by caller.
+    CallerFilter caller_filter = 4;
+
+    message CallerFilter {
+        // The type of caller to filter on.
+        // Required when caller_filter is set. Accepted values are "namespace".
+        string caller_type = 1;
+
+        // Optional, list the default rate limit for the type.
+        bool default = 2;
+
+        // Optional, list the rate limit for a specific caller.
+        string caller = 3;
+    }
+}
+
+message GetCallerRateLimitsResponse {
+    // The list of caller rate limits.
+    repeated temporal.api.cloud.namespace.v1.CallerRateLimit caller_rate_limits = 1;
+
+    // The page token to list the next page of rate limits.
+    string next_page_token = 2;
+}
+
+message UpdateCallerRateLimitRequest {
+    // The target namespace for the caller rate limit.
+    // Required.
+    string namespace = 1;
+
+    // The id of the caller rate limit.
+    // Required.
+    string caller_rate_limit_id = 2;
+
+    // The updated caller rate limit specification.
+    // Required.
+    temporal.api.cloud.namespace.v1.CallerRateLimitSpec spec = 3;
+
+    // The version of the caller rate limit spec being updated.
+    // The latest version can be found in the GetCallerRateLimit operation response.
+    // Required.
+    string resource_version = 4;
+
+    // The id to use for this async operation.
+    // Optional, if not provided a random id will be generated.
+    string async_operation_id = 5;
+}
+
+message UpdateCallerRateLimitResponse {
+    // The async operation.
+    temporal.api.cloud.operation.v1.AsyncOperation async_operation = 1;
+}
+
+message DeleteCallerRateLimitRequest {
+    // The target namespace for the caller rate limit.
+    // Required.
+    string namespace = 1;
+
+    // The id of the caller rate limit.
+    // Required.
+    string caller_rate_limit_id = 2;
+
+    // The version of the caller rate limit spec being deleted.
+    // The latest version can be found in the GetCallerRateLimit operation response.
+    // Required.
+    string resource_version = 3;
+
+    // The id to use for this async operation.
+    // Optional, if not provided a random id will be generated.
+    string async_operation_id = 4;
+}
+
+message DeleteCallerRateLimitResponse {
+    // The async operation.
+    temporal.api.cloud.operation.v1.AsyncOperation async_operation = 1;
+}
+
 message UpdateNamespaceTagsRequest {
     // The namespace to set tags for.
     string namespace = 1;

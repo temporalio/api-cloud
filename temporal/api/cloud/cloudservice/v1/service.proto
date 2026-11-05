@@ -46,6 +46,7 @@ option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_swagger) = {
         {name: "High Availability"; description: "Manage high availability (multi-region, multi-cloud, and same-region replication) namespace configurations"},
         {name: "Export"; description: "Manage workflow history export configurations"},
         {name: "Connectivity Rules"; description: "Manage network connectivity rules"},
+        {name: "Caller Rate Limits"; description: "Manage per-caller rate limits for namespaces (Pre-Release: To get early access contact Temporal Cloud support)."},
         {name: "Regions"; description: "Query available regions"},
         {name: "Account"; description: "Manage account settings and usage"},
         {name: "Custom Roles"; description: "Manage custom roles and their permissions"},
@@ -923,6 +924,68 @@ service CloudService {
                 url: "https://docs.temporal.io/cloud/export";
                 description: "Export documentation";
             };
+        };
+    }
+
+    // Create a caller rate limit
+    rpc CreateCallerRateLimit(CreateCallerRateLimitRequest) returns (CreateCallerRateLimitResponse) {
+        option (google.api.http) = {
+            post: "/cloud/namespaces/{namespace}/caller-ratelimits",
+            body: "*"
+        };
+        option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+            tags: ["Caller Rate Limits"];
+            summary: "Create caller rate limit";
+            description: "Creates a new caller rate limit that limits the requests per second a caller can make to a namespace";
+        };
+    }
+
+    // Get a caller rate limit
+    rpc GetCallerRateLimit(GetCallerRateLimitRequest) returns (GetCallerRateLimitResponse) {
+        option (google.api.http) = {
+            get: "/cloud/namespaces/{namespace}/caller-ratelimits/{caller_rate_limit_id}"
+        };
+        option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+            tags: ["Caller Rate Limits"];
+            summary: "Get caller rate limit details";
+            description: "Returns detailed information about a specific caller rate limit";
+        };
+    }
+
+    // Get caller rate limits
+    rpc GetCallerRateLimits(GetCallerRateLimitsRequest) returns (GetCallerRateLimitsResponse) {
+        option (google.api.http) = {
+            get: "/cloud/namespaces/{namespace}/caller-ratelimits"
+        };
+        option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+            tags: ["Caller Rate Limits"];
+            summary: "List caller rate limits";
+            description: "Returns a list of all caller rate limits for a namespace";
+        };
+    }
+
+    // Update a caller rate limit
+    rpc UpdateCallerRateLimit(UpdateCallerRateLimitRequest) returns (UpdateCallerRateLimitResponse) {
+        option (google.api.http) = {
+            post: "/cloud/namespaces/{namespace}/caller-ratelimits/{caller_rate_limit_id}",
+            body: "*"
+        };
+        option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+            tags: ["Caller Rate Limits"];
+            summary: "Update caller rate limit";
+            description: "Updates an existing caller rate limit's configuration";
+        };
+    }
+
+    // Delete a caller rate limit
+    rpc DeleteCallerRateLimit(DeleteCallerRateLimitRequest) returns (DeleteCallerRateLimitResponse) {
+        option (google.api.http) = {
+            delete: "/cloud/namespaces/{namespace}/caller-ratelimits/{caller_rate_limit_id}"
+        };
+        option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+            tags: ["Caller Rate Limits"];
+            summary: "Delete caller rate limit";
+            description: "Removes a caller rate limit from a namespace";
         };
     }
 
